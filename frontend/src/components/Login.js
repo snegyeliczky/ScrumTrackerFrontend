@@ -1,18 +1,23 @@
 import React, {useState} from "react";
+import axios from 'axios';
 
 
 
 const LoginPage = () => {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
-    const onChange = (e) => {
-        console.log(e);
-    };
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
 
     const onSubmit = () => {
-        console.log(username+password);
+        let user = {
+            username: username,
+            password: password
+        };
+        axios.post("http://localhost:8080/auth/registration", user).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        })
     };
 
     return (
