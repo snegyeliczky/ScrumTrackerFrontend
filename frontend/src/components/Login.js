@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import { useHistory } from "react-router-dom"
+import {useHistory} from "react-router-dom"
+import {Button} from "./styled";
 
 
 const LoginPage = () => {
@@ -17,7 +18,7 @@ const LoginPage = () => {
         };
         try {
             let axiosResponse = await axios.post("http://localhost:8080/auth/signin", user);
-            if (axiosResponse.status===200){
+            if (axiosResponse.status === 200) {
                 console.log("Login success");
                 history.push("/");
             }
@@ -36,7 +37,7 @@ const LoginPage = () => {
                 <input
                     type="password"
                     onChange={(e) => setPassword(e.target.value)}/>
-                <button onClick={onLogin}>Submit</button>
+                <Button onClick={onLogin}>Submit</Button>
             </div>
         </div>
     );
