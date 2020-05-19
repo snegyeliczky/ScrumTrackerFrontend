@@ -10,8 +10,10 @@ const AddNewProject = () => {
         if (projectName.length < 3) {
             alert("Project name must be minimum 3 character")
         } else {
-            let projectNameObject = {projectName: projectName};
-            let axiosResponse = await axios.post("http://localhost:8080/project/create", projectName);
+            let projectNameObject = {
+                projectName: projectName
+            };
+            let axiosResponse = await axios.post("http://localhost:8080/project/create", projectNameObject);
             console.log(axiosResponse);
         }
     }
