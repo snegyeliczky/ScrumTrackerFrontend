@@ -1,13 +1,13 @@
 import React from 'react';
 
-const ProjectCard = (project) => {
+const ProjectCard = ({project}) => {
 
     console.log(project);
 
 
     return (
         <div>
-            <h2>{project.project.title}</h2>
+            <h2>{project.title}</h2>
         </div>
     );
 };
