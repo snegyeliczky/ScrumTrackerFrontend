@@ -1,19 +1,28 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {ProjectContext} from "../contexts/ProjectContext";
 import AddNewProject from "./AddNewProject";
+import ProjectCard from "../ProjectCard";
 
 const ProjectList =()=>{
 
-    const {hello} = useContext(ProjectContext);
+    const {getProjects, projects} = useContext(ProjectContext);
 
     useEffect(()=>{
-        hello()
+        getProjects()
         },[]
     );
 
+    console.log(projects);
+
     return(
         <div>
-            Projects
+            Project
+            {projects.length === 0 ?
+                <h1>loading...</h1>
+                :
+                projects.map(project =>
+                <ProjectCard key={project.id} project={project}/>
+            )}
             <AddNewProject/>
         </div>
     )

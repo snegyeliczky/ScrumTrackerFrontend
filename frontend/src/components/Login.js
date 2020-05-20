@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import axios from 'axios';
 import {useHistory} from "react-router-dom"
 import {Button} from "./styled";
+import {ProjectContext} from "./contexts/ProjectContext";
 
 
 const LoginPage = () => {
@@ -9,7 +10,6 @@ const LoginPage = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const history = useHistory();
-
 
     const onLogin = async () => {
         let user = {
@@ -27,6 +27,8 @@ const LoginPage = () => {
             alert("Login failed")
         }
     };
+
+
 
     return (
         <div>

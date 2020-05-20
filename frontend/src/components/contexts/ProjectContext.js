@@ -3,16 +3,19 @@ import axios from "axios";
 
 export const ProjectContext = createContext();
 
-export const ProjectProvider = props =>{
+export const ProjectProvider = props => {
 
-    const hello =()=>{
-        console.log("hello context");
+    const [projects, setProjects] = useState([]);
+
+    const getProjects = async () => {
+        let response = await axios.get("http://localhost:8080/project/getmyprojects");
+        setProjects(response.data);
     };
 
-    return(
+    return (
         <ProjectContext.Provider
-        value={{hello
-        }}>
+            value={{getProjects, projects}}
+        >
             {props.children}
         </ProjectContext.Provider>
     )
