@@ -5,26 +5,28 @@ const AddNewProject = () => {
 
     const [projectName, setProjectName] = useState("");
 
-    async function addNewProject() {
+    async function addNewProject(e) {
+        e.preventDefault();
         console.log(projectName);
-        if (projectName.length < 3) {
-            alert("Project name must be minimum 3 character")
-        } else {
-            let projectNameObject = {
-                projectName: projectName
-            };
-            let axiosResponse = await axios.post("http://localhost:8080/project/create", projectNameObject);
-            console.log(axiosResponse);
-        }
+        let projectNameObject = {
+            projectName: projectName
+        };
+        let axiosResponse = await axios.post("http://localhost:8080/project/create", projectNameObject);
+        console.log(axiosResponse);
+
     }
 
     return (
         <div>
             Create new project:
-            <input onChange={(e) => {
+            <form onSubmit={addNewProject}>
+            <input
+                minLength={3}
+                onChange={(e) => {
                 setProjectName(e.target.value)
             }}/>
-            <button onClick={addNewProject}>Create Project</button>
+            <input type="submit" value="Create Project" />
+            </form>
         </div>
     )
 };
