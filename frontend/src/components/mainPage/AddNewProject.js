@@ -1,32 +1,39 @@
-import React, {useState} from "react";
+import React, { useRef } from "react";
 import axios from 'axios';
 
 const AddNewProject = () => {
 
-    const [projectName, setProjectName] = useState("");
+    const projectNameRef = useRef();
 
-    async function addNewProject(e) {
-        e.preventDefault();
-        console.log(projectName);
+    async function addNewProject() {
+        if (projectNameRef.current.value.length < 3) {
+            alert("minimum 3 character");
+            return;
+        }
+        console.log(projectNameRef.current.value);
         let projectNameObject = {
-            projectName: projectName
+            projectName: projectNameRef.current.value
         };
         let axiosResponse = await axios.post("http://localhost:8080/project/create", projectNameObject);
         console.log(axiosResponse);
+        projectNameRef.current.value = "";
 
     }
 
     return (
         <div>
             Create new project:
-            <form onSubmit={addNewProject}>
-            <input
-                minLength={3}
-                onChange={(e) => {
-                setProjectName(e.target.value)
-            }}/>
-            <input type="submit" value="Create Project" />
-            </form>
+            <div>
+                <input
+                    minLength={3}
+                    ref={projectNameRef}
+                />
+                <input
+                    type="submit"
+                    onClick={addNewProject}
+                    value="Create Project"
+                />
+            </div>
         </div>
     )
 };
