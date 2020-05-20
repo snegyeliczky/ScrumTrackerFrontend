@@ -1,13 +1,18 @@
 import React from 'react';
+import {useHistory} from "react-router-dom";
 
-const ProjectCard = (project) => {
+const ProjectCard = ({project}) => {
 
-    console.log(project);
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push("/project/" + project.id)
+    };
 
 
     return (
         <div>
-            <h2>{project.project.title}</h2>
+            <h2 onClick={handleClick}>{project.title}</h2>
         </div>
     );
 };

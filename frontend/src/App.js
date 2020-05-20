@@ -4,6 +4,7 @@ import LoginPage from "./components/Login";
 import MainPage from "./components/mainPage/MainPage";
 import RegistrationPage from "./components/Registration";
 import {ProjectProvider} from "./components/contexts/ProjectContext";
+import ProjectPage from "./components/mainPage/ProjectPage";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
             <div className="App">
                 <Route exact path="/registration" component={RegistrationPage}/>
                 <Route exact path="/login" component={LoginPage}/>
+                <Route exact path="/project/:id" component={ProjectPage}/>
                 <Route exact path="/" component={MainPage}/>
             </div>
             </ProjectProvider>
