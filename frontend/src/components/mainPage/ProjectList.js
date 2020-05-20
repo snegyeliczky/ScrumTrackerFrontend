@@ -8,11 +8,9 @@ const ProjectList =()=>{
     const {getProjects, projects} = useContext(ProjectContext);
 
     useEffect(()=>{
-        getProjects()
+        getProjects();
         },[]
     );
-
-    console.log(projects);
 
     return(
         <div>
@@ -20,8 +18,8 @@ const ProjectList =()=>{
             {projects.length === 0 ?
                 <h1>loading...</h1>
                 :
-                projects.map(project =>
-                <ProjectCard key={project.id} project={project}/>
+                projects.map(project =>(
+                <ProjectCard key={project.id} project={project}/>)
             )}
             <AddNewProject/>
         </div>

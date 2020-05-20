@@ -10,6 +10,7 @@ const LoginPage = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const history = useHistory();
+    const {getProjects, projects} = useContext(ProjectContext);
 
     const onLogin = async () => {
         let user = {
