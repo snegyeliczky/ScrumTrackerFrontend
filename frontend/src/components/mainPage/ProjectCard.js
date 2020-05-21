@@ -9,7 +9,6 @@ const ProjectCard = ({project}) => {
         history.push("/project/" + project.id)
     };
 
-
     return (
         <div>
             <h2 onClick={handleClick}>{project.title}</h2>

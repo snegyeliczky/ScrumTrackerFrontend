@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import axios from 'axios';
-import {useHistory} from "react-router-dom"
-import {Button} from "./styled";
+import {useHistory} from "react-router-dom";
+import {Button} from "./styledComps/styled";
 import {ProjectContext} from "./contexts/ProjectContext";
 
 

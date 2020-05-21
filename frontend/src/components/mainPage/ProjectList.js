@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {ProjectContext} from "../contexts/ProjectContext";
 import AddNewProject from "./AddNewProject";
-import ProjectCard from "../ProjectCard";
+import ProjectCard from "./ProjectCard";
 
 const ProjectList =()=>{
 
