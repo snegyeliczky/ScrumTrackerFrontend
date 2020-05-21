@@ -19,12 +19,13 @@ const ProjectPage = () => {
         setLoading(false);
     };
 
-    const addNewColumn = async (columnName) =>{
+    const addNewColumn = async (columnName) => {
         setLoading(true);
-        columnName="hello";
-        let projectId=id;
-        let newStatus = {statusName:columnName, projectId:projectId};
-        let axiosResponse = await axios.post("http://localhost:8080/project/newstatus",newStatus);
+        columnName = "hello";
+        let projectId = id;
+        let newStatus = {statusName: columnName, projectId: projectId};
+        let axiosResponse = await axios.post("http://localhost:8080/project/newstatus", newStatus);
+        console.log(axiosResponse.data.statuses);
         setStatuses(axiosResponse.data.statuses);
         setLoading(false);
     };
@@ -42,13 +43,19 @@ const ProjectPage = () => {
                     <h1>{project.title}</h1>
                     <div className={"statusContainer"}>
                         {statuses.map(projectStatus => (
-                            <ProjectStatusCulomn projectStatus={projectStatus}/>
+                            <div>
+                                <div>{projectStatus.statusName}</div>
+                                {tasks!=null :projectStatus.tasks.map(task => (
+                                    <div>{task.author}</div>
+                                ))}
+
+                            </div>
                         ))}
                     </div>
                 </div>
             }
             <div>
-                <button onClick={addNewColumn} > new status </button>
+                <button onClick={addNewColumn}> new status</button>
             </div>
         </div>
     );
