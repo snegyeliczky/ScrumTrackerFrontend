@@ -35,6 +35,22 @@ const ProjectPage = () => {
         getProject();
     };
 
+    const addNewTask = async (description) => {
+        if (newTaskRef.current.value === null) {
+            alert("add title to the new task");
+            return;
+        }
+        setLoading(true);
+        let projectId = id;
+        let task = {
+            statusId: project.table.statuses[0].id,
+            title: newTaskRef.current.value
+        };
+        await axios.post("http://localhost:8080/project/newtask", task);
+        getProject();
+
+    };
+
     useEffect(() => {
         getProject();
     }, []);
@@ -50,7 +66,7 @@ const ProjectPage = () => {
                         <input ref={newColumnRef}/>
                     </div>
                     <div>
-                        <button onClick={addNewTaks}> new task</button>
+                        <button onClick={addNewTask}> new task</button>
                         <input ref={newTaskRef}/>
                     </div>
 

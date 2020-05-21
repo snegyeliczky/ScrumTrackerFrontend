@@ -3,7 +3,7 @@ import React from 'react';
 const Task = ({task}) => {
     return (
         <div>
-            {task.id}
+            {task.title}
         </div>
     );
 };
