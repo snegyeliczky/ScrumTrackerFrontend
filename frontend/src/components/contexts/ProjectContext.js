@@ -1,4 +1,4 @@
-import React, {useState, createContext} from "react";
+import React, {useState, createContext, useEffect} from "react";
 import axios from "axios";
 
 export const ProjectContext = createContext();
@@ -11,6 +11,8 @@ export const ProjectProvider = props => {
         let response = await axios.get("http://localhost:8080/project/getmyprojects");
         setProjects(response.data);
     };
+
+
 
     return (
         <ProjectContext.Provider
