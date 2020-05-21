@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {useParams} from "react-router";
 import axios from "axios";
-import ProjectStatusCulomn from "./ProjectStatusCulomn";
+
 
 const ProjectPage = () => {
 
@@ -24,10 +24,8 @@ const ProjectPage = () => {
         columnName = "hello";
         let projectId = id;
         let newStatus = {statusName: columnName, projectId: projectId};
-        let axiosResponse = await axios.post("http://localhost:8080/project/newstatus", newStatus);
-        console.log(axiosResponse.data.statuses);
-        setStatuses(axiosResponse.data.statuses);
-        setLoading(false);
+        await axios.post("http://localhost:8080/project/newstatus", newStatus);
+        getProject();
     };
 
     useEffect(() => {
@@ -43,12 +41,13 @@ const ProjectPage = () => {
                     <h1>{project.title}</h1>
                     <div className={"statusContainer"}>
                         {statuses.map(projectStatus => (
+
                             <div>
                                 <div>{projectStatus.statusName}</div>
-                                {tasks!=null :projectStatus.tasks.map(task => (
-                                    <div>{task.author}</div>
-                                ))}
-
+                                {projectStatus.tasks.length == 0 ? "no project yet"
+                                    : projectStatus.tasks.map(task => (
+                                        <div>{task.author}</div>
+                                    ))}
                             </div>
                         ))}
                     </div>

@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, {useContext, useRef} from "react";
 import axios from 'axios';
+import {ProjectContext} from '../contexts/ProjectContext'
 
 const AddNewProject = () => {
 
     const projectNameRef = useRef();
+    const {getProjects} = useContext(ProjectContext);
 
     async function addNewProject() {
         if (projectNameRef.current.value.length < 3) {
@@ -17,7 +19,7 @@ const AddNewProject = () => {
         let axiosResponse = await axios.post("http://localhost:8080/project/create", projectNameObject);
         console.log(axiosResponse);
         projectNameRef.current.value = "";
-
+        getProjects();
     }
 
     return (
