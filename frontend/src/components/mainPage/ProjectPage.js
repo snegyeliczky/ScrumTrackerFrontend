@@ -11,6 +11,7 @@ const ProjectPage = () => {
     const [statuses, setStatuses] = useState();
     const [loading, setLoading] = useState(true);
     const newColumnRef = useRef();
+    const newTaskRef = useRef();
 
     const getProject = async () => {
         let response = await axios.get("http://localhost:8080/project/" + id);
@@ -44,8 +45,15 @@ const ProjectPage = () => {
                 <h1>loading....</h1>
                 :
                 <div>
-                    <button onClick={addNewColumn}> new status</button>
-                    <input ref={newColumnRef} />
+                    <div>
+                        <button onClick={addNewColumn}> new status</button>
+                        <input ref={newColumnRef}/>
+                    </div>
+                    <div>
+                        <button onClick={addNewTaks}> new task</button>
+                        <input ref={newTaskRef}/>
+                    </div>
+
                     <ScrumTable key={project.table.id} table={project.table}/>
                 </div>
             }
