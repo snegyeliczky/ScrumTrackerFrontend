@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import Task from "./Task";
 
-const Column = ({status, dragNodeItem, dragItem}) => {
+const Column = ({status, dragNodeItem, dragItem, onDragEnter}) => {
 
 
     return (
@@ -14,7 +14,9 @@ const Column = ({status, dragNodeItem, dragItem}) => {
                              dragNodeItem = {dragNodeItem}
                              statusId = {status.id}
                              key={task.id}
-                             task={task}/>
+                             task={task}
+                             onDragEnter={onDragEnter}
+                />
             })}
         </div>
     );

@@ -1,12 +1,12 @@
 import React, {useState, useRef} from 'react';
 
-const Task = ({task, statusId, dragItem, dragNodeItem }) => {
+const Task = ({task, statusId, dragItem, dragNodeItem, onDragEnter }) => {
 
 
     const [dragging, setDragging] = useState(false);
 
     const handleDrag = (e) => {
-        let dragItemParams = {taskId: task.id, statusId: statusId}
+        let dragItemParams = {taskId: task.id, statusId: statusId, taskObject:task}
         dragItem.current = dragItemParams;
         dragNodeItem.current=e.target;
         setTimeout(()=>{
@@ -26,12 +26,6 @@ const Task = ({task, statusId, dragItem, dragNodeItem }) => {
         dragItem.current=null;
         dragNodeItem.current=null;
     };
-
-    const onDragEnter = (e,statusId)=>{
-        console.log(dragNodeItem.current);
-        console.log(e.target)
-    };
-
 
     return (
         <div className={dragging ? draggingStyle(task.id) : "task_card"}

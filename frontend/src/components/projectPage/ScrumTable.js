@@ -9,13 +9,41 @@ const ScrumTable = ({table}) => {
     const dragItem = useRef(); //dragged task id and status id where it come from
     const dragNodeItem = useRef(); // dragged html element
 
+    const [statuses, setStatuses] = useState(table.statuses);
+
+
+    const onDragEnter = (e,newStatusId)=>{
+        let newStatuses = table.statuses;
+        for (let status of newStatuses){
+            if (status.id === dragItem.current.statusId){
+                let taskArr =[];
+                for (let task of status.tasks){
+                    if (task.id === dragItem.current.taskId){
+                        continue;
+                    }
+                    taskArr.push(task);
+                }
+                status.tasks = taskArr
+            }
+            if (newStatusId === status.id){
+                status.tasks.push(dragItem.current.taskObject)
+            }
+
+        }
+        setStatuses(newStatuses);
+        console.log(statuses);
+    };
+
     return (
         <div className={"scrumTable"}>
-            {table.statuses.map(status => {
+            {statuses.map(status => {
                 return <Column dragItem ={dragItem}
                                dragNodeItem = {dragNodeItem}
                                key={status.id}
-                               status={status} />
+                               status={status}
+                               onDragEnter={onDragEnter}
+                />
+
             })}
         </div>
     );
