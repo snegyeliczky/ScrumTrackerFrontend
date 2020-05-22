@@ -1,0 +1,20 @@
+.scrumTable{
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.project_culomn{
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.task_card {
+    padding: 0.5rem;
+    background-color: #61dafb;
+}
+
+.dragged{
+    display: none;
+}

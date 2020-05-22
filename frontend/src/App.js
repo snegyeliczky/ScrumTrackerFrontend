@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import LoginPage from "./components/Login";
-import MainPage from "./components/mainPage/MainPage";
+import MainPage from "./components/projectPage/MainPage";
 import RegistrationPage from "./components/Registration";
 import {ProjectProvider} from "./components/contexts/ProjectContext";
-import ProjectPage from "./components/mainPage/ProjectPage";
+import ProjectPage from "./components/projectPage/ProjectPage";
 
 
 function App() {
