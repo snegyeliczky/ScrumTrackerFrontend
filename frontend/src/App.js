@@ -5,6 +5,7 @@ import MainPage from "./components/projectPage/MainPage";
 import RegistrationPage from "./components/Registration";
 import {ProjectProvider} from "./components/contexts/ProjectContext";
 import ProjectPage from "./components/projectPage/ProjectPage";
+import Navbar from "./components/Navbar";
 
 
 function App() {
@@ -12,10 +13,10 @@ function App() {
         <Router>
             <ProjectProvider>
                 <div className="App">
+                    <Navbar/>
                     <Route exact path="/registration" component={RegistrationPage}/>
                     <Route exact path="/login" component={LoginPage}/>
-                        <Route exact path="/project/:id" component={ProjectPage}/>
-
+                    <Route exact path="/project/:id" component={ProjectPage}/>
                     <Route exact path="/" component={MainPage}/>
                 </div>
             </ProjectProvider>

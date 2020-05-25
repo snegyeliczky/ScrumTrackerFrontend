@@ -3,24 +3,25 @@ import {ProjectContext} from "../contexts/ProjectContext";
 import AddNewProject from "./AddNewProject";
 import ProjectCard from "./ProjectCard";
 
-const ProjectList =()=>{
+const ProjectList = () => {
 
     const {getProjects, projects} = useContext(ProjectContext);
 
-    useEffect(()=>{
-        getProjects();
-        },[]
+    useEffect(() => {
+            getProjects();
+        }, []
     );
 
-    return(
-        <div>
-            Project
-            {projects.length === 0 ?
-                <h1>loading...</h1>
-                :
-                projects.map(project =>(
-                <ProjectCard key={project.id} project={project}/>)
-            )}
+    return (
+        <div className="project_page">
+            <div className="project_page__project_list_container">
+                {projects.length === 0 ?
+                    <div>You don't have any project yet.</div>
+                    :
+                    projects.map(project => (
+                        <ProjectCard key={project.id} project={project}/>)
+                    )}
+            </div>
             <AddNewProject/>
         </div>
     )

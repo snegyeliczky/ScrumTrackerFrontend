@@ -23,7 +23,7 @@ const AddNewProject = () => {
     }
 
     return (
-        <div>
+        <div className="project_page__create_project_container">
             Create new project:
             <div>
                 <input
