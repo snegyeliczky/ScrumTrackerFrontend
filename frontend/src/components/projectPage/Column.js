@@ -5,7 +5,7 @@ const Column = ({status, onDragEnter, dragItem,onDragEnd}) => {
 
 
     return (
-        <div className={"project_culomn"}
+        <div className={"project_column"}
              onDragEnter={(e)=>(onDragEnter(status.id))}
         >
             {status.statusName}

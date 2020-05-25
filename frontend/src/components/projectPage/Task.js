@@ -8,7 +8,10 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
     const [dragging, setDragging] = useState(false);
 
     const handleDrag = (e) => {
-        let dragItemParams = { statusId: statusId, taskObject:task}
+        let dragItemParams = {
+            statusId: statusId,
+            taskObject:task
+        };
         dragItem.current = dragItemParams;
         setTimeout(()=>{
             setDragging(true);
@@ -16,10 +19,7 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
     };
 
     const draggingStyle = (currTaskId) => {
-        if (currTaskId === dragItem.current.taskId) {
-            return "dragged task_card"
-        }
-        return "task_card";
+        return currTaskId === dragItem.current.taskId ? "dragged task_card" : "task_card";
     };
 
     const handleDragEnd = () =>{

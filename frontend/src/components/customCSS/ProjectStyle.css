@@ -1,11 +1,11 @@
-.scrumTable{
+.scrum_table{
     display: flex;
     flex-direction:row;
     justify-content: center;
     padding: 1.5rem;
 }
 
-.project_culomn{
+.project_column{
     padding: 1rem;
     margin: 1rem;
 }
@@ -15,6 +15,6 @@
     background-color: #61dafb;
 }
 
-.dragged{
+.dragged.task_card {
     display: none;
 }

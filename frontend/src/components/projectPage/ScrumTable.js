@@ -52,7 +52,7 @@ const ScrumTable = ({table}) => {
     //
 
     return (
-        <div className={"scrumTable"}>
+        <div className={"scrum_table"}>
             {statuses.map(status => {
                 return <Column
                     onDragEnd={onDragEnd}
