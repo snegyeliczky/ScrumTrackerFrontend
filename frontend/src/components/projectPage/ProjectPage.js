@@ -62,24 +62,24 @@ const ProjectPage = () => {
     }, []);
 
     return (
+
         <div>
-            {loading ?
-                <h1>loading....</h1>
-                :
-                <div>
+                {loading ?
+                    <h1>loading....</h1>
+                    :
                     <div>
-                        <button onClick={addNewColumn}> new status</button>
-                        <input ref={newColumnRef}/>
-                    </div>
-                    <div>
-                        <button onClick={addNewTask}> new task</button>
-                        <input ref={newTaskRef}/>
-                    </div>
+                        <div>
+                            <button onClick={addNewColumn}> new status</button>
+                            <input ref={newColumnRef}/>
+                        </div>
+                        <div>
+                            <button onClick={addNewTask}> new task</button>
+                            <input ref={newTaskRef}/>
+                        </div>
 
-                    <ScrumTable key={project.table.id} table={project.table}/>
-                </div>
-            }
-
+                        <ScrumTable key={project.table.id} table={project.table}/>
+                    </div>
+                }
         </div>
     );
 };

@@ -1,6 +1,8 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useContext} from 'react';
+import Column from "./Column";
 
-const Task = ({task, statusId, dragItem, dragNodeItem, onDragEnter }) => {
+
+const Task = ({task, statusId,onDragEnd , dragItem}) => {
 
 
     const [dragging, setDragging] = useState(false);
@@ -8,7 +10,6 @@ const Task = ({task, statusId, dragItem, dragNodeItem, onDragEnter }) => {
     const handleDrag = (e) => {
         let dragItemParams = {taskId: task.id, statusId: statusId, taskObject:task}
         dragItem.current = dragItemParams;
-        dragNodeItem.current=e.target;
         setTimeout(()=>{
             setDragging(true);
         },0)
@@ -22,17 +23,17 @@ const Task = ({task, statusId, dragItem, dragNodeItem, onDragEnter }) => {
     };
 
     const handleDragEnd = () =>{
-        setDragging(false)
+        onDragEnd();
+        setDragging(false);
         dragItem.current=null;
-        dragNodeItem.current=null;
     };
 
     return (
         <div className={dragging ? draggingStyle(task.id) : "task_card"}
              draggable={true}
              onDragStart={(event) => (handleDrag(event))}
-             onDragEnd={(e)=>(handleDragEnd(e))}
-             onDragEnter={(e)=>(onDragEnter(e,statusId))}>
+             onDragEndCapture={(e)=>(handleDragEnd(e))}
+             >
             {task.title}
         </div>
     );

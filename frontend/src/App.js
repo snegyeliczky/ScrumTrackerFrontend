@@ -11,15 +11,17 @@ function App() {
     return (
         <Router>
             <ProjectProvider>
-            <div className="App">
-                <Route exact path="/registration" component={RegistrationPage}/>
-                <Route exact path="/login" component={LoginPage}/>
-                <Route exact path="/project/:id" component={ProjectPage}/>
-                <Route exact path="/" component={MainPage}/>
-            </div>
+                <div className="App">
+                    <Route exact path="/registration" component={RegistrationPage}/>
+                    <Route exact path="/login" component={LoginPage}/>
+                        <Route exact path="/project/:id" component={ProjectPage}/>
+
+                    <Route exact path="/" component={MainPage}/>
+                </div>
             </ProjectProvider>
         </Router>
-    );
+    )
+        ;
 }
 
 export default App;
