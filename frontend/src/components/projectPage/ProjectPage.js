@@ -18,9 +18,12 @@ const ProjectPage = () => {
         response.data.table.statuses.sort(function (a, b) {
             return a.position - b.position;
         });
+        response.data.table.statuses.map(status => {
+            status.tasks.sort(function (a, b) {
+                return a.position - b.position;
+            })
+        });
         setProject(response.data);
-        setStatuses(response.data.table.statuses);
-        console.log(response.data);
         setLoading(false);
     };
 
@@ -48,6 +51,7 @@ const ProjectPage = () => {
             statusId: project.table.statuses[0].id,
             title: newTaskRef.current.value
         };
+        console.log(task);
         await axios.post("http://localhost:8080/project/newtask", task);
         getProject();
 
