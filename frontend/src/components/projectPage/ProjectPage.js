@@ -15,10 +15,12 @@ const ProjectPage = () => {
 
     const getProject = async () => {
         let response = await axios.get("http://localhost:8080/project/" + id);
+        response.data.table.statuses.sort(function (a, b) {
+            return a.position - b.position;
+        });
         setProject(response.data);
         setStatuses(response.data.table.statuses);
         console.log(response.data);
-        console.log(response.data.table.statuses);
         setLoading(false);
     };
 
