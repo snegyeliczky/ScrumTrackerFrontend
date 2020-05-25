@@ -5,14 +5,10 @@ import axios from "axios";
 const ScrumTable = ({table}) => {
 
     const [statuses, setStatuses] = useState(table.statuses);
-
-    //dragNDrop
-
-
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
 
-    const refreshStatusesOnBackend = async () => {
+    const uploadStatusChangeToDatabase = async () => {
         let refreshItem = {
             toStatusId: DragItemColumnId,
             fromStatusId: dragItem.current.statusId,
@@ -28,6 +24,7 @@ const ScrumTable = ({table}) => {
 
     const onDragEnd = () => {
         setStatuses(refreshStatus(DragItemColumnId));
+        uploadStatusChangeToDatabase();
     };
 
 

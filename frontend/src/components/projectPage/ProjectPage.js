@@ -24,6 +24,7 @@ const ProjectPage = () => {
             })
         });
         setProject(response.data);
+        console.log(response.data);
         setLoading(false);
     };
 
@@ -51,7 +52,6 @@ const ProjectPage = () => {
             statusId: project.table.statuses[0].id,
             title: newTaskRef.current.value
         };
-        console.log(task);
         await axios.post("http://localhost:8080/project/newtask", task);
         getProject();
 
