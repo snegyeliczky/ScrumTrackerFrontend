@@ -1,8 +1,6 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
-import {useParams} from "react-router";
-import axios from "axios";
 import Column from "./Column";
-import {DragAndDropContext} from "../contexts/DragNDropContext";
+import axios from "axios";
 
 const ScrumTable = ({table}) => {
 
@@ -10,31 +8,36 @@ const ScrumTable = ({table}) => {
 
     //dragNDrop
 
-    const [DragItemColumnId,setDragItemColumnId] = useState();
+
+    const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
 
-    const onDragEnter = (e, newStatusId) => {
-        setDragItemColumnId(newStatusId);
-        console.log("Drag Item in: ");
-        console.log(DragItemColumnId);
+    const refreshStatusesOnBackend = async () => {
+        let refreshItem = {
+            toStatusId: DragItemColumnId,
+            fromStatusId: dragItem.current.statusId,
+            taskId: dragItem.current.taskObject.id
+        };
+        await axios.put("http://localhost:8080/task/transfer",refreshItem);
     };
 
-    const onDragEnd = () =>{
-        console.log("final Status Id: ");
-        console.log(DragItemColumnId);
-        console.log("drag item: ");
-        console.log(dragItem.current);
-        refreshStatus(DragItemColumnId,);
+
+    const onDragEnter = (newStatusId) => {
+        setDragItemColumnId(newStatusId);
+    };
+
+    const onDragEnd = () => {
+        setStatuses(refreshStatus(DragItemColumnId));
     };
 
 
     const refreshStatus = (newStatusId) => {
-        let newStatuses = table.statuses;
+        let newStatuses = [...statuses];
         for (let status of newStatuses) {
             if (status.id === dragItem.current.statusId) {
                 let taskArr = [];
                 for (let task of status.tasks) {
-                    if (task.id === dragItem.current.taskId) {
+                    if (task.id === dragItem.current.taskObject.id) {
                         continue;
                     }
                     taskArr.push(task);
@@ -46,8 +49,7 @@ const ScrumTable = ({table}) => {
             }
 
         }
-        setStatuses(newStatuses);
-        console.log(statuses);
+        return newStatuses;
     };
 
     //
@@ -56,7 +58,7 @@ const ScrumTable = ({table}) => {
         <div className={"scrumTable"}>
             {statuses.map(status => {
                 return <Column
-                    onDragEnd ={onDragEnd}
+                    onDragEnd={onDragEnd}
                     dragItem={dragItem}
                     key={status.id}
                     status={status}

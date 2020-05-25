@@ -8,7 +8,7 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
     const [dragging, setDragging] = useState(false);
 
     const handleDrag = (e) => {
-        let dragItemParams = {taskId: task.id, statusId: statusId, taskObject:task}
+        let dragItemParams = { statusId: statusId, taskObject:task}
         dragItem.current = dragItemParams;
         setTimeout(()=>{
             setDragging(true);
@@ -23,7 +23,7 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
     };
 
     const handleDragEnd = () =>{
-        onDragEnd();
+        onDragEnd(task);
         setDragging(false);
         dragItem.current=null;
     };
@@ -32,7 +32,7 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
         <div className={dragging ? draggingStyle(task.id) : "task_card"}
              draggable={true}
              onDragStart={(event) => (handleDrag(event))}
-             onDragEndCapture={(e)=>(handleDragEnd(e))}
+             onDragEnd={handleDragEnd}
              >
             {task.title}
         </div>

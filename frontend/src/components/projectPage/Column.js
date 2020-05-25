@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import Task from "./Task";
 
 const Column = ({status, onDragEnter, dragItem,onDragEnd}) => {
@@ -6,7 +6,7 @@ const Column = ({status, onDragEnter, dragItem,onDragEnd}) => {
 
     return (
         <div className={"project_culomn"}
-             onDragEnter={(e)=>(onDragEnter(e,status.id))}
+             onDragEnter={(e)=>(onDragEnter(status.id))}
         >
             {status.statusName}
             {status.tasks.length === 0 ?
