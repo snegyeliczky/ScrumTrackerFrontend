@@ -1,7 +1,35 @@
 .main_nav {
-    width: 100%;
+    width: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: red;
+    z-index: 100;
+    padding: 0.5rem 1rem;
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.nav-item {
+    margin: 1rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    color: blue;
+}
+
+.nav-item:hover,
+.nav-item:active {
+    background-color: cornflowerblue;
+    border-radius: 1rem;
+}
+
+.text-link {
+    color: inherit;
+    text-decoration: inherit;
 }
