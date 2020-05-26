@@ -30,8 +30,8 @@ const ProjectPage = () => {
     };
 
     const addNewColumn = async (columnName) => {
-        if (newColumnRef.current.value === null) {
-            alert("add name");
+        if (newColumnRef.current.value.length<3) {
+            alert("add name (minimum 3 character) to your status");
             return;
         }
         setLoading(true);
@@ -43,8 +43,8 @@ const ProjectPage = () => {
     };
 
     const addNewTask = async (description) => {
-        if (newTaskRef.current.value === null) {
-            alert("add title to the new task");
+        if (newTaskRef.current.value.length<3) {
+            alert("add title (minimum 3 character) to the new task");
             return;
         }
         setLoading(true);
