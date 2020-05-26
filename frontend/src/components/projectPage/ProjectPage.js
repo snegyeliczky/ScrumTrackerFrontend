@@ -2,6 +2,7 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import {useParams} from "react-router";
 import axios from "axios";
 import ScrumTable from "./ScrumTable";
+import {AdderComponent} from "../styledComps/styled";
 
 
 const ProjectPage = () => {
@@ -63,23 +64,25 @@ const ProjectPage = () => {
 
     return (
 
-        <div>
-                {loading ?
-                    <h1>loading....</h1>
-                    :
-                    <div>
-                        <div>
+        <div className={"project_item_container_canvas"}>
+            {loading ?
+                <h1>loading....</h1>
+                :
+                <div className={"project_item_container"}>
+                    <div className={"add_component_container"}>
+                        <AdderComponent className={"add_new_status adder_component"}>
                             <button onClick={addNewColumn}> new status</button>
                             <input ref={newColumnRef}/>
-                        </div>
-                        <div>
+                        </AdderComponent>
+                        <AdderComponent className={"add_new_task adder_component"}>
                             <button onClick={addNewTask}> new task</button>
                             <input ref={newTaskRef}/>
-                        </div>
-
-                        <ScrumTable key={project.table.id} table={project.table}/>
+                        </AdderComponent>
                     </div>
-                }
+
+                    <ScrumTable key={project.table.id} table={project.table}/>
+                </div>
+            }
         </div>
     );
 };

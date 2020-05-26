@@ -18,3 +18,20 @@
 .dragged.task_card {
     display: none;
 }
+
+.add_component_container{
+    display: flex;
+    justify-content: center;
+}
+
+/*
+.adder_component{
+    display: flex;
+    max-width: 150px;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid;
+    margin: 10px;
+    padding: 10px;
+}
+ */

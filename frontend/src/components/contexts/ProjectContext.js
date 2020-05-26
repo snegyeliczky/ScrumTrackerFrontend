@@ -21,6 +21,5 @@ export const ProjectProvider = props => {
             {props.children}
         </ProjectContext.Provider>
     )
-
 };
 

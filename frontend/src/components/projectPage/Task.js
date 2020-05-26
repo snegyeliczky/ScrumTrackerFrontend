@@ -22,7 +22,8 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
         return currTaskId === dragItem.current.taskObject.id ? "dragged task_card" : "task_card";
     };
 
-    const handleDragEnd = () =>{
+    const handleDragEnd = (e) =>{
+        e.preventDefault();
         onDragEnd(task);
         setDragging(false);
         dragItem.current=null;
@@ -31,8 +32,10 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
     return (
         <div className={dragging ? draggingStyle(task.id) : "task_card"}
              draggable={true}
+             aria-dropeffect={"none"}
              onDragStart={(event) => (handleDrag(event))}
-             onDragEnd={handleDragEnd}
+             onDragEnd={(e) =>handleDragEnd(e)}
+
              >
             {task.title}
         </div>
