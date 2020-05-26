@@ -32,19 +32,16 @@ const ScrumTable = ({table}) => {
         let newStatuses = [...statuses];
         for (let status of newStatuses) {
             if (status.id === dragItem.current.statusId) {
-                let taskArr = [];
-                for (let task of status.tasks) {
-                    if (task.id === dragItem.current.taskObject.id) {
-                        continue;
-                    }
-                    taskArr.push(task);
+                let taskArr = [...status.tasks];
+                let index = taskArr.indexOf(dragItem.current.taskObject);
+                if (index > -1) {
+                    taskArr.splice(index, 1)
                 }
                 status.tasks = taskArr
             }
             if (newStatusId === status.id) {
                 status.tasks.push(dragItem.current.taskObject)
             }
-
         }
         return newStatuses;
     };

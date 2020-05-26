@@ -19,7 +19,7 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
     };
 
     const draggingStyle = (currTaskId) => {
-        return currTaskId === dragItem.current.taskId ? "dragged task_card" : "task_card";
+        return currTaskId === dragItem.current.taskObject.id ? "dragged task_card" : "task_card";
     };
 
     const handleDragEnd = () =>{
