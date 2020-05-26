@@ -3,6 +3,10 @@ import {useParams} from "react-router";
 import axios from "axios";
 import ScrumTable from "./ScrumTable";
 import {AdderComponent} from "../styledComps/styled";
+import {
+    PlusCircleOutlined
+
+} from '@ant-design/icons';
 
 
 const ProjectPage = () => {
@@ -30,7 +34,7 @@ const ProjectPage = () => {
     };
 
     const addNewColumn = async (columnName) => {
-        if (newColumnRef.current.value.length<3) {
+        if (newColumnRef.current.value.length < 3) {
             alert("add name (minimum 3 character) to your status");
             return;
         }
@@ -43,7 +47,7 @@ const ProjectPage = () => {
     };
 
     const addNewTask = async (description) => {
-        if (newTaskRef.current.value.length<3) {
+        if (newTaskRef.current.value.length < 3) {
             alert("add title (minimum 3 character) to the new task");
             return;
         }
@@ -75,8 +79,10 @@ const ProjectPage = () => {
                             <input ref={newColumnRef}/>
                         </AdderComponent>
                         <AdderComponent className={"add_new_task adder_component"}>
-                            <button onClick={addNewTask}> new task</button>
+                            <label>Add new Task</label>
                             <input ref={newTaskRef}/>
+                            <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color:"green"}}
+                                                onClick={addNewTask}/>
                         </AdderComponent>
                     </div>
 
