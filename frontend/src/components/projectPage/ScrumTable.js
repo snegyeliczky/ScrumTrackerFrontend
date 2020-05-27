@@ -8,13 +8,21 @@ const ScrumTable = ({table}) => {
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
 
+
+
+    const deleteStatus = async (statusID) => {
+        await axios.delete("http://localhost:8080/project/deletestatus?statusid=" + statusID + "&tableid=" + table.id);
+        let axiosResponse = await axios.get("http://localhost:8080/project/gettable/" + table.id);
+        setStatuses(axiosResponse.data.statuses);
+    };
+
     const uploadStatusChangeToDatabase = async () => {
         let refreshItem = {
             toStatusId: DragItemColumnId,
             fromStatusId: dragItem.current.statusId,
             taskId: dragItem.current.taskObject.id
         };
-        await axios.put("http://localhost:8080/task/transfer",refreshItem);
+        await axios.put("http://localhost:8080/task/transfer", refreshItem);
     };
 
 
@@ -50,16 +58,20 @@ const ScrumTable = ({table}) => {
 
     return (
         <div className={"scrum_table"}>
-            {statuses.map(status => {
-                return <Column
-                    onDragEnd={onDragEnd}
-                    dragItem={dragItem}
-                    key={status.id}
-                    status={status}
-                    onDragEnter={onDragEnter}
-                />
+             {
+                        statuses.map(status => {
+                            return <Column
+                                deleteStatus={deleteStatus}
+                                onDragEnd={onDragEnd}
+                                dragItem={dragItem}
+                                key={status.id}
+                                status={status}
+                                onDragEnter={onDragEnter}
+                            />
 
-            })}
+                        })
+                    }
+
         </div>
     );
 };
