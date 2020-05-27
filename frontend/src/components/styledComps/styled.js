@@ -10,10 +10,12 @@ export const Button = styled.button`
 
 export const AdderComponent = styled.div`
       display: flex;
-    max-width: 150px;
+    max-width: 170px;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #373A55;
     margin: 10px;
     padding: 10px;
     `;
