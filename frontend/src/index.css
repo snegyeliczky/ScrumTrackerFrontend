@@ -35,12 +35,13 @@ body {
   font-weight: bold;
   padding: 0.5rem 2rem;
   cursor: pointer;
-  color: blue;
+  color: #F5F2E0;
 }
 
 .nav-item:hover,
 .nav-item:active {
-  background-color: #F5F2E0;
+  background-color: #D2775F;
+  border-radius: 10px;
 }
 
 .text-link {
