@@ -4,8 +4,8 @@ import axios from "axios";
 import ScrumTable from "./ScrumTable";
 import {AdderComponent} from "../styledComps/styled";
 import {
-    PlusCircleOutlined
-
+    PlusCircleOutlined,
+    CheckOutlined
 } from '@ant-design/icons';
 
 
@@ -17,6 +17,7 @@ const ProjectPage = () => {
     const [loading, setLoading] = useState(true);
     const newColumnRef = useRef();
     const newTaskRef = useRef();
+    const [mouseOverAccept, setMouseOverAccept] = useState(false);
 
     const getProject = async () => {
         let response = await axios.get("http://localhost:8080/project/" + id);
@@ -73,20 +74,22 @@ const ProjectPage = () => {
                 <h1>loading....</h1>
                 :
                 <div className={"project_item_container"}>
+                    <ScrumTable key={project.table.id} table={project.table}/>
                     <div className={"add_component_container"}>
                         <AdderComponent className={"add_new_status adder_component"}>
-                            <button onClick={addNewColumn}> new status</button>
+                            <label>Add new Status</label>
                             <input ref={newColumnRef}/>
+                            <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
+                                                onClick={addNewColumn}/>
                         </AdderComponent>
                         <AdderComponent className={"add_new_task adder_component"}>
                             <label>Add new Task</label>
                             <input ref={newTaskRef}/>
-                            <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color:"green"}}
+                            <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
                                                 onClick={addNewTask}/>
+
                         </AdderComponent>
                     </div>
-
-                    <ScrumTable key={project.table.id} table={project.table}/>
                 </div>
             }
         </div>

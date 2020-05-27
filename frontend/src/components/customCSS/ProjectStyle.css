@@ -1,5 +1,6 @@
 .scrum_table{
     display: flex;
+    flex-wrap: wrap;
     flex-direction:row;
     justify-content: center;
     padding: 1.5rem;
@@ -11,27 +12,42 @@
 }
 
 .task_card {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 0.5rem;
     padding: 0.5rem;
+    min-height: 4rem;
     background-color: #61dafb;
 }
 
 .dragged.task_card {
     display: none;
 }
-
+/*
 .add_component_container{
     display: flex;
     justify-content: center;
 }
+ */
 
-/*
-.adder_component{
+.project_item_container{
     display: flex;
-    max-width: 150px;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid;
-    margin: 10px;
-    padding: 10px;
 }
- */
+
+.add_component_container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project_column {
+    display: block;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.3rem;
+    width: 225px;
+}

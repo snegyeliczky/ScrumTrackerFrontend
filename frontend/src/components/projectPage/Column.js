@@ -8,9 +8,9 @@ const Column = ({status, onDragEnter, dragItem,onDragEnd}) => {
         <div className={"project_column"}
              onDragEnter={(e)=>(onDragEnter(status.id))}
         >
-            {status.statusName}
+            <label>{status.statusName}</label>
             {status.tasks.length === 0 ?
-                <h3>no task yet</h3>
+                <h3>No task yet</h3>
                 : status.tasks.map(task => {
                     return <Task
                         onDragEnd ={onDragEnd}
