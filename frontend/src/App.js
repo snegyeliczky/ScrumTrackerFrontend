@@ -1,11 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import LoginPage from "./components/Login";
-import MainPage from "./components/projectPage/MainPage";
+import MyProjects from "./components/projectPage/MyProjects";
 import RegistrationPage from "./components/Registration";
 import {ProjectProvider} from "./components/contexts/ProjectContext";
 import ProjectPage from "./components/projectPage/ProjectPage";
 import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage";
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
                     <Route exact path="/registration" component={RegistrationPage}/>
                     <Route exact path="/login" component={LoginPage}/>
                     <Route exact path="/project/:id" component={ProjectPage}/>
-                    <Route exact path="/" component={MainPage}/>
+                    <Route exact path="/projects" component={MyProjects}/>
+                    <Route exact path="/" component={HomePage}/>
                 </div>
             </ProjectProvider>
         </Router>
