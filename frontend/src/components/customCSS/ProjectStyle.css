@@ -42,6 +42,10 @@
     border: 2px solid #373A55;
 }
 
+.status_tool_container{
+    float: right;
+}
+
 .task_card {
     display: flex;
     justify-content: center;
