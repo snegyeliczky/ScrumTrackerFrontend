@@ -9,7 +9,7 @@ export const Button = styled.button`
     padding: 0.25em 1em;`;
 
 export const AdderComponent = styled.div`
-      display: flex;
+    display: flex;
     max-width: 170px;
     flex-wrap: wrap;
     justify-content: center;
@@ -24,6 +24,7 @@ export const Input = styled.input`
     color: #373A55;
     border: 1px solid #373A55;
     padding: 6px;
+    max-width: 100%;
     `;
 
 export const ContentContainer = styled.div`
