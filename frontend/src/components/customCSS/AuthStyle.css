@@ -1,22 +1,23 @@
-.registration_container,
-.login_container {
-    margin-top: 60px;
-    display: flex;
-    justify-content: center;
-}
-
-.registration_form,
-.login_form {
+.authpage_container {
     display: flex;
     flex-direction: column;
+    align-items: end;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.authpage_form {
     align-self: center;
 }
 
 .registration_input,
-.login_input {
+.login_input,
+.authpage_select_btn {
     margin: 1rem;
 }
 
-.auth_btn {
+
+.auth_submit_btn {
     margin: 1rem;
 }
+

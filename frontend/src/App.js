@@ -7,6 +7,7 @@ import {ProjectProvider} from "./components/contexts/ProjectContext";
 import ProjectPage from "./components/projectPage/ProjectPage";
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
+import AuthPage from "./components/authPage/AuthPage";
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
             <ProjectProvider>
                 <div className="App">
                     <Navbar/>
-                    <Route exact path="/registration" component={RegistrationPage}/>
+                    <Route exact path="/registration" component={AuthPage}/>
                     <Route exact path="/login" component={LoginPage}/>
                     <Route exact path="/project/:id" component={ProjectPage}/>
                     <Route exact path="/projects" component={MyProjects}/>

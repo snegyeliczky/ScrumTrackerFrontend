@@ -35,14 +35,19 @@ const LoginPage = () => {
             <div className="login_form">
                 <div className="login_input">
                     <input
-                        onChange={(e) => setUsername(e.target.value)}/>
+                        onChange={(e) => setUsername(e.target.value)}
+                        type="text"
+                    />
                 </div>
                 <div className="login_input">
                     <input
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}/>
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
-                <button className="auth_btn" onClick={onLogin}>Login</button>
+                <div className="auth_submit_btn">
+                    <button className="auth_btn" onClick={onLogin}>Login</button>
+                </div>
             </div>
         </div>
     );

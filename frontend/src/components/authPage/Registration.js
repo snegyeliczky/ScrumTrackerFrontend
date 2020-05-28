@@ -17,30 +17,32 @@ const RegistrationPage = () => {
         };
         try {
             let axiosResponse = await axios.post("http://localhost:8080/auth/registration", user);
-            if (axiosResponse.status ===200) {
+            if (axiosResponse.status === 200) {
                 console.log("registration ok");
                 alert("registration succes");
                 history.push("/");
             }
-        } catch(e){
+        } catch (e) {
             console.log(e);
             alert("Registration failed");
         }
     };
 
-    return(
+    return (
         <div className="registration_container">
             <div className="registration_form">
                 <div className="registration_input">
-                <input
-                    onChange={(e) => setUsername(e.target.value)}/>
+                    <input
+                        onChange={(e) => setUsername(e.target.value)}/>
                 </div>
                 <div className="registration_input">
-                <input
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}/>
+                    <input
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <button className="auth_btn" onClick={onSubmit}>Registration</button>
+                <div className="auth_submit_btn">
+                    <button className="auth_btn" onClick={onSubmit}>Registration</button>
+                </div>
             </div>
         </div>
     )
