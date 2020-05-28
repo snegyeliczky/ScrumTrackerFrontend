@@ -1,0 +1,22 @@
+.registration_container,
+.login_container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.registration_form,
+.login_form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.registration_input,
+.login_input {
+    margin: 1rem;
+}
+
+.auth_btn {
+    margin: 1rem;
+}

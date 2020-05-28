@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
 import "../components/customCSS/NavStyle.css"
+import {ProjectContext} from "./contexts/ProjectContext";
 
 
 const Navbar = () => {
 
+    const {setProjects} = useContext(ProjectContext);
+
     async function handleLogout() {
-        await axios.get("http://localhost:8080/auth/logout")
+        await axios.get("http://localhost:8080/auth/logout");
+        setProjects([]);
+        alert("Logout successful");
     }
 
     return (

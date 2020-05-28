@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import axios from 'axios';
 import {useHistory} from "react-router-dom";
+import '../customCSS/AuthStyle.css';
+
 
 const RegistrationPage = () => {
 
@@ -27,14 +29,18 @@ const RegistrationPage = () => {
     };
 
     return(
-        <div>
-            <div className="registration">
+        <div className="registration_container">
+            <div className="registration_form">
+                <div className="registration_input">
                 <input
                     onChange={(e) => setUsername(e.target.value)}/>
+                </div>
+                <div className="registration_input">
                 <input
                     type="password"
                     onChange={(e) => setPassword(e.target.value)}/>
-                <button onClick={onSubmit}>Submit</button>
+                </div>
+                <button className="auth_btn" onClick={onSubmit}>Registration</button>
             </div>
         </div>
     )
