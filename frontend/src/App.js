@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import LoginPage from "./components/Login";
+import LoginPage from "./components/authPage/Login";
 import MyProjects from "./components/projectPage/MyProjects";
-import RegistrationPage from "./components/Registration";
+import RegistrationPage from "./components/authPage/Registration";
 import {ProjectProvider} from "./components/contexts/ProjectContext";
 import ProjectPage from "./components/projectPage/ProjectPage";
 import Navbar from "./components/Navbar";

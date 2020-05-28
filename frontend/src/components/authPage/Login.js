@@ -1,8 +1,8 @@
 import React, {useContext, useState} from "react";
 import axios from 'axios';
 import {useHistory} from "react-router-dom";
-import {Button} from "./styledComps/styled";
-import {ProjectContext} from "./contexts/ProjectContext";
+import {ProjectContext} from "../contexts/ProjectContext";
+import '../customCSS/AuthStyle.css';
 
 
 const LoginPage = () => {
@@ -30,17 +30,19 @@ const LoginPage = () => {
     };
 
 
-
     return (
-        <div>
-
-            <div className="loginForm">
-                <input
-                    onChange={(e) => setUsername(e.target.value)}/>
-                <input
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}/>
-                <Button onClick={onLogin}>Submit</Button>
+        <div className="login_container">
+            <div className="login_form">
+                <div className="login_input">
+                    <input
+                        onChange={(e) => setUsername(e.target.value)}/>
+                </div>
+                <div className="login_input">
+                    <input
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}/>
+                </div>
+                <button className="auth_btn" onClick={onLogin}>Login</button>
             </div>
         </div>
     );
