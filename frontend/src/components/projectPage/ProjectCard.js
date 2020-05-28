@@ -10,8 +10,8 @@ const ProjectCard = ({project}) => {
     };
 
     return (
-        <div>
-            <h2 onClick={handleClick}>{project.title}</h2>
+        <div className={"project_card"} onClick={handleClick}>
+            <h2 >{project.title}</h2>
         </div>
     );
 };

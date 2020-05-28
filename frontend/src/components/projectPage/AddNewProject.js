@@ -1,6 +1,10 @@
 import React, {useContext, useRef} from "react";
 import axios from 'axios';
 import {ProjectContext} from '../contexts/ProjectContext'
+import {AdderComponent,Input} from "../styledComps/styled";
+import {
+    PlusCircleOutlined,
+} from '@ant-design/icons';
 
 const AddNewProject = () => {
 
@@ -24,18 +28,17 @@ const AddNewProject = () => {
 
     return (
         <div className="project_page__create_project_container">
-            Create new project:
-            <div>
-                <input
-                    minLength={3}
+            <AdderComponent>
+                <label>Crate Project</label>
+                <Input
+                    placeholder={"Project Name"}
                     ref={projectNameRef}
                 />
-                <input
-                    type="submit"
+                <PlusCircleOutlined
+                    style={{fontSize: "35px", padding: "10px", color: "green"}}
                     onClick={addNewProject}
-                    value="Create Project"
                 />
-            </div>
+            </AdderComponent>
         </div>
     )
 };

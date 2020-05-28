@@ -9,7 +9,7 @@
 }
  */
 
-.scrum_table{
+.scrum_table, .project_page__project_list_container{
     display: flex;
     flex-wrap: wrap;
     flex-direction:row;
@@ -23,13 +23,13 @@
     justify-content: center;
 }
 
-.add_component_container{
+.add_component_container, .project_page__create_project_container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.project_column {
+.project_column, .project_card {
     display: block;
     height: fit-content;
     text-align: center;
