@@ -19,3 +19,9 @@ export const AdderComponent = styled.div`
     margin: 10px;
     padding: 10px;
     `;
+
+export const Input = styled.input`
+    color: #373A55;
+    border: 1px solid #373A55;
+    padding: 6px;
+    `;

@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import {useParams} from "react-router";
 import axios from "axios";
 import ScrumTable from "./ScrumTable";
-import {AdderComponent} from "../styledComps/styled";
+import {AdderComponent,Input} from "../styledComps/styled";
 import {
     PlusCircleOutlined,
     CheckOutlined
@@ -78,13 +78,13 @@ const ProjectPage = () => {
                     <div className={"add_component_container"}>
                         <AdderComponent className={"add_new_status adder_component"}>
                             <label>Add new Status</label>
-                            <input ref={newColumnRef}/>
+                            <Input ref={newColumnRef} placeholder={"Status name!"}/>
                             <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
                                                 onClick={addNewColumn}/>
                         </AdderComponent>
                         <AdderComponent className={"add_new_task adder_component"}>
                             <label>Add new Task</label>
-                            <input ref={newTaskRef}/>
+                            <Input ref={newTaskRef} placeholder={"Task name!"}/>
                             <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
                                                 onClick={addNewTask}/>
 
