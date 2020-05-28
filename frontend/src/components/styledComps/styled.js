@@ -25,3 +25,11 @@ export const Input = styled.input`
     border: 1px solid #373A55;
     padding: 6px;
     `;
+
+export const ContentContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    justify-content: center;
+    padding: 1.5rem;
+    `;

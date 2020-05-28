@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import Column from "./Column";
 import axios from "axios";
+import {ContentContainer} from "../styledComps/styled"
 
 const ScrumTable = ({table}) => {
 
@@ -57,7 +58,7 @@ const ScrumTable = ({table}) => {
     //
 
     return (
-        <div className={"scrum_table"}>
+        <ContentContainer className={"scrum_table"}>
              {
                         statuses.map(status => {
                             return <Column
@@ -72,7 +73,7 @@ const ScrumTable = ({table}) => {
                         })
                     }
 
-        </div>
+        </ContentContainer>
     );
 };
 

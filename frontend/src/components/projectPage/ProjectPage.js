@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import {useParams} from "react-router";
 import axios from "axios";
 import ScrumTable from "./ScrumTable";
-import {AdderComponent,Input} from "../styledComps/styled";
+import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
 import {
     PlusCircleOutlined,
     CheckOutlined
@@ -70,6 +70,7 @@ const ProjectPage = () => {
     return (
 
         <div className={"project_item_container_canvas"}>
+            <ContentContainer><h2>Your Tasks </h2></ContentContainer>
             {loading ?
                 <h1>loading....</h1>
                 :

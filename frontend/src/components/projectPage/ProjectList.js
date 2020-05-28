@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {ProjectContext} from "../contexts/ProjectContext";
 import AddNewProject from "./AddNewProject";
 import ProjectCard from "./ProjectCard";
+import {ContentContainer} from "../styledComps/styled"
 
 const ProjectList = () => {
 
@@ -14,14 +15,15 @@ const ProjectList = () => {
 
     return (
         <div className="project_page">
-            <div className="project_page__project_list_container">
+            <ContentContainer><h2>Your Projects</h2></ContentContainer>
+            <ContentContainer className="project_page__project_list_container">
                 {projects.length === 0 ?
                     <div>You don't have any project yet.</div>
                     :
                     projects.map(project => (
                         <ProjectCard key={project.id} project={project}/>)
                     )}
-            </div>
+            </ContentContainer>
             <AddNewProject/>
         </div>
     )
