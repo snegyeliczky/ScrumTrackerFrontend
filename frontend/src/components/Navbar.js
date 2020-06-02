@@ -28,7 +28,7 @@ const Navbar = () => {
                     <Link to="/login" className="text-link">Sign in / up</Link>
                 </li>
                 <li className="nav-item">
-                    <div className="text-link" onClick={handleLogout}>Logout</div>
+                    <Link className="text-link" onClick={handleLogout}>Logout</Link>
                 </li>
             </ul>
         </nav>

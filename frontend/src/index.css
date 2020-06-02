@@ -39,15 +39,18 @@ body {
   color: #F5F2E0;
 }
 
-.nav-item:hover,
-.nav-item:active {
+.text-link:hover,
+.text-link:active {
   background-color: #D2775F;
   border-radius: 10px;
 }
 
 .text-link {
-  color: inherit;
-  text-decoration: inherit;
+  margin: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  color: #F5F2E0;
 }
 /*----------------------NAVBAR----------------------*/
 
