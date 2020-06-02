@@ -5,30 +5,30 @@ import {ContentContainer} from "../styledComps/styled";
 import TaskModal from "./TaskModal";
 
 
-const Task = ({task, statusId,onDragEnd , dragItem, handleDeleteTask}) => {
+const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask}) => {
 
-
+    const [thisTask,setTask] = useState(task);
     const [dragging, setDragging] = useState(false);
 
     const handleDrag = (e) => {
         let dragItemParams = {
             statusId: statusId,
-            taskObject:task
+            taskObject: task
         };
         dragItem.current = dragItemParams;
-        setTimeout(()=>{
+        setTimeout(() => {
             setDragging(true);
-        },0)
+        }, 0)
     };
 
     const draggingStyle = (currTaskId) => {
         return currTaskId === dragItem.current.taskObject.id ? "dragged task_card" : "task_card";
     };
 
-    const handleDragEnd = (e) =>{
+    const handleDragEnd = (e) => {
         onDragEnd(task);
         setDragging(false);
-        dragItem.current=null;
+        dragItem.current = null;
     };
 
     return (
@@ -36,10 +36,12 @@ const Task = ({task, statusId,onDragEnd , dragItem, handleDeleteTask}) => {
              draggable={true}
              aria-dropeffect={"none"}
              onDragStart={(event) => (handleDrag(event))}
-             onDragEnd={(e) =>handleDragEnd(e)}
-             >
-            <div className={"status_tool_container"}><DeleteOutlined onClick={(e)=>handleDeleteTask(task.id)}/> <TaskModal/></div>
-            <h5>{task.title}</h5>
+             onDragEnd={(e) => handleDragEnd(e)}
+        >
+            <div className={"status_tool_container"}><DeleteOutlined onClick={(e) => handleDeleteTask(task.id)}/>
+                <TaskModal task={thisTask} setTask={setTask}/></div>
+            <h5>{thisTask.title}</h5>
+            <div className={"businessValue"}>Value: -{thisTask.businessValue}-</div>
         </div>
     );
 };
