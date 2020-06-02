@@ -7,7 +7,7 @@ import TaskModal from "./TaskModal";
 
 const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask}) => {
 
-
+    const [thisTask,setTask] = useState(task);
     const [dragging, setDragging] = useState(false);
 
     const handleDrag = (e) => {
@@ -38,11 +38,10 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask}) => {
              onDragStart={(event) => (handleDrag(event))}
              onDragEnd={(e) => handleDragEnd(e)}
         >
-            <div className={"status_tool_container"}>
-                <DeleteOutlined onClick={(e) => handleDeleteTask(task.id)}/>
-                <TaskModal/>
-            </div>
-            <h5>{task.title.length < 40 ? task.title : task.title.slice(0, 41) + "..."}</h5>
+            <div className={"status_tool_container"}><div><DeleteOutlined onClick={(e) => handleDeleteTask(task.id)}/></div>
+                <TaskModal task={thisTask} setTask={setTask}/></div>
+            <h5>{thisTask.title}</h5>
+            <div className={"businessValue"}>Value: -{thisTask.businessValue}-</div>
         </div>
     );
 };
