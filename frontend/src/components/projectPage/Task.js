@@ -38,7 +38,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask}) => {
              onDragStart={(event) => (handleDrag(event))}
              onDragEnd={(e) => handleDragEnd(e)}
         >
-            <div className={"status_tool_container"}><DeleteOutlined onClick={(e) => handleDeleteTask(task.id)}/>
+            <div className={"status_tool_container"}><div><DeleteOutlined onClick={(e) => handleDeleteTask(task.id)}/></div>
                 <TaskModal task={thisTask} setTask={setTask}/></div>
             <h5>{thisTask.title}</h5>
             <div className={"businessValue"}>Value: -{thisTask.businessValue}-</div>

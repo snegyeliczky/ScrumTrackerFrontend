@@ -47,7 +47,7 @@ const TaskModal = ({task, setTask}) => {
 
     return (
         <div>
-            < FormOutlined onClick={showModal}/>
+            <FormOutlined onClick={showModal}/>
             <Modal
                 visible={visible}
                 onOk={handleOk}
