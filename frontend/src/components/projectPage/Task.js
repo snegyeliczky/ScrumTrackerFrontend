@@ -1,8 +1,10 @@
 import React, {useState, useRef, useContext} from 'react';
 import Column from "./Column";
+import {DeleteOutlined} from "@ant-design/icons";
+import {ContentContainer} from "../styledComps/styled";
 
 
-const Task = ({task, statusId,onDragEnd , dragItem}) => {
+const Task = ({task, statusId,onDragEnd , dragItem, handleDeleteTask}) => {
 
 
     const [dragging, setDragging] = useState(false);
@@ -35,9 +37,9 @@ const Task = ({task, statusId,onDragEnd , dragItem}) => {
              aria-dropeffect={"none"}
              onDragStart={(event) => (handleDrag(event))}
              onDragEnd={(e) =>handleDragEnd(e)}
-
              >
-            {task.title}
+            <div className={"status_tool_container"}><DeleteOutlined onClick={(e)=>handleDeleteTask(task.id)}/></div>
+            <ContentContainer><p>{task.title}</p></ContentContainer>
         </div>
     );
 };
