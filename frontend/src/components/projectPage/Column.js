@@ -15,7 +15,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
 
     const handleDeleteTask = async (taskId) =>{
         console.log("delete");
-        await axios.delete("localhost:8080/task/delete/"+taskId);
+        await axios.delete("http://localhost:8080/task/delete/"+taskId);
         refreshStatusesFromBackend();
     };
 

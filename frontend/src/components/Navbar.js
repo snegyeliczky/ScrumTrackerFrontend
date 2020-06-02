@@ -25,10 +25,7 @@ const Navbar = () => {
                     <Link className='text-link' to="/projects"> Projects</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/registration" className='text-link'>Registration</Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/login" className="text-link">Login</Link>
+                    <Link to="/login" className="text-link">Sign in / up</Link>
                 </li>
                 <li className="nav-item">
                     <div className="text-link" onClick={handleLogout}>Logout</div>
