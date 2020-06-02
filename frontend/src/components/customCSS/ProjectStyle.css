@@ -46,10 +46,17 @@
 
 .status_tool_container{
     float: right;
+    display: flex;
+    height: fit-content;
+    margin: 10px;
+}
+
+h5{
+    overflow-wrap: break-word;
+    text-align: left;
 }
 
 .task_card {
-    display: flex;
     justify-content: center;
     border-radius: 10px;
     margin-top: 0.5rem;

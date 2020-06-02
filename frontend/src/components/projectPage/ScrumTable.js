@@ -62,7 +62,8 @@ const ScrumTable = ({table}) => {
     //
 
     return (
-        <ContentContainer className={"scrum_table"}>
+        <ContentContainer className={"scrum_table"}
+        onDragOver={(e)=>e.preventDefault()}>
              {
                         statuses.map(status => {
                             return <Column

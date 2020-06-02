@@ -2,6 +2,7 @@ import React, {useState, useRef, useContext} from 'react';
 import Column from "./Column";
 import {DeleteOutlined} from "@ant-design/icons";
 import {ContentContainer} from "../styledComps/styled";
+import TaskModal from "./TaskModal";
 
 
 const Task = ({task, statusId,onDragEnd , dragItem, handleDeleteTask}) => {
@@ -25,7 +26,6 @@ const Task = ({task, statusId,onDragEnd , dragItem, handleDeleteTask}) => {
     };
 
     const handleDragEnd = (e) =>{
-        e.preventDefault();
         onDragEnd(task);
         setDragging(false);
         dragItem.current=null;
@@ -38,8 +38,8 @@ const Task = ({task, statusId,onDragEnd , dragItem, handleDeleteTask}) => {
              onDragStart={(event) => (handleDrag(event))}
              onDragEnd={(e) =>handleDragEnd(e)}
              >
-            <div className={"status_tool_container"}><DeleteOutlined onClick={(e)=>handleDeleteTask(task.id)}/></div>
-            <ContentContainer><p>{task.title}</p></ContentContainer>
+            <div className={"status_tool_container"}><DeleteOutlined onClick={(e)=>handleDeleteTask(task.id)}/> <TaskModal/></div>
+            <h5>{task.title}</h5>
         </div>
     );
 };
