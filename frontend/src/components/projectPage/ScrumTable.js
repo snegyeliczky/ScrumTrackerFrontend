@@ -13,6 +13,10 @@ const ScrumTable = ({table}) => {
 
     const deleteStatus = async (statusID) => {
         await axios.delete("http://localhost:8080/project/deletestatus?statusid=" + statusID + "&tableid=" + table.id);
+        refreshStatusesFromBackend();
+    };
+
+    const refreshStatusesFromBackend = async () =>{
         let axiosResponse = await axios.get("http://localhost:8080/project/gettable/" + table.id);
         setStatuses(axiosResponse.data.statuses);
     };
@@ -68,6 +72,7 @@ const ScrumTable = ({table}) => {
                                 key={status.id}
                                 status={status}
                                 onDragEnter={onDragEnter}
+                                refreshStatusesFromBackend ={refreshStatusesFromBackend}
                             />
 
                         })
