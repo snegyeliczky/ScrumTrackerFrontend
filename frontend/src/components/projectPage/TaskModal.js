@@ -9,12 +9,16 @@ const TaskModal = ({task, setTask}) => {
 
     const [visible, setVisible] = useState(false);
 
-    const BusinessValueRef = useRef(task.businessValue);
-    const DescriptionRef = useRef(task.description);
-    const TitleRef = useRef(task.title);
-    const PositionRef = useRef(task.position);
+    const businessValueRef = useRef(task.businessValue);
+    const descriptionRef = useRef(task.description);
+    const titleRef = useRef(task.title);
+    const positionRef = useRef(task.position);
 
-    function editTask(BusinessValue,Description,Title,Position) {
+    async function uploadChanges(editedTask) {
+        console.log(editedTask);
+    }
+
+    function editTask(BusinessValue, Description, Title, Position) {
         let newTask = {...task};
         newTask.businessValue = BusinessValue;
         newTask.description = Description;
@@ -25,19 +29,18 @@ const TaskModal = ({task, setTask}) => {
     }
 
     function handleOk() {
-        let editedTask = editTask(BusinessValueRef.current.value,
-            DescriptionRef.current.value,
-            TitleRef.current.value,
-            PositionRef.current.value);
-
-            setTask(editedTask);
-            setVisible(false);
+        let editedTask = editTask(businessValueRef.current.value,
+            descriptionRef.current.value,
+            titleRef.current.value,
+            positionRef.current.value);
+        uploadChanges(editedTask);
+        setTask(editedTask);
+        setVisible(false);
 
 
     }
 
     function handleCancel() {
-        console.log(task);
         setVisible(false);
     }
 
@@ -52,6 +55,7 @@ const TaskModal = ({task, setTask}) => {
                 visible={visible}
                 onOk={handleOk}
                 onCancel={handleCancel}
+                width={800}
             >
                 <h2>Edit Task</h2>
                 <ContentContainer>
@@ -59,25 +63,25 @@ const TaskModal = ({task, setTask}) => {
                     <label>Business value: </label>
                     <Input placeholder={"Business Value"}
                            defaultValue={task.businessValue}
-                           ref={BusinessValueRef}/>
+                           ref={businessValueRef}/>
                 </AdderComponent>
                 <AdderComponent>
                     <label>Description: </label>
                     <Input placeholder={"Description"}
                            defaultValue={task.description}
-                           ref={DescriptionRef}/>
+                           ref={descriptionRef}/>
                 </AdderComponent>
                 <AdderComponent>
                     <label>Title: </label>
                     <Input placeholder={"Title"}
                            defaultValue={task.title}
-                           ref={TitleRef}/>
+                           ref={titleRef}/>
                 </AdderComponent>
                 <AdderComponent>
                     <label>Position: </label>
                     <Input placeholder={"Position"}
                            defaultValue={task.position}
-                           ref={PositionRef}/>
+                           ref={positionRef}/>
                 </AdderComponent>
                 </ContentContainer>
 
