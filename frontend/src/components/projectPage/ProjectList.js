@@ -18,14 +18,15 @@ const ProjectList = () => {
         let taskCounts = {start: 0, inProgress: 0, finish: 0, all: 0};
         projectStatuses.map((status, i) => {
             taskCounts.all += status.tasks.length;
-            if (i === 0) {
+            if (status.position === 1) {
                 taskCounts.start += status.tasks.length;
-            } else if (i === projectStatuses.length - 1) {
+            } else if (status.position === projectStatuses.length) {
                 taskCounts.finish += status.tasks.length;
             } else {
                 taskCounts.inProgress += status.tasks.length;
             }
         });
+        console.log(taskCounts);
         return taskCounts;
     }
 

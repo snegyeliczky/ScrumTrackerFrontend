@@ -17,7 +17,7 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
 
     const ProjectBackgroud ={
-        background: `linear-gradient(90deg, rgba(112,107,116,1) 0% ${taskPercentageInProjectStatuses.start}% ,
+        background: `linear-gradient(90deg, #706B74 0% ${taskPercentageInProjectStatuses.start}% ,
          rgba(253,192,29,1) ${taskPercentageInProjectStatuses.start}%  ${taskPercentageInProjectStatuses.inProgress}% ,
          rgba(69,252,70,1) ${taskPercentageInProjectStatuses.inProgress}%  ${taskPercentageInProjectStatuses.finish}% )`
     };
