@@ -10,14 +10,26 @@ const TaskModal = ({task, setTask}) => {
 
     const [visible, setVisible] = useState(false);
 
-    const businessValueRef = useRef(null);
-    const descriptionRef = useRef(null);
-    const titleRef = useRef(null);
-    const positionRef = useRef(null);
+    const businessValueRef = useRef(task.businessValue);
+    const descriptionRef = useRef(task.description);
+    const titleRef = useRef(task.title);
+    const positionRef = useRef(task.position);
 
-    async function uploadChanges(editedTask) {
-        console.log(editedTask);
-        //await axios.put("http://localhost:8080/task/edit/" + editedTask.id, editedTask);
+    const handleEdit = () => {
+      uploadChanges();
+    };
+
+    async function uploadChanges() {
+        let editedTask = {
+            id: null,
+            author: null,
+            businessValue: task.businessValue == businessValueRef.current.value ? null : businessValueRef.current.value,
+            description: task.description == descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
+            title: task.title == titleRef.current.value ? null : titleRef.current.value,
+            position: task.position == positionRef.current.value ? null : positionRef.current.value
+        };
+        let axiosResponse = await axios.put("http://localhost:8080/task/edit/" + task.id, editedTask);
+        setTask(axiosResponse.data);
 
     }
 
@@ -69,7 +81,9 @@ const TaskModal = ({task, setTask}) => {
                             placeholder={"Title"}
                             defaultValue={task.title}
                             ref={titleRef}/>
-                            <div className="modal_btn">Save</div>
+                        <div className="modal_btn"
+                             onClick={handleEdit}>Save
+                        </div>
                     </div>
                     <div className={"text_modal"}>
                         <label>Description: </label>
@@ -78,7 +92,9 @@ const TaskModal = ({task, setTask}) => {
                             placeholder={"Description"}
                             defaultValue={task.description}
                             ref={descriptionRef}/>
-                        <div className="modal_btn">Save</div>
+                        <div className="modal_btn"
+                             onClick={handleEdit}>Save
+                        </div>
                     </div>
                 </div>
                 <ContentContainer>

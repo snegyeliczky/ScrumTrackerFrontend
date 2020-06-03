@@ -111,11 +111,13 @@ textarea {
     margin: 4px 0 4px 0;
     text-align: center;
     display: none;
+    padding: 4px;
 }
 
 .modal_btn:hover,
 .modal_btn:active {
     cursor: pointer;
+    display: block;
 }
 
 .text_input.title:focus + .modal_btn{
