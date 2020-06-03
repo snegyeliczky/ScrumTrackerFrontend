@@ -3,6 +3,7 @@ import {Modal, Button} from 'antd';
 import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
 import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
+import axios from 'axios';
 
 
 const TaskModal = ({task, setTask}) => {
@@ -16,6 +17,8 @@ const TaskModal = ({task, setTask}) => {
 
     async function uploadChanges(editedTask) {
         console.log(editedTask);
+        await axios.put("http://localhost:8080/task/edit/" + editedTask.id, editedTask);
+
     }
 
     function editTask(BusinessValue, Description, Title, Position) {
