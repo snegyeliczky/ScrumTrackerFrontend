@@ -16,10 +16,7 @@ const ProjectList = () => {
     function tasksDistributionInStatuses(project) {
         let projectStatuses = project.table.statuses;
         let taskCounts = {start: 0, inProgress: 0, finish: 0, all: 0};
-        console.log(project.title);
         projectStatuses.map((status) => {
-            console.log(status.position+" + "+status.tasks.length);
-
             taskCounts.all += status.tasks.length;
             if (status.position === 1) {
                 taskCounts.start += status.tasks.length;
@@ -37,7 +34,7 @@ const ProjectList = () => {
 
         let taskPercentageInStatuses = tasksDistributionInStatuses(project);
         for (let [key, value] of Object.entries(taskPercentageInStatuses)) {
-            taskPercentageInStatuses[key] = ((taskPercentageInStatuses[key] / taskPercentageInStatuses.all) * 100).toFixed(0);
+            taskPercentageInStatuses[key] = parseInt(((taskPercentageInStatuses[key] / taskPercentageInStatuses.all) * 100).toFixed(0));
         }
         return taskPercentageInStatuses;
     }
