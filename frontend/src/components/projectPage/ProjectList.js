@@ -16,7 +16,10 @@ const ProjectList = () => {
     function tasksDistributionInStatuses(project) {
         let projectStatuses = project.table.statuses;
         let taskCounts = {start: 0, inProgress: 0, finish: 0, all: 0};
-        projectStatuses.map((status, i) => {
+        console.log(project.title);
+        projectStatuses.map((status) => {
+            console.log(status.position+" + "+status.tasks.length);
+
             taskCounts.all += status.tasks.length;
             if (status.position === 1) {
                 taskCounts.start += status.tasks.length;
