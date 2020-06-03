@@ -3,7 +3,8 @@
     display: none;
 }
 
-textarea:focus, input:focus{
+textarea:focus,
+input:focus{
     outline: none;
     border-bottom: 2px solid #373A55;
 }
@@ -30,13 +31,15 @@ textarea:focus, input:focus{
     justify-content: center;
 }
 
-.add_component_container, .project_page__create_project_container{
+.add_component_container,
+.project_page__create_project_container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.project_column, .project_card {
+.project_column,
+.project_card {
     display: block;
     height: fit-content;
     text-align: center;
@@ -90,7 +93,7 @@ textarea:focus, input:focus{
     border-bottom: 0.5px solid ;
 }
 
-textArea {
+textarea {
     height: 150px;
 }
 
@@ -98,4 +101,27 @@ textArea {
     overflow-wrap: break-word;
     text-align: left;
     font-size: small;
+}
+
+.modal_btn {
+    color: antiquewhite;
+    background-color: forestgreen;
+    width: 3rem;
+    border-radius: 8px;
+    margin: 4px 0 4px 0;
+    text-align: center;
+    display: none;
+}
+
+.modal_btn:hover,
+.modal_btn:active {
+    cursor: pointer;
+}
+
+.text_input.title:focus + .modal_btn{
+    display: block;
+}
+
+.text_input.description:focus + .modal_btn{
+    display: block;
 }

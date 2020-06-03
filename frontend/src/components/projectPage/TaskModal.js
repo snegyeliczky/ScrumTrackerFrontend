@@ -10,23 +10,23 @@ const TaskModal = ({task, setTask}) => {
 
     const [visible, setVisible] = useState(false);
 
-    const businessValueRef = useRef(task.businessValue);
-    const descriptionRef = useRef(task.description);
-    const titleRef = useRef(task.title);
-    const positionRef = useRef(task.position);
+    const businessValueRef = useRef(null);
+    const descriptionRef = useRef(null);
+    const titleRef = useRef(null);
+    const positionRef = useRef(null);
 
     async function uploadChanges(editedTask) {
         console.log(editedTask);
-        await axios.put("http://localhost:8080/task/edit/" + editedTask.id, editedTask);
+        //await axios.put("http://localhost:8080/task/edit/" + editedTask.id, editedTask);
 
     }
 
-    function editTask(BusinessValue, Description, Title, Position) {
+    function editTask(businessValue, description, title, position) {
         let newTask = {...task};
-        newTask.businessValue = BusinessValue;
-        newTask.description = Description;
-        newTask.title = Title;
-        newTask.position = Position;
+        newTask.businessValue = businessValue;
+        newTask.description = description;
+        newTask.title = title;
+        newTask.position = position;
         return newTask;
 
     }
@@ -65,18 +65,20 @@ const TaskModal = ({task, setTask}) => {
                     <div className={"text_modal"}>
                         <label>Title: </label>
                         <input
-                            className={"text_input"}
+                            className={"text_input title"}
                             placeholder={"Title"}
                             defaultValue={task.title}
                             ref={titleRef}/>
+                            <div className="modal_btn">Save</div>
                     </div>
                     <div className={"text_modal"}>
                         <label>Description: </label>
                         <textArea
-                            className={"text_input"}
+                            className={"text_input description"}
                             placeholder={"Description"}
                             defaultValue={task.description}
                             ref={descriptionRef}/>
+                        <div className="modal_btn">Save</div>
                     </div>
                 </div>
                 <ContentContainer>
