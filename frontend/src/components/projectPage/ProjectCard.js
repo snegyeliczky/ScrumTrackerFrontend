@@ -15,13 +15,19 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
         history.push("/project/" + project.id)
     };
 
-    const inProgrsEndColorPersentige =parseInt(taskPercentageInProjectStatuses.start) + parseInt(taskPercentageInProjectStatuses.inProgress);
-    const finalEndColorPersentige = inProgrsEndColorPersentige+parseInt(taskPercentageInProjectStatuses.finish);
+    const startEndColor=taskPercentageInProjectStatuses.start-8;
 
-    const ProjectBackgroud = {
-        background: `linear-gradient(90deg, #706B74 0% ${taskPercentageInProjectStatuses.start}% ,
-         rgba(253,192,29,1) ${taskPercentageInProjectStatuses.start}%  ${inProgrsEndColorPersentige}% ,
-         rgba(69,252,70,1) ${inProgrsEndColorPersentige}%  ${finalEndColorPersentige}% )`
+    const inProgressStartColor = taskPercentageInProjectStatuses.start;
+    const inProgressEndColorPercentage =(taskPercentageInProjectStatuses.start + taskPercentageInProjectStatuses.inProgress)-8;
+
+    const finalColorStart = taskPercentageInProjectStatuses.start + taskPercentageInProjectStatuses.inProgress;
+    const finalEndColorPercentage = taskPercentageInProjectStatuses.inProgress+taskPercentageInProjectStatuses.finish;
+
+    const ProjectBackground = {
+
+        background: `linear-gradient(90deg, rgba(55,58,85,0.8) 0% ${startEndColor}% ,
+         rgba(253,192,29,0.8) ${inProgressStartColor}%  ${inProgressEndColorPercentage}% ,
+         rgba(69,252,70,0.8) ${finalColorStart}%  ${finalEndColorPercentage}% )`
     };
 
     const handleDelete = async (e) => {
@@ -31,7 +37,7 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
     };
 
     return (
-        <div className={"project_card"} onClick={handleClick} style={ProjectBackgroud}>
+        <div className={"project_card"} onClick={handleClick} style={ProjectBackground}>
             <div className={"status_tool_container"}><DeleteOutlined onClick={(e) => handleDelete(e)}/></div>
             <ContentContainer><h2>{project.title}</h2></ContentContainer>
         </div>
