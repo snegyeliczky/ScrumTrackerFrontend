@@ -58,31 +58,37 @@ const TaskModal = ({task, setTask}) => {
                 width={800}
             >
                 <h2>Edit Task</h2>
+                <div className={"task_modal"}>
+                    <div className={"text_modal"}>
+                        <label>Title: </label>
+                        <input
+                            className={"text_input"}
+                            placeholder={"Title"}
+                            defaultValue={task.title}
+                            ref={titleRef}/>
+                    </div>
+                    <div className={"text_modal"}>
+                        <label>Description: </label>
+                        <textArea
+                            className={"text_input"}
+                            placeholder={"Description"}
+                            defaultValue={task.description}
+                            ref={descriptionRef}/>
+                    </div>
+                </div>
                 <ContentContainer>
-                <AdderComponent>
-                    <label>Business value: </label>
-                    <Input placeholder={"Business Value"}
-                           defaultValue={task.businessValue}
-                           ref={businessValueRef}/>
-                </AdderComponent>
-                <AdderComponent>
-                    <label>Description: </label>
-                    <Input placeholder={"Description"}
-                           defaultValue={task.description}
-                           ref={descriptionRef}/>
-                </AdderComponent>
-                <AdderComponent>
-                    <label>Title: </label>
-                    <Input placeholder={"Title"}
-                           defaultValue={task.title}
-                           ref={titleRef}/>
-                </AdderComponent>
-                <AdderComponent>
-                    <label>Position: </label>
-                    <Input placeholder={"Position"}
-                           defaultValue={task.position}
-                           ref={positionRef}/>
-                </AdderComponent>
+                    <AdderComponent>
+                        <label>Business value: </label>
+                        <Input placeholder={"Business Value"}
+                               defaultValue={task.businessValue}
+                               ref={businessValueRef}/>
+                    </AdderComponent>
+                    <AdderComponent>
+                        <label>Position: </label>
+                        <Input placeholder={"Position"}
+                               defaultValue={task.position}
+                               ref={positionRef}/>
+                    </AdderComponent>
                 </ContentContainer>
 
             </Modal>
