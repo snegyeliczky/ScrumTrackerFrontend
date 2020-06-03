@@ -11,6 +11,7 @@ const ScrumTable = ({table}) => {
 
 
 
+
     const deleteStatus = async (statusID) => {
         await axios.delete("http://localhost:8080/project/deletestatus?statusid=" + statusID + "&tableid=" + table.id);
         refreshStatusesFromBackend();
@@ -65,8 +66,18 @@ const ScrumTable = ({table}) => {
         <ContentContainer className={"scrum_table"}
         onDragOver={(e)=>e.preventDefault()}>
              {
-                        statuses.map(status => {
+                        statuses.map((status, i) => {
+                            let statusFlag = null;
+
+                            if (i===0){
+                                statusFlag="start";
+                            }
+                            if (i===statuses.length-1){
+                                statusFlag="finish";
+                            }
+
                             return <Column
+                                statusFlag = {statusFlag}
                                 deleteStatus={deleteStatus}
                                 onDragEnd={onDragEnd}
                                 dragItem={dragItem}
