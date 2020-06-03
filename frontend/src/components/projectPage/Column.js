@@ -5,12 +5,11 @@ import {
 } from '@ant-design/icons';
 import axios from "axios";
 
-const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend}) => {
+const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend, statusFlag}) => {
 
     const handelDeleteClick = () => {
         deleteStatus(status.id);
     };
-
 
 
 

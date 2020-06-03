@@ -13,6 +13,31 @@ const ProjectList = () => {
         }, []
     );
 
+    function tasksDistributionInStatuses(project) {
+        let projectStatuses = project.table.statuses;
+        let taskCounts = {start: 0, inProgress: 0, finish: 0, all: 0};
+        projectStatuses.map((status, i) => {
+            taskCounts.all += status.tasks.length;
+            if (i === 0) {
+                taskCounts.start += status.tasks.length;
+            } else if (i === projectStatuses.length - 1) {
+                taskCounts.finish += status.tasks.length;
+            } else {
+                taskCounts.inProgress += status.tasks.length;
+            }
+        });
+        return taskCounts;
+    }
+
+    function countTaskPercentageInProjectStatuses(project) {
+
+        let taskPercentageInStatuses = tasksDistributionInStatuses(project);
+        for (let [key, value] of Object.entries(taskPercentageInStatuses)) {
+            taskPercentageInStatuses[key] = ((taskPercentageInStatuses[key] / taskPercentageInStatuses.all) * 100).toFixed(0);
+        }
+        return taskPercentageInStatuses;
+    }
+
     return (
         <div className="project_page">
             <ContentContainer><h2>Your Projects</h2></ContentContainer>
@@ -20,8 +45,12 @@ const ProjectList = () => {
                 {projects.length === 0 ?
                     <div>You don't have any project yet.</div>
                     :
-                    projects.map(project => (
-                        <ProjectCard key={project.id} project={project}/>)
+                    projects.map((project) => {
+                            let taskPercentageInProjectStatuses = countTaskPercentageInProjectStatuses(project);
+                            return <ProjectCard key={project.id}
+                                                project={project}
+                                                taskPercentageInProjectStatuses={taskPercentageInProjectStatuses}/>
+                        }
                     )}
             </ContentContainer>
             <AddNewProject/>
