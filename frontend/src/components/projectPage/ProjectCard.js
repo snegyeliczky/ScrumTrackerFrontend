@@ -5,7 +5,7 @@ import {ContentContainer} from "../styledComps/styled";
 import {ProjectContext} from "../contexts/ProjectContext";
 import axios from "axios";
 
-const ProjectCard = ({project}) => {
+const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
     const history = useHistory();
 
@@ -16,10 +16,10 @@ const ProjectCard = ({project}) => {
     };
 
 
-    const ProjectBackgroud = {
-        background: "linear-gradient(90deg, rgba(112,107,116,1) 0% 25% ," +
-            " rgba(253,192,29,1) 25% 50%," +
-            " rgba(69,252,70,1) 50% 100%)"
+    const ProjectBackgroud ={
+        background: `linear-gradient(90deg, rgba(112,107,116,1) 0% ${taskPercentageInProjectStatuses.start}% ,
+         rgba(253,192,29,1) ${taskPercentageInProjectStatuses.start}%  ${taskPercentageInProjectStatuses.inProgress}% ,
+         rgba(69,252,70,1) ${taskPercentageInProjectStatuses.inProgress}%  ${taskPercentageInProjectStatuses.finish}% )`
     };
 
     const handleDelete = async (e) =>{
