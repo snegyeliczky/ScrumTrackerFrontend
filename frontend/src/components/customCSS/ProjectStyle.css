@@ -2,6 +2,11 @@
 .dragged.task_card {
     display: none;
 }
+
+textarea:focus, input:focus{
+    outline: none;
+    border-bottom: 2px solid #373A55;
+}
 /*
 .add_component_container{
     display: flex;
@@ -70,4 +75,22 @@ h5{
 
 .businessValue{
     font-size: 12px;
+}
+
+.task_modal{
+
+}
+
+.text_modal{
+    display: grid;
+    margin-top: 30px;
+    color: #373A55;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.text_input{
+    width: 90%;
+    border: none;
+    border-bottom: 0.5px solid ;
 }
