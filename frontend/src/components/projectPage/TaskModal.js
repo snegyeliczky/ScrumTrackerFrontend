@@ -84,13 +84,9 @@ const TaskModal = ({task, setTask}) => {
                         <label>Business value: </label>
                         <Input placeholder={"Business Value"}
                                defaultValue={task.businessValue}
-                               ref={businessValueRef}/>
-                    </AdderComponent>
-                    <AdderComponent>
-                        <label>Position: </label>
-                        <Input placeholder={"Position"}
-                               defaultValue={task.position}
-                               ref={positionRef}/>
+                               ref={businessValueRef}
+                                type="number"
+                        />
                     </AdderComponent>
                 </ContentContainer>
 

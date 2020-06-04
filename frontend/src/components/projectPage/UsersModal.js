@@ -16,6 +16,7 @@ const UsersModal = ({projectId,participants}) => {
 
     async function handelSearchChange(e) {
         let userName=e.target.value;
+        let userObj = {username:userName};
         setValue(userName);
         if (userName.length>2){
             let userObj = {username:userName};
