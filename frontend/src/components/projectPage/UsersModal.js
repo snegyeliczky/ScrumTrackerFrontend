@@ -27,11 +27,6 @@ const UsersModal = ({projectId, participants}) => {
 
     }
 
-    function handleOk() {
-        console.log("ok");
-        setVisible(false);
-    }
-
     function handleCancel() {
         setVisible(false);
     }
