@@ -1,25 +1,31 @@
 import React, {useState} from 'react';
 import {Modal, Button} from 'antd';
 import 'antd/dist/antd.css';
-import {FormOutlined} from "@ant-design/icons";
+import {FormOutlined,CheckOutlined} from "@ant-design/icons";
 import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
 import Autocomplete from 'react-autocomplete';
 import axios from "axios";
 
 
-const UsersModal = () => {
+const UsersModal = ({projectId,participants}) => {
 
     const [value,setValue] = useState();
     const [visible, setVisible] = useState(false);
-    const [users, setUsers] = useState([{username:"search for User"}]);
+    const [users, setUsers] = useState([{username:"type for search..."}]);
+    const [projectParticipants,setProjectParticipants]=useState(participants);
 
     async function handelSearchChange(e) {
         let userName=e.target.value;
-        let userObj = {userName:userName};
         setValue(userName);
-        let axiosResponse = await axios.post("http://localhost:8080/user/search", userObj);
-        console.log(axiosResponse.data);
-        setUsers(axiosResponse.data);
+        if (userName.length>2){
+            let userObj = {username:userName};
+            let axiosResponse = await axios.post("http://localhost:8080/user/search", userObj);
+            console.log(axiosResponse.data);
+            setUsers(axiosResponse.data);
+        }
+
+
+
     }
 
     function handleOk() {
@@ -35,10 +41,19 @@ const UsersModal = () => {
         setVisible(true);
     }
 
+
+
+    async function handleAddUser() {
+        let user = {username:value};
+        console.log(user);
+        let axiosResponse = await axios.post("http://localhost:8080/project/adduser/"+projectId,user);
+        setProjectParticipants(axiosResponse.data);
+    }
+
     return (
         <div>
 
-            <FormOutlined onClick={showModal}/>
+            <CheckOutlined onClick={showModal}/>
             <Modal
                 visible={visible}
                 onOk={handleOk}
@@ -48,7 +63,7 @@ const UsersModal = () => {
                 <Autocomplete
                     getItemValue={(item) => item.username}
                     items={users}
-                    shouldItemRender={(item, value) => item.username.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                    //shouldItemRender={(item, value) => item.username.toLowerCase().indexOf(value.toLowerCase()) > -1}
                     renderItem={(item, highlighted) =>
                         <div
                             key={item.id}
@@ -61,7 +76,8 @@ const UsersModal = () => {
                     onChange={e => handelSearchChange(e)}
                     onSelect={value => setValue(value)}
                 />
-
+                <CheckOutlined onClick={handleAddUser} />
+                {projectParticipants.map(participant =><h2>{participant.username}</h2>)}
 
             </Modal>
 
