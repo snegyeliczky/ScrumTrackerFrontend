@@ -71,11 +71,15 @@ const ProjectPage = () => {
     return (
 
         <div className={"project_item_container_canvas"}>
-            <ContentContainer><h2>Your Tasks </h2></ContentContainer>
+
             {loading ?
                 <h1>loading....</h1>
                 :
                 <div className={"project_item_container"}>
+                    <ContentContainer>
+                        <h2>Your Tasks </h2>
+                        <UsersModal projectId={project.id} participants={project.participants}/>
+                    </ContentContainer>
                     <ScrumTable key={project.table.id} table={project.table}/>
                     <div className={"add_component_container"}>
                         <AdderComponent className={"add_new_status adder_component"}>
@@ -90,9 +94,6 @@ const ProjectPage = () => {
                             <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
                                                 onClick={addNewTask}/>
 
-                        </AdderComponent>
-                        <AdderComponent>
-                            <UsersModal projectId={project.id} participants={project.participants}/>
                         </AdderComponent>
                     </div>
                 </div>

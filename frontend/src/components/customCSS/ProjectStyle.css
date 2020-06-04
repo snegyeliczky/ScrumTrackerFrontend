@@ -128,3 +128,12 @@ textarea {
 .text_input.description:focus + .modal_btn{
     display: block;
 }
+
+.participant_users{
+    margin: 20px;
+}
+
+.user_icon{
+    text-align: center;
+    font-size: 20px;
+}
