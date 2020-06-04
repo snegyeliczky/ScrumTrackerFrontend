@@ -41,8 +41,9 @@ body {
 
 .text-link:hover,
 .text-link:active {
-  background-color: #D2775F;
-  border-radius: 10px;
+  background-color: #F5F2E0;
+  border-radius: 4px;
+  color: #373A55;
 }
 
 .text-link {
