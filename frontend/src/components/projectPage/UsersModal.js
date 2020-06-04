@@ -57,7 +57,7 @@ const UsersModal = ({projectId, participants}) => {
                 visible={visible}
                 onCancel={handleCancel}
                 footer={null}
-                width={800}
+                width={400}
             >
                 <ContentContainer >
                     <h2>Invite Participant</h2>

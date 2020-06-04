@@ -27,13 +27,13 @@ input:focus {
     display: block;
     height: fit-content;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 1rem;
     margin: 0.3rem;
     width: 225px;
-    background-color: #F5F2E0;
+    background-color: #efeaea;
     color: #373A55;
-    border: 2px solid #373A55;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
 .status_tool_container{
@@ -50,7 +50,7 @@ input:focus {
     margin-top: 0.5rem;
     padding: 0.5rem;
     min-height: 4rem;
-    background-color: #f9f7f7;
+    background-color: #f9fcfa;
     font-size: 20px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -58,7 +58,7 @@ input:focus {
 
 .task_card:hover,
 .task_card:active {
-    background-color: #efeaea;
+    background-color: #f9f7f7;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
