@@ -7,6 +7,7 @@ import {
     PlusCircleOutlined,
     CheckOutlined
 } from '@ant-design/icons';
+import UsersModal from "./UsersModal";
 
 
 const ProjectPage = () => {
@@ -89,6 +90,9 @@ const ProjectPage = () => {
                             <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
                                                 onClick={addNewTask}/>
 
+                        </AdderComponent>
+                        <AdderComponent>
+                            <UsersModal/>
                         </AdderComponent>
                     </div>
                 </div>

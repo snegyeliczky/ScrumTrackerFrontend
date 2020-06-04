@@ -112,6 +112,7 @@ textarea {
     text-align: center;
     display: none;
     padding: 4px;
+    font-weight: 100;
 }
 
 .modal_btn:hover,
