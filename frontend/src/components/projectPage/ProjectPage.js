@@ -92,7 +92,7 @@ const ProjectPage = () => {
 
                         </AdderComponent>
                         <AdderComponent>
-                            <UsersModal/>
+                            <UsersModal projectId={project.id} participants={project.participants}/>
                         </AdderComponent>
                     </div>
                 </div>
