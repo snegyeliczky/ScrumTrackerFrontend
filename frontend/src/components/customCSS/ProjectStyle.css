@@ -8,22 +8,6 @@ input:focus{
     outline: none;
     border-bottom: 2px solid #373A55;
 }
-/*
-.add_component_container{
-    display: flex;
-    justify-content: center;
-}
-
-
-.scrum_table{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction:row;
-    justify-content: center;
-    padding: 1.5rem;
-}
-
- */
 
 .project_item_container{
     display: block;
@@ -106,7 +90,7 @@ textarea {
 .modal_btn {
     color: antiquewhite;
     background-color: forestgreen;
-    width: 3rem;
+    width: 4rem;
     border-radius: 8px;
     margin: 4px 0 4px 0;
     text-align: center;
@@ -126,6 +110,10 @@ textarea {
 }
 
 .text_input.description:focus + .modal_btn{
+    display: block;
+}
+
+.business_value:focus + .modal_btn {
     display: block;
 }
 

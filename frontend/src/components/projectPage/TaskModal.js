@@ -16,7 +16,7 @@ const TaskModal = ({task, setTask}) => {
     const positionRef = useRef(task.position);
 
     const handleEdit = () => {
-      uploadChanges();
+        uploadChanges();
     };
 
     async function uploadChanges() {
@@ -82,11 +82,16 @@ const TaskModal = ({task, setTask}) => {
                 <ContentContainer>
                     <AdderComponent>
                         <label>Business value: </label>
-                        <Input placeholder={"Business Value"}
-                               defaultValue={task.businessValue}
-                               ref={businessValueRef}
-                                type="number"
+                        <Input
+                            className="business_value"
+                            placeholder={"Business Value"}
+                            defaultValue={task.businessValue}
+                            ref={businessValueRef}
+                            type="number"
                         />
+                        <div className="modal_btn"
+                             onClick={handleEdit}>Save
+                        </div>
                     </AdderComponent>
                 </ContentContainer>
 
