@@ -15,9 +15,11 @@ const UsersModal = () => {
 
     async function handelSearchChange(e) {
         let userName=e.target.value;
+        let userObj = {userName:userName};
         setValue(userName);
-        let axiosResponse = await axios.post("http://localhost:8080/user/search", userName);
-        setUsers(axiosResponse);
+        let axiosResponse = await axios.post("http://localhost:8080/user/search", userObj);
+        console.log(axiosResponse.data);
+        setUsers(axiosResponse.data);
     }
 
     function handleOk() {
