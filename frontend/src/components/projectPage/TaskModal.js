@@ -33,26 +33,8 @@ const TaskModal = ({task, setTask}) => {
 
     }
 
-    function editTask(businessValue, description, title, position) {
-        let newTask = {...task};
-        newTask.businessValue = businessValue;
-        newTask.description = description;
-        newTask.title = title;
-        newTask.position = position;
-        return newTask;
-
-    }
-
     function handleOk() {
-        let editedTask = editTask(businessValueRef.current.value,
-            descriptionRef.current.value,
-            titleRef.current.value,
-            positionRef.current.value);
-        uploadChanges(editedTask);
-        setTask(editedTask);
         setVisible(false);
-
-
     }
 
     function handleCancel() {
