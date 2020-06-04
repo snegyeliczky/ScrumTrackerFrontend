@@ -60,8 +60,8 @@ const UsersModal = ({projectId, participants}) => {
 
             <Modal
                 visible={visible}
-                onOk={handleOk}
                 onCancel={handleCancel}
+                footer={null}
                 width={800}
             >
                 <ContentContainer >
