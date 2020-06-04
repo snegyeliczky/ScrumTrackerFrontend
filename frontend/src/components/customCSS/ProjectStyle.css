@@ -94,6 +94,8 @@ textarea {
     font-size: small;
 }
 
+/*-------------------------MODAL STYLE------------------------- */
+
 .modal_btn {
     color: antiquewhite;
     background-color: forestgreen;
@@ -131,4 +133,10 @@ textarea {
 .user_icon{
     text-align: center;
     font-size: 20px;
+}
+
+/*-------------------------MODAL STYLE------------------------- */
+
+.add_btn {
+    display: none;
 }

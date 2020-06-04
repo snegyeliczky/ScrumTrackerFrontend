@@ -86,14 +86,15 @@ const ProjectPage = () => {
                             <label>Add new Status</label>
                             <Input ref={newColumnRef} placeholder={"Status name!"}/>
                             <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
-                                                onClick={addNewColumn}/>
+                                                onClick={addNewColumn}
+                            />
                         </AdderComponent>
                         <AdderComponent className={"add_new_task adder_component"}>
                             <label>Add new Task</label>
                             <Input ref={newTaskRef} placeholder={"Task name!"}/>
                             <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
-                                                onClick={addNewTask}/>
-
+                                                onClick={addNewTask}
+                            />
                         </AdderComponent>
                     </div>
                 </div>
