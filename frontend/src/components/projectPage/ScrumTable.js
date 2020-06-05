@@ -3,6 +3,7 @@ import Column from "./Column";
 import axios from "axios";
 import {ContentContainer} from "../styledComps/styled"
 import {PlusOutlined, CloseOutlined} from "@ant-design/icons";
+import UseComponentVisible from "../UseComponentVisible";
 
 const ScrumTable = ({table, addNewColumn, addNewTask}) => {
 
@@ -11,6 +12,13 @@ const ScrumTable = ({table, addNewColumn, addNewTask}) => {
     const newColumnRef = useRef();
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
+
+    //Click outside effect fields
+    const {
+        ref,
+        isComponentVisible,
+        setIsComponentVisible
+    } = UseComponentVisible(false);
 
 
     const deleteStatus = async (statusID) => {
@@ -118,14 +126,19 @@ const ScrumTable = ({table, addNewColumn, addNewTask}) => {
 
                 })
             }
-            <div className="add_new_column">
-                {!showNewColumn ? <PlusOutlined onClick={handleAddNewColumn}/> : <CloseOutlined onClick={handleAddNewColumn} />}
-                <div className="add_new_column_container">
-                    <input className={newColumnTextStyle()}
-                           ref={newColumnRef}/>
-                    <div className="add_new_column_btn"
-                         onClick={handleSaveNewColumn}>add</div>
-                </div>
+
+            <div>
+                {isComponentVisible && (
+                    <div ref={ref} className="add_new_column_container">
+                        <input className="add_new_column_text" ref={newColumnRef}/>
+                        <div className="add_new_column_btn" onClick={handleSaveNewColumn}>save</div>
+                    </div>
+                )}
+                {!isComponentVisible && (
+                    <div onClick={() => setIsComponentVisible(true)}>
+                        <PlusOutlined />
+                    </div>
+                )}
             </div>
         </ContentContainer>
     );

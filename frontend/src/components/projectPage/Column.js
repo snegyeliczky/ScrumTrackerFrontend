@@ -71,7 +71,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
                     </div>
                 )}
                 {!isComponentVisible && (
-                    <div className="add_new_task_active" onClick={() => setIsComponentVisible(true)}>
+                    <div className="add_new_task" onClick={() => setIsComponentVisible(true)}>
                         add new task
                     </div>
                 )}
