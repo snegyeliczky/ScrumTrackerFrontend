@@ -24,7 +24,7 @@ const AuthPage = () => {
             <div className="authpage_select_container">
                 <div className="authpage_select_btn">
                     <button className={loginBtnStyle} onClick={handleLogin}>Sign in</button>
-                    <button className={registrationBtnStyle} onClick={handleRegister}>Registration</button>
+                    <button className={registrationBtnStyle} onClick={handleRegister}>Sign up</button>
                 </div>
             </div>
 

@@ -46,7 +46,7 @@ const LoginPage = () => {
                     />
                 </div>
                 <div className="auth_submit_btn">
-                    <button className="auth_btn" onClick={onLogin}>Login</button>
+                    <button className="auth_btn" onClick={onLogin}>Sign in</button>
                 </div>
             </div>
         </div>
