@@ -47,7 +47,7 @@ const ProjectList = () => {
                     <div>You don't have any project yet.</div>
                     :
                     projects.map((project) => {
-                            console.log(project.archive)
+                            console.log(project.archive);
                             let taskPercentageInProjectStatuses = countTaskPercentageInProjectStatuses(project);
                             return <ProjectCard key={project.id}
                                                 project={project}

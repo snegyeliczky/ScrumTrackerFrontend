@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {useHistory} from "react-router-dom";
-import {DeleteOutlined} from "@ant-design/icons";
+import {ApiOutlined, DeleteOutlined} from "@ant-design/icons";
 import {ContentContainer} from "../styledComps/styled";
 import {ProjectContext} from "../contexts/ProjectContext";
 import axios from "axios";
@@ -36,9 +36,19 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
         getProjects();
     };
 
+    const archiveProject = async (e) =>{
+        e.stopPropagation();
+        await axios.put("http://localhost:8080/project/archive/"+project.id);
+        getProjects();
+
+    };
+
     return (
         <div className={"project_card"} onClick={handleClick} style={ProjectBackground}>
-            <div className={"status_tool_container"}><DeleteOutlined onClick={(e) => handleDelete(e)}/></div>
+            <div className={"status_tool_container"}>
+                <DeleteOutlined onClick={(e) => handleDelete(e)}/>
+                <ApiOutlined onClick={(e)=>archiveProject(e)} />
+            </div>
             <ContentContainer><h2>{project.title}</h2></ContentContainer>
         </div>
     );
