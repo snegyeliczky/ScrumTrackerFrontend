@@ -23,6 +23,7 @@ const ProjectPage = () => {
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
 
     const getProject = async () => {
+        setLoading(true);
         let response = await axios.get("http://localhost:8080/project/" + id);
         response.data.table.statuses.sort(function (a, b) {
             return a.position - b.position;
@@ -33,7 +34,6 @@ const ProjectPage = () => {
             })
         });
         setProject(response.data);
-        console.log(response.data);
         setLoading(false);
     };
 

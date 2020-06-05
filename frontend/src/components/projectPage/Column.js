@@ -4,11 +4,18 @@ import {
     DeleteOutlined
 } from '@ant-design/icons';
 import axios from "axios";
+import UseComponentVisible from "../UseComponentVisible";
 
 const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend, statusFlag, addNewTask}) => {
 
     const newTaskNameRef = useRef();
-    const [activeAddNewTask, setActiveNewTask] = useState(false);
+
+    //Click outside effect fields
+    const {
+        ref,
+        isComponentVisible,
+        setIsComponentVisible
+    } = UseComponentVisible(false);
 
     const handelDeleteClick = () => {
         deleteStatus(status.id);
@@ -30,15 +37,6 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
         let taskName = newTaskNameRef.current.value;
         addNewTask(taskName, status.id);
         newTaskNameRef.current.value = "";
-        setNewTask();
-    };
-
-    const addNewTaskStyle = () => {
-      return !activeAddNewTask ? "add_new_task_active" : "add_new_task_inactive";
-    };
-
-    const setNewTask = () => {
-      setActiveNewTask(!activeAddNewTask);
     };
 
     return (
@@ -65,13 +63,18 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
                         onDragEnter={onDragEnter}
                     />
                 })}
-            <div className="add_new_task_container">
-                <div className={addNewTaskStyle()}
-                     onClick={setNewTask}>
-                    add new task
-                </div>
-                <input className="add_new_task_text" ref={newTaskNameRef}/>
-                <div className="add_new_task_btn" onClick={handleAddNewTask}>save</div>
+            <div ref={ref}>
+                {isComponentVisible && (
+                    <div className="add_new_task_container">
+                        <input className="add_new_task_text" ref={newTaskNameRef}/>
+                        <div className="add_new_task_btn" onClick={handleAddNewTask}>save</div>
+                    </div>
+                )}
+                {!isComponentVisible && (
+                    <div className="add_new_task_active" onClick={() => setIsComponentVisible(true)}>
+                        add new task
+                    </div>
+                )}
             </div>
         </div>
     );

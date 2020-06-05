@@ -216,16 +216,11 @@ textarea {
     display: none;
 }
 
-.add_new_task_inactive + .add_new_task_text {
-    display: block;
-}
-
 .add_new_task_text {
     width: 180px;
     border: none;
     margin-top: 1rem;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-    display: none;
 }
 
 .add_new_task_text:focus {
@@ -250,8 +245,10 @@ textarea {
     display: none;
 }
 
-.add_new_task_btn:active {
+.add_new_task_btn:active,
+.add_new_task_btn:hover {
     display: block;
+    cursor: pointer;
 }
 
 /*-----------------------------NEW TASK STYLE-----------------------------*/
