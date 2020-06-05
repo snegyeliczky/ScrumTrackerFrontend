@@ -6,7 +6,9 @@ import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
 import {
     PlusCircleOutlined,
     CheckOutlined,
-    FolderAddOutlined, UsergroupAddOutlined
+    FolderAddOutlined,
+    UsergroupAddOutlined,
+    PlusOutlined
 } from '@ant-design/icons';
 import UsersModal from "./UsersModal";
 
@@ -37,12 +39,7 @@ const ProjectPage = () => {
     };
 
     const addNewColumn = async (columnName) => {
-        if (newColumnRef.current.value.length < 3) {
-            alert("add name (minimum 3 character) to your status");
-            return;
-        }
         setLoading(true);
-        columnName = newColumnRef.current.value;
         let projectId = id;
         let newStatus = {statusName: columnName, projectId: projectId};
         await axios.post("http://localhost:8080/project/newstatus", newStatus);
@@ -69,6 +66,7 @@ const ProjectPage = () => {
         getProject();
     }, []);
 
+
     return (
 
         <div className={"project_item_container_canvas"}>
@@ -78,35 +76,29 @@ const ProjectPage = () => {
                 :
                 <div className={"project_item_container"}>
                     <ContentContainer>
-                        <FolderAddOutlined onClick={""} style={{
-                            fontSize: "35px",
-                            color: "#373A55",
-                            right:"10%",
-                            position: "absolute",
-                        }}/>
                         <h2>{project.title}</h2>
                         <UsersModal projectId={project.id} participants={project.participants}/>
-
-
-
-                </ContentContainer>
-                <ScrumTable key={project.table.id} table={project.table}/>
-                <div className={"add_component_container"}>
-                <AdderComponent className={"add_new_status adder_component"}>
-                <label>Add new Status</label>
-                <Input ref={newColumnRef} placeholder={"Status name!"}/>
-                <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
-                onClick={addNewColumn}
-                />
-                </AdderComponent>
-                <AdderComponent className={"add_new_task adder_component"}>
-                <label>Add new Task</label>
-                <Input ref={newTaskRef} placeholder={"Task name!"}/>
-                <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
-                onClick={addNewTask}
-                />
-                </AdderComponent>
-                </div>
+                    </ContentContainer>
+                    <ScrumTable key={project.table.id}
+                                table={project.table}
+                                addNewColumn={addNewColumn}
+                    />
+                    <div className={"add_component_container"}>
+                        <AdderComponent className={"add_new_status adder_component"}>
+                            <label>Add new Status</label>
+                            <Input ref={newColumnRef} placeholder={"Status name!"}/>
+                            <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
+                                                onClick={addNewColumn}
+                            />
+                        </AdderComponent>
+                        <AdderComponent className={"add_new_task adder_component"}>
+                            <label>Add new Task</label>
+                            <Input ref={newTaskRef} placeholder={"Task name!"}/>
+                            <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
+                                                onClick={addNewTask}
+                            />
+                        </AdderComponent>
+                    </div>
                 </div>
             }
         </div>

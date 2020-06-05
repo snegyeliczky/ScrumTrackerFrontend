@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Modal, Button} from 'antd';
 import 'antd/dist/antd.css';
-import {UsergroupAddOutlined, UserAddOutlined, UserOutlined } from "@ant-design/icons";
+import {UsergroupAddOutlined, UserAddOutlined, UserOutlined} from "@ant-design/icons";
 import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
 import Autocomplete from 'react-autocomplete';
 import axios from "axios";
@@ -46,12 +46,13 @@ const UsersModal = ({projectId, participants}) => {
     return (
         <div>
 
-            <UsergroupAddOutlined onClick={showModal} style={{
-                fontSize: "35px",
-                color: "#373A55",
-                right: "20%",
-                position: "absolute",
-            }}/>
+            <UsergroupAddOutlined onClick={showModal}
+                                  style={{
+                                      fontSize: "35px",
+                                      color: "#373A55",
+                                      right: "20%",
+                                      position: "absolute",
+                                  }}/>
 
             <Modal
                 visible={visible}
@@ -59,10 +60,10 @@ const UsersModal = ({projectId, participants}) => {
                 footer={null}
                 width={400}
             >
-                <ContentContainer >
+                <ContentContainer>
                     <h2>Invite Participant</h2>
                 </ContentContainer>
-                <ContentContainer  style={{padding:0, borderBottom:"1px solid", paddingBottom:"1.5rem"}}>
+                <ContentContainer style={{padding: 0, borderBottom: "1px solid", paddingBottom: "1.5rem"}}>
                     <Autocomplete
                         getItemValue={(item) => item.username}
                         items={users}
@@ -80,18 +81,20 @@ const UsersModal = ({projectId, participants}) => {
                         onSelect={value => setValue(value)}
                     />
                     <UserAddOutlined onClick={handleAddUser}
-                                     style={{fontSize: "30px",
-                                         marginLeft: "20px", color: "green"}}/>
+                                     style={{
+                                         fontSize: "30px",
+                                         marginLeft: "20px", color: "green"
+                                     }}/>
                 </ContentContainer>
                 <ContentContainer>
                     <h2>Current Participants</h2>
                 </ContentContainer>
                 <ContentContainer>
-                {projectParticipants.map(participant =>
-                    <div className={"participant_users"}>
-                        <div className={"user_icon"}><UserOutlined /></div>
-                        <h3>{participant.username}</h3>
-                    </div>)}
+                    {projectParticipants.map(participant =>
+                        <div className={"participant_users"}>
+                            <div className={"user_icon"}><UserOutlined/></div>
+                            <h3>{participant.username}</h3>
+                        </div>)}
                 </ContentContainer>
 
             </Modal>
