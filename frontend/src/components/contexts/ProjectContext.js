@@ -6,9 +6,23 @@ export const ProjectContext = createContext();
 export const ProjectProvider = props => {
 
     const [projects, setProjects] = useState([]);
+    const [showArchive,setShowArchive] = useState(false);
 
-    const getProjects = async () => {
+    useEffect(()=>{
+        getProjects();
+    },[showArchive]);
+
+    const getProjects =()=>{
+        showArchive?getProjectsWithArchive():getMyProjects();
+    };
+
+    const getMyProjects = async () => {
         let response = await axios.get("http://localhost:8080/project/getmyprojects");
+        setProjects(response.data);
+    };
+
+    const getProjectsWithArchive = async () => {
+        let response = await axios.get("http://localhost:8080/project/getmyprojectswitharchive");
         setProjects(response.data);
     };
 
@@ -16,7 +30,7 @@ export const ProjectProvider = props => {
 
     return (
         <ProjectContext.Provider
-            value={{getProjects, projects,setProjects}}
+            value={{getProjects, projects,setProjects,setShowArchive,showArchive}}
         >
             {props.children}
         </ProjectContext.Provider>
