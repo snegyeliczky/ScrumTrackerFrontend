@@ -3,13 +3,6 @@ import {useParams} from "react-router";
 import axios from "axios";
 import ScrumTable from "./ScrumTable";
 import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
-import {
-    PlusCircleOutlined,
-    CheckOutlined,
-    FolderAddOutlined,
-    UsergroupAddOutlined,
-    PlusOutlined
-} from '@ant-design/icons';
 import UsersModal from "./UsersModal";
 
 
@@ -19,7 +12,6 @@ const ProjectPage = () => {
     const [project, setProject] = useState();
     const [statuses, setStatuses] = useState();
     const [loading, setLoading] = useState(true);
-    const newTaskRef = useRef();
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
 
     const getProject = async () => {
@@ -38,7 +30,7 @@ const ProjectPage = () => {
     };
 
     const addNewColumn = async (columnName) => {
-        setLoading(true);
+        //setLoading(true);
         let projectId = id;
         let newStatus = {statusName: columnName, projectId: projectId};
         await axios.post("http://localhost:8080/project/newstatus", newStatus);

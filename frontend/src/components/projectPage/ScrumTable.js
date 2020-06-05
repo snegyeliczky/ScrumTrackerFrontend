@@ -2,13 +2,12 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import Column from "./Column";
 import axios from "axios";
 import {ContentContainer} from "../styledComps/styled"
-import {PlusOutlined, CloseOutlined} from "@ant-design/icons";
+import {PlusOutlined} from "@ant-design/icons";
 import UseComponentVisible from "../UseComponentVisible";
 
 const ScrumTable = ({table, addNewColumn, addNewTask}) => {
 
     const [statuses, setStatuses] = useState(table.statuses);
-    const [showNewColumn, setShowNewColumn] = useState(false);
     const newColumnRef = useRef();
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
@@ -78,22 +77,12 @@ const ScrumTable = ({table, addNewColumn, addNewTask}) => {
         return newStatuses;
     };
 
-    const handleAddNewColumn = () => {
-        setShowNewColumn(!showNewColumn);
-    };
-
-    const newColumnTextStyle = () => {
-        return showNewColumn ? "add_new_column_text_active" : "add_new_column_text_inactive";
-    };
-
     const handleSaveNewColumn = () => {
         if (newColumnRef.current.value.length < 3) {
-            setShowNewColumn(false);
             alert("add name (minimum 3 character) to your status");
             return;
         }
         addNewColumn(newColumnRef.current.value);
-        setShowNewColumn(false);
         newColumnRef.current.value = "";
 
     };
