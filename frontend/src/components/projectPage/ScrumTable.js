@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import Column from "./Column";
 import axios from "axios";
 import {ContentContainer} from "../styledComps/styled"
-import {PlusOutlined} from "@ant-design/icons";
+import {PlusOutlined, CloseOutlined} from "@ant-design/icons";
 
 const ScrumTable = ({table, addNewColumn}) => {
 
@@ -71,7 +71,7 @@ const ScrumTable = ({table, addNewColumn}) => {
     };
 
     const handleAddNewColumn = () => {
-        setShowNewColumn(true);
+        setShowNewColumn(!showNewColumn);
     };
 
     const newColumnTextStyle = () => {
@@ -117,8 +117,8 @@ const ScrumTable = ({table, addNewColumn}) => {
 
                 })
             }
-            <div clasName="add_new_column">
-                <PlusOutlined onClick={handleAddNewColumn}/>
+            <div className="add_new_column">
+                {!showNewColumn ? <PlusOutlined onClick={handleAddNewColumn}/> : <CloseOutlined onClick={handleAddNewColumn} />}
                 <div className="add_new_column_container">
                     <input className={newColumnTextStyle()}
                            ref={newColumnRef}/>

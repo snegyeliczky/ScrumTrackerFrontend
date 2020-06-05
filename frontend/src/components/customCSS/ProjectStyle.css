@@ -137,20 +137,25 @@ textarea {
 
 /*-------------------------MODAL STYLE------------------------- */
 
-.anticon-plus {
+.anticon-plus,
+.anticon-close {
     margin-top: 4px;
     padding: 8px;
 }
 
 .anticon-plus:hover,
-.anticon-plus:active {
+.anticon-plus:active,
+.anticon-close:hover,
+.anticon-close:active {
     cursor: pointer;
     background-color: #e8dede;
     border-radius: 8px;
 }
 
 .add_new_column_container {
-    align-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .add_new_column_text_active {

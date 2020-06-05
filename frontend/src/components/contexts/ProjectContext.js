@@ -8,12 +8,12 @@ export const ProjectProvider = props => {
     const [projects, setProjects] = useState([]);
     const [showArchive,setShowArchive] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         getProjects();
     },[showArchive]);
 
-    const getProjects =()=>{
-        showArchive?getProjectsWithArchive():getMyProjects();
+    const getProjects = () => {
+        showArchive ? getProjectsWithArchive() : getMyProjects();
     };
 
     const getMyProjects = async () => {
