@@ -4,7 +4,7 @@ import axios from "axios";
 import {ContentContainer} from "../styledComps/styled"
 import {PlusOutlined, CloseOutlined} from "@ant-design/icons";
 
-const ScrumTable = ({table, addNewColumn}) => {
+const ScrumTable = ({table, addNewColumn, addNewTask}) => {
 
     const [statuses, setStatuses] = useState(table.statuses);
     const [showNewColumn, setShowNewColumn] = useState(false);
@@ -113,6 +113,7 @@ const ScrumTable = ({table, addNewColumn}) => {
                         status={status}
                         onDragEnter={onDragEnter}
                         refreshStatusesFromBackend={refreshStatusesFromBackend}
+                        addNewTask={addNewTask}
                     />
 
                 })

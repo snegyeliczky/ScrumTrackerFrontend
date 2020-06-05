@@ -19,7 +19,6 @@ const ProjectPage = () => {
     const [project, setProject] = useState();
     const [statuses, setStatuses] = useState();
     const [loading, setLoading] = useState(true);
-    const newColumnRef = useRef();
     const newTaskRef = useRef();
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
 
@@ -46,16 +45,11 @@ const ProjectPage = () => {
         getProject();
     };
 
-    const addNewTask = async (description) => {
-        if (newTaskRef.current.value.length < 3) {
-            alert("add title (minimum 3 character) to the new task");
-            return;
-        }
+    const addNewTask = async (taskName, statusId) => {
         setLoading(true);
-        let projectId = id;
         let task = {
-            statusId: project.table.statuses[0].id,
-            title: newTaskRef.current.value
+            statusId: statusId,
+            title: taskName
         };
         await axios.post("http://localhost:8080/project/newtask", task);
         getProject();
@@ -82,23 +76,8 @@ const ProjectPage = () => {
                     <ScrumTable key={project.table.id}
                                 table={project.table}
                                 addNewColumn={addNewColumn}
+                                addNewTask={addNewTask}
                     />
-                    <div className={"add_component_container"}>
-                        <AdderComponent className={"add_new_status adder_component"}>
-                            <label>Add new Status</label>
-                            <Input ref={newColumnRef} placeholder={"Status name!"}/>
-                            <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
-                                                onClick={addNewColumn}
-                            />
-                        </AdderComponent>
-                        <AdderComponent className={"add_new_task adder_component"}>
-                            <label>Add new Task</label>
-                            <Input ref={newTaskRef} placeholder={"Task name!"}/>
-                            <PlusCircleOutlined style={{fontSize: "35px", padding: "10px", color: "green"}}
-                                                onClick={addNewTask}
-                            />
-                        </AdderComponent>
-                    </div>
                 </div>
             }
         </div>
