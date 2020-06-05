@@ -28,6 +28,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
                 <h4>No task yet</h4>
                 : status.tasks.map(task => {
                     return <Task
+                        refreshStatusesFromBackend={refreshStatusesFromBackend}
                         handleDeleteTask={handleDeleteTask}
                         onDragEnd={onDragEnd}
                         dragItem={dragItem}

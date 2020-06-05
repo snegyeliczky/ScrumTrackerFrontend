@@ -19,6 +19,15 @@ const ScrumTable = ({table}) => {
 
     const refreshStatusesFromBackend = async () =>{
         let axiosResponse = await axios.get("http://localhost:8080/project/gettable/" + table.id);
+        axiosResponse.data.statuses.sort(function (a, b) {
+            return a.position - b.position;
+        });
+        axiosResponse.data.statuses.map(status =>{
+            status.tasks.sort(function (a,b) {
+                return a.position - b.position;
+            })
+        });
+
         setStatuses(axiosResponse.data.statuses);
     };
 

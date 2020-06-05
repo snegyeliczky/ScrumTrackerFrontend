@@ -1,11 +1,12 @@
 import React, {useState, useRef, useContext} from 'react';
 import Column from "./Column";
-import {DeleteOutlined} from "@ant-design/icons";
+import {DeleteOutlined, ApiOutlined} from "@ant-design/icons";
 import {ContentContainer} from "../styledComps/styled";
 import TaskModal from "./TaskModal";
+import axios from "axios";
 
 
-const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask}) => {
+const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStatusesFromBackend}) => {
 
     const [thisTask, setTask] = useState(task);
     const [dragging, setDragging] = useState(false);
@@ -31,6 +32,12 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask}) => {
         dragItem.current = null;
     };
 
+    async function archiveTask(e) {
+        e.stopPropagation();
+        await axios.put("http://localhost:8080/task/archive/" + task.id);
+        refreshStatusesFromBackend();
+    }
+
     return (
         <div className={dragging ? draggingStyle(task.id) : "task_card"}
              draggable={true}
@@ -42,7 +49,11 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask}) => {
                 <div>
                     <DeleteOutlined onClick={(e) => handleDeleteTask(task.id)}/>
                 </div>
-                <TaskModal task={thisTask} setTask={setTask}/></div>
+                <TaskModal task={thisTask} setTask={setTask}/>
+                <div>
+                    <ApiOutlined onClick={(e)=>archiveTask(e)}/>
+                </div>
+            </div>
             <div className="project_title">{thisTask.title}</div>
             <div className={"businessValue"}>Value: {thisTask.businessValue}</div>
         </div>
