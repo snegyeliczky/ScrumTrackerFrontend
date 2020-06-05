@@ -2,14 +2,15 @@ import React, {useState, useContext, useEffect, useRef} from 'react';
 import Column from "./Column";
 import axios from "axios";
 import {ContentContainer} from "../styledComps/styled"
+import {PlusOutlined} from "@ant-design/icons";
 
-const ScrumTable = ({table}) => {
+const ScrumTable = ({table, addNewColumn}) => {
 
     const [statuses, setStatuses] = useState(table.statuses);
+    const [showNewColumn, setShowNewColumn] = useState(false);
+    const newColumnRef = useRef();
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
-
-
 
 
     const deleteStatus = async (statusID) => {
@@ -17,7 +18,7 @@ const ScrumTable = ({table}) => {
         refreshStatusesFromBackend();
     };
 
-    const refreshStatusesFromBackend = async () =>{
+    const refreshStatusesFromBackend = async () => {
         let axiosResponse = await axios.get("http://localhost:8080/project/gettable/" + table.id);
         setStatuses(axiosResponse.data.statuses);
     };
@@ -60,36 +61,62 @@ const ScrumTable = ({table}) => {
         return newStatuses;
     };
 
-    //
+    const handleAddNewColumn = () => {
+        setShowNewColumn(true);
+    };
+
+    const newColumnTextStyle = () => {
+        return showNewColumn ? "add_new_column_text_active" : "add_new_column_text_inactive";
+    };
+
+    const handleSaveNewColumn = () => {
+        if (newColumnRef.current.value.length < 3) {
+            setShowNewColumn(false);
+            alert("add name (minimum 3 character) to your status");
+            return;
+        }
+        addNewColumn(newColumnRef.current.value);
+        setShowNewColumn(false);
+        newColumnRef.current.value = "";
+
+    };
 
     return (
         <ContentContainer className={"scrum_table"}
-        onDragOver={(e)=>e.preventDefault()}>
-             {
-                        statuses.map((status, i) => {
-                            let statusFlag = null;
+                          onDragOver={(e) => e.preventDefault()}>
+            {
+                statuses.map((status, i) => {
+                    let statusFlag = null;
 
-                            if (i===0){
-                                statusFlag="start";
-                            }
-                            if (i===statuses.length-1){
-                                statusFlag="finish";
-                            }
-
-                            return <Column
-                                statusFlag = {statusFlag}
-                                deleteStatus={deleteStatus}
-                                onDragEnd={onDragEnd}
-                                dragItem={dragItem}
-                                key={status.id}
-                                status={status}
-                                onDragEnter={onDragEnter}
-                                refreshStatusesFromBackend ={refreshStatusesFromBackend}
-                            />
-
-                        })
+                    if (i === 0) {
+                        statusFlag = "start";
+                    }
+                    if (i === statuses.length - 1) {
+                        statusFlag = "finish";
                     }
 
+                    return <Column
+                        statusFlag={statusFlag}
+                        deleteStatus={deleteStatus}
+                        onDragEnd={onDragEnd}
+                        dragItem={dragItem}
+                        key={status.id}
+                        status={status}
+                        onDragEnter={onDragEnter}
+                        refreshStatusesFromBackend={refreshStatusesFromBackend}
+                    />
+
+                })
+            }
+            <div clasName="add_new_column">
+                <PlusOutlined onClick={handleAddNewColumn}/>
+                <div className="add_new_column_container">
+                    <input className={newColumnTextStyle()}
+                           ref={newColumnRef}/>
+                    <div className="add_new_column_btn"
+                         onClick={handleSaveNewColumn}>add</div>
+                </div>
+            </div>
         </ContentContainer>
     );
 };

@@ -137,6 +137,54 @@ textarea {
 
 /*-------------------------MODAL STYLE------------------------- */
 
-.add_btn {
+.anticon-plus {
+    margin-top: 4px;
+    padding: 8px;
+}
+
+.anticon-plus:hover,
+.anticon-plus:active {
+    cursor: pointer;
+    background-color: #e8dede;
+    border-radius: 8px;
+}
+
+.add_new_column_container {
+    align-content: center;
+}
+
+.add_new_column_text_active {
+    width: 150px;
+    border-radius: 4px;
+}
+
+.add_new_column_text_inactive {
     display: none;
+}
+
+.add_new_column_text_active:focus {
+    border-bottom: none;
+}
+
+.add_new_column_text_active:focus + .add_new_column_btn {
+    display: block;
+}
+
+.add_new_column_btn {
+    color: antiquewhite;
+    background-color: forestgreen;
+    width: 4rem;
+    border-radius: 8px;
+    margin: 4px 0 4px 0;
+    text-align: center;
+    padding: 4px;
+    font-weight: 100;
+    position: relative;
+    display: none;
+}
+
+.add_new_column_btn:hover,
+.add_new_column_btn:active {
+    cursor: pointer;
+    display: block;
 }
