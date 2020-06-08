@@ -25,6 +25,7 @@ input:focus {
 .project_column,
 .project_card {
     display: block;
+    min-height: 100px;
     height: fit-content;
     text-align: center;
     border-radius: 4px;
@@ -36,6 +37,7 @@ input:focus {
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
+
 .status_tool_container{
     float: right;
     display: flex;
@@ -43,6 +45,25 @@ input:focus {
     margin: 10px;
     font-size: 15px;
 }
+
+
+.project_tool_container{
+    display: flex;
+    justify-content: flex-end;
+    height: fit-content;
+    font-size: 15px;
+}
+
+.project_title_container{
+    display: flex;
+    justify-content: center;
+    overflow-wrap: anywhere;
+    height: fit-content;
+    font-size: 15px;
+
+}
+
+
 
 .task_card {
     justify-content: center;

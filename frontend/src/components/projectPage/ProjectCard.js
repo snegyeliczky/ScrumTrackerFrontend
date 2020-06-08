@@ -45,11 +45,11 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
     return (
         <div className={"project_card"} onClick={handleClick} style={ProjectBackground}>
-            <div className={"status_tool_container"}>
+            <div className={"project_tool_container"}>
                 <DeleteOutlined onClick={(e) => handleDelete(e)}/>
                 <ApiOutlined onClick={(e)=>archiveProject(e)} style={showArchiveStyle}/>
             </div>
-            <ContentContainer><h2>{project.title}</h2></ContentContainer>
+            <div className={"project_title_container"}>{project.title}</div>
         </div>
     );
 };
