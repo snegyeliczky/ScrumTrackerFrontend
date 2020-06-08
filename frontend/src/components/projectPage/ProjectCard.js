@@ -19,6 +19,10 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
     const inProgressEndColorPercentage =taskPercentageInProjectStatuses.start + taskPercentageInProjectStatuses.inProgress;
     const finalEndColorPercentage = taskPercentageInProjectStatuses.inProgress+taskPercentageInProjectStatuses.finish;
 
+    const showArchiveStyle={
+        color: project.archive?"red":"green",
+    };
+
     const ProjectBackground = {
 
         background: `linear-gradient(90deg, rgba(124,33,33,0.7) 0% ${startEndColor}% ,
@@ -43,7 +47,7 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
         <div className={"project_card"} onClick={handleClick} style={ProjectBackground}>
             <div className={"status_tool_container"}>
                 <DeleteOutlined onClick={(e) => handleDelete(e)}/>
-                <ApiOutlined onClick={(e)=>archiveProject(e)} />
+                <ApiOutlined onClick={(e)=>archiveProject(e)} style={showArchiveStyle}/>
             </div>
             <ContentContainer><h2>{project.title}</h2></ContentContainer>
         </div>

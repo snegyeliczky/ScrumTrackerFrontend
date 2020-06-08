@@ -51,7 +51,7 @@ const ProjectList = () => {
     }
 
     const showArchiveStyle={
-        color: showArchive?"green":"red",
+        color: showArchive?"red":"green",
         marginRight:"10px",
     };
 
