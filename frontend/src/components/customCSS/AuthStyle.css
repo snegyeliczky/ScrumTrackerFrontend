@@ -4,13 +4,6 @@
     justify-content: center;
 }
 
-input {
-    width: 90%;
-    border-radius: 8px;
-    color: #373A55;
-    font-weight: bold;
-}
-
 .login_form,
 .registration_form {
     text-align:  center;
