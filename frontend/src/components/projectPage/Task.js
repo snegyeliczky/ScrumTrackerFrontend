@@ -38,6 +38,10 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
         refreshStatusesFromBackend();
     }
 
+    const deleteTask = () => {
+        handleDeleteTask(task.id)
+    };
+
     return (
         <div className={dragging ? draggingStyle(task.id) : "task_card"}
              draggable={true}
@@ -47,7 +51,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
         >
             <div className={"status_tool_container"}>
                 <div>
-                    <DeleteOutlined onClick={(e) => handleDeleteTask(task.id)}/>
+                    <DeleteOutlined onClick={deleteTask}/>
                 </div>
                 <TaskModal task={thisTask} setTask={setTask}/>
                 <div>
