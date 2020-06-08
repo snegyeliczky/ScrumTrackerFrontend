@@ -15,19 +15,15 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
         history.push("/project/" + project.id)
     };
 
-    const startEndColor=taskPercentageInProjectStatuses.start-8;
-
-    const inProgressStartColor = taskPercentageInProjectStatuses.start;
-    const inProgressEndColorPercentage =(taskPercentageInProjectStatuses.start + taskPercentageInProjectStatuses.inProgress)-8;
-
-    const finalColorStart = taskPercentageInProjectStatuses.start + taskPercentageInProjectStatuses.inProgress;
+    const startEndColor=taskPercentageInProjectStatuses.start;
+    const inProgressEndColorPercentage =taskPercentageInProjectStatuses.start + taskPercentageInProjectStatuses.inProgress;
     const finalEndColorPercentage = taskPercentageInProjectStatuses.inProgress+taskPercentageInProjectStatuses.finish;
 
     const ProjectBackground = {
 
-        background: `linear-gradient(90deg, rgba(55,58,85,0.8) 0% ${startEndColor}% ,
-         rgba(253,192,29,0.8) ${inProgressStartColor}%  ${inProgressEndColorPercentage}% ,
-         rgba(69,252,70,0.8) ${finalColorStart}%  ${finalEndColorPercentage}% )`
+        background: `linear-gradient(90deg, rgba(124,33,33,0.7) 0% ${startEndColor}% ,
+         rgba(253,192,29,0.7) ${startEndColor}%  ${inProgressEndColorPercentage}% ,
+         rgba(69,252,70,0.7) ${inProgressEndColorPercentage}%  ${finalEndColorPercentage}% )`
     };
 
     const handleDelete = async (e) => {
