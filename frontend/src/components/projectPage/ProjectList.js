@@ -7,7 +7,16 @@ import {ApiOutlined} from "@ant-design/icons";
 
 const ProjectList = () => {
 
-    const {getProjects, projects, setShowArchive, showArchive} = useContext(ProjectContext);
+    const {getProjects,
+           projects,
+           setShowArchive,
+           showArchive,
+           archiveProjects,
+           getArchiveProjects,
+           setArchiveProjects,
+           participateProjects} = useContext(ProjectContext);
+
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
             getProjects();
@@ -48,10 +57,14 @@ const ProjectList = () => {
         position: "absolute",
     };
 
+    const handleShowArchives = () => {
+        setShowArchive(!showArchive);
+    };
+
     return (
         <div className="project_page">
             <ContentContainer>
-                <h2>Your Projects</h2>
+                <div className="project_text">Your Projects</div>
 
                 <ApiOutlined onClick={(e) => setShowArchive(!showArchive)} style={showArchiveStyle}/>
 
@@ -68,6 +81,38 @@ const ProjectList = () => {
                                                 taskPercentageInProjectStatuses={taskPercentageInProjectStatuses}/>
                         }
                     )}
+            </ContentContainer>
+            <ContentContainer>
+                <div className="project_text participate">
+                    Projects i participated
+                </div>
+            </ContentContainer>
+            <ContentContainer className="project_page__project_list_container">
+                {participateProjects.length === 0 ?
+                    <div>You don't have any project yet.</div>
+                    :
+                    participateProjects.map((project) => {
+                            console.log(project.archive);
+                            let taskPercentageInProjectStatuses = countTaskPercentageInProjectStatuses(project);
+                            return <ProjectCard key={project.id}
+                                                project={project}
+                                                taskPercentageInProjectStatuses={taskPercentageInProjectStatuses}/>
+                        }
+                    )}
+            </ContentContainer>
+            <ContentContainer>
+                <div className="project_text archive"
+                     onClick={handleShowArchives}>{!showArchive ? "Show Archives" : "Hide Archives"}
+                </div>
+            </ContentContainer>
+            <ContentContainer>
+            {!showArchive ? <div></div> :
+                archiveProjects.map(project => {
+                    let taskPercentageInProjectStatuses = countTaskPercentageInProjectStatuses(project);
+                    return <ProjectCard key={project.id}
+                                        project={project}
+                                        taskPercentageInProjectStatuses={taskPercentageInProjectStatuses}/>
+                })}
             </ContentContainer>
             <AddNewProject/>
         </div>

@@ -245,3 +245,23 @@ textarea {
 }
 
 /*-----------------------------NEW TASK STYLE-----------------------------*/
+
+
+/*-----------------------------PROJECT ARCHIVE PART-----------------------------*/
+
+.project_text {
+    background-color: #e8dede;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    padding: 0.5rem;
+
+
+}
+
+
+.project_text.archive:hover {
+    background-color: #e0d0d0;
+    cursor: pointer;
+}
+/*-----------------------------PROJECT ARCHIVE PART-----------------------------*/
