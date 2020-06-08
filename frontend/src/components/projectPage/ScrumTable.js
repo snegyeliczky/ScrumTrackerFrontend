@@ -125,7 +125,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask}) => {
                 )}
                 {!isComponentVisible && (
                     <div onClick={() => setIsComponentVisible(true)}>
-                        <PlusOutlined />
+                        <PlusOutlined style={{width:"100px"}}/>
                     </div>
                 )}
             </div>
