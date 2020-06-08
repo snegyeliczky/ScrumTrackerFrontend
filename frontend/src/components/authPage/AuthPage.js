@@ -15,18 +15,17 @@ const AuthPage = () => {
         setLogin(false);
     };
 
-
-
     const loginBtnStyle = login ? "btn_active" : "btn_not_active";
     const registrationBtnStyle = login ? "btn_not_active" : "btn_active";
 
     return (
         <div className="authpage_container">
+            <div className="authpage_text">Welcome to ScrumTracker</div>
             <div className="authpage_form">
             <div className="authpage_select_container">
-                <div className="authpage_select_btn">
-                    <button className={loginBtnStyle} onClick={handleLogin}>Sign in</button>
-                    <button className={registrationBtnStyle} onClick={handleRegister}>Sign up</button>
+                <div className="authpage_select_btn_container">
+                    <div className={loginBtnStyle} onClick={handleLogin}>Sign in</div>
+                    <div className={registrationBtnStyle} onClick={handleRegister}>Sign up</div>
                 </div>
             </div>
 

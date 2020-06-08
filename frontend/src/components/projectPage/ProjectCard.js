@@ -27,7 +27,8 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
         background: `linear-gradient(90deg, rgba(124,33,33,0.7) 0% ${startEndColor}% ,
          rgba(253,192,29,0.7) ${startEndColor}%  ${inProgressEndColorPercentage}% ,
-         rgba(69,252,70,0.7) ${inProgressEndColorPercentage}%  ${finalEndColorPercentage}% )`
+         rgba(69,252,70,0.7) ${inProgressEndColorPercentage}%  ${finalEndColorPercentage}% )`,
+        opacity: `0.8`
     };
 
     const handleDelete = async (e) => {
@@ -49,7 +50,7 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
                 <DeleteOutlined onClick={(e) => handleDelete(e)}/>
                 <ApiOutlined onClick={(e)=>archiveProject(e)} style={showArchiveStyle}/>
             </div>
-            <div className={"project_title_container"}>{project.title}</div>
+            <div className={"project_card_title"}>{project.title}</div>
         </div>
     );
 };

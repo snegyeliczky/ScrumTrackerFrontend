@@ -20,6 +20,7 @@ const LoginPage = () => {
         try {
             let axiosResponse = await axios.post("http://localhost:8080/auth/signin", user);
             if (axiosResponse.status === 200) {
+                console.log(axiosResponse.data);
                 localStorage.setItem("username",axiosResponse.data.username);
                 history.push("/");
             }
@@ -46,7 +47,7 @@ const LoginPage = () => {
                     />
                 </div>
                 <div className="auth_submit_btn">
-                    <button className="auth_btn" onClick={onLogin}>Sign in</button>
+                    <div className="btn_active auth" onClick={onLogin}>Sign in</div>
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@ const RegistrationPage = () => {
                         onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className="auth_submit_btn">
-                    <button className="auth_btn" onClick={onSubmit}>Sign up</button>
+                    <div className="btn_active auth" onClick={onSubmit}>Sign up</div>
                 </div>
             </div>
         </div>
