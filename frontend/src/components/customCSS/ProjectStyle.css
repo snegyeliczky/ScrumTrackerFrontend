@@ -25,7 +25,7 @@ input:focus {
 .project_column,
 .project_card {
     display: block;
-    min-height: 100px;
+    min-height: 120px;
     height: fit-content;
     text-align: center;
     border-radius: 4px;
@@ -37,6 +37,10 @@ input:focus {
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
 }
 
+.project_title_container{
+    width: 80%;
+    text-align: center;
+}
 
 .status_tool_container{
     float: right;

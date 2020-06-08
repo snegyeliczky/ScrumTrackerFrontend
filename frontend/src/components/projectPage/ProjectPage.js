@@ -62,8 +62,10 @@ const ProjectPage = () => {
                 :
                 <div className={"project_item_container"}>
                     <ContentContainer>
-                        <h2>{project.title}</h2>
-                        <UsersModal projectId={project.id} participants={project.participants}/>
+                        <div className={"project_title_container"}>
+                            <h2>{project.title}</h2>
+                        </div>
+                            <UsersModal projectId={project.id} participants={project.participants}/>
                     </ContentContainer>
                     <ScrumTable key={project.table.id}
                                 table={project.table}
