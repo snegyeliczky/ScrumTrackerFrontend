@@ -20,6 +20,8 @@ const LoginPage = () => {
         try {
             let axiosResponse = await axios.post("http://localhost:8080/auth/signin", user);
             if (axiosResponse.status === 200) {
+                localStorage.setItem("username",axiosResponse.data.username);
+                console.log("from loc "+localStorage.getItem("username"));
                 console.log("Login success");
                 history.push("/");
             }
