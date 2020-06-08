@@ -15,8 +15,10 @@ const AuthPage = () => {
         setLogin(false);
     };
 
-    const loginBtnStyle = login ? "btn_not_active" : "btn_active";
-    const registrationBtnStyle = login ? "btn_active" : "btn_not_active";
+
+
+    const loginBtnStyle = login ? "btn_active" : "btn_not_active";
+    const registrationBtnStyle = login ? "btn_not_active" : "btn_active";
 
     return (
         <div className="authpage_container">

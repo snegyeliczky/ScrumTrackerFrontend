@@ -33,6 +33,7 @@ const RegistrationPage = () => {
             <div className="registration_form">
                 <div className="registration_input">
                     <input
+                        id={"registration_name_input"}
                         onChange={(e) => setUsername(e.target.value)}/>
                 </div>
                 <div className="registration_input">

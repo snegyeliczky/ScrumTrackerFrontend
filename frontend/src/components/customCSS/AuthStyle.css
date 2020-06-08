@@ -15,10 +15,15 @@
 .authpage_select_btn {
     margin: 1rem;
     width: 100vh;
+
 }
 
 
 .auth_submit_btn {
     margin: 1rem;
+}
+
+.btn_active{
+    background-color: skyblue;
 }
 
