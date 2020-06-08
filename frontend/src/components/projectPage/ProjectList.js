@@ -51,10 +51,8 @@ const ProjectList = () => {
     }
 
     const showArchiveStyle={
-        fontSize: "35px",
         color: showArchive?"green":"red",
-        right: "10%",
-        position: "absolute",
+        marginRight:"10px",
     };
 
     const handleShowArchives = () => {
@@ -65,9 +63,6 @@ const ProjectList = () => {
         <div className="project_page">
             <ContentContainer>
                 <div className="project_text">Your Projects</div>
-
-                <ApiOutlined onClick={(e) => setShowArchive(!showArchive)} style={showArchiveStyle}/>
-
             </ContentContainer>
             <ContentContainer className="project_page__project_list_container">
                 {projects.length === 0 ?
@@ -102,7 +97,7 @@ const ProjectList = () => {
             </ContentContainer>
             <ContentContainer>
                 <div className="project_text archive"
-                     onClick={handleShowArchives}>{!showArchive ? "Show Archives" : "Hide Archives"}
+                     onClick={handleShowArchives}><ApiOutlined onClick={(e) => setShowArchive(!showArchive)} style={showArchiveStyle}/> {!showArchive ? "Show Archives" : "Hide Archives"}
                 </div>
             </ContentContainer>
             <ContentContainer>
