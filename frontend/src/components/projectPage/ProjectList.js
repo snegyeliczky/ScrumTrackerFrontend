@@ -77,6 +77,7 @@ const ProjectList = () => {
                         }
                     )}
             </ContentContainer>
+            <AddNewProject/>
             <ContentContainer>
                 <div className="project_text participate">
                     Projects i participated
@@ -109,7 +110,6 @@ const ProjectList = () => {
                                         taskPercentageInProjectStatuses={taskPercentageInProjectStatuses}/>
                 })}
             </ContentContainer>
-            <AddNewProject/>
         </div>
     )
 };
