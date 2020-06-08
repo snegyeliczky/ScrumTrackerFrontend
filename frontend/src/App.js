@@ -13,7 +13,11 @@ function App() {
         <Router>
             <ProjectProvider>
                 <div className="App">
-                    <Navbar/>
+
+                    <Route exact path="/" component={Navbar}/>
+                    <Route exact path="/projects" component={Navbar}/>
+                    <Route exact path="/project/:id" component={Navbar}/>
+
                     <Route exact path="/login" component={AuthPage}/>
                     <Route exact path="/project/:id" component={ProjectPage}/>
                     <Route exact path="/projects" component={MyProjects}/>

@@ -19,8 +19,7 @@ const RegistrationPage = () => {
             let axiosResponse = await axios.post("http://localhost:8080/auth/registration", user);
             if (axiosResponse.status === 200) {
                 console.log("registration ok");
-                alert("registration succes");
-                history.push("/");
+                alert("registration succes please Sign in");
             }
         } catch (e) {
             console.log(e);
