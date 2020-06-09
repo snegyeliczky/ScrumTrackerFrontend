@@ -3,9 +3,9 @@ import 'antd/dist/antd.css';
 import {MailOutlined} from "@ant-design/icons";
 import {Button, Modal} from "antd";
 import {ContentContainer} from "../styledComps/styled";
-import Autocomplete from "react-autocomplete";
+import axios from "axios";
 
-const MailModal = () => {
+const MailModal = (projectId) => {
 
     const [visible, setVisible] = useState(false);
     const [email,setEmail] = useState("");
@@ -18,8 +18,14 @@ const MailModal = () => {
         setVisible(true);
     }
 
-    function handleSend() {
-        console.log(email);
+    async function handleSend() {
+        let email = {email:email};
+        try {
+            await axios.post("http://localhost:8080/project/email/"+projectId,email);
+        } catch (e) {
+            console.log(e)
+            alert("Wrong emil try again!")
+        }
     }
 
     return (
