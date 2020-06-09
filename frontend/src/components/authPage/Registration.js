@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import axios from 'axios';
 import {useHistory} from "react-router-dom";
 import '../customCSS/AuthStyle.css';
+import {ProjectContext} from "../contexts/ProjectContext";
 
 
 const RegistrationPage = () => {
@@ -9,6 +10,7 @@ const RegistrationPage = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const history = useHistory();
+    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
 
     const onSubmit = async () => {
         let user = {
@@ -18,12 +20,11 @@ const RegistrationPage = () => {
         try {
             let axiosResponse = await axios.post("http://localhost:8080/auth/registration", user);
             if (axiosResponse.status === 200) {
-                console.log("registration ok");
-                alert("registration succes please Sign in");
+                showSuccessAlert("registration success please Sign in");
             }
         } catch (e) {
             console.log(e);
-            alert("Registration failed");
+            showErrorAlert("Registration failed");
         }
     };
 

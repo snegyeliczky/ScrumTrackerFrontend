@@ -10,18 +10,17 @@ const AddNewProject = () => {
 
     const projectNameRef = useRef();
     const {getProjects} = useContext(ProjectContext);
+    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
 
     async function addNewProject() {
         if (projectNameRef.current.value.length < 3) {
-            alert("minimum 3 character");
+            showErrorAlert("Project title must be minimum 3 character");
             return;
         }
-        console.log(projectNameRef.current.value);
         let projectNameObject = {
             projectName: projectNameRef.current.value
         };
-        let axiosResponse = await axios.post("http://localhost:8080/project/create", projectNameObject);
-        console.log(axiosResponse);
+        await axios.post("http://localhost:8080/project/create", projectNameObject);
         projectNameRef.current.value = "";
         getProjects();
     }

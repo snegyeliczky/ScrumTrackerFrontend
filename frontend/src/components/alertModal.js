@@ -9,6 +9,7 @@ const AlertModal = () => {
         alertVisible,
         handleAlertCancel,
         alertText,
+        alertType
         } = useContext(ProjectContext);
 
 
@@ -21,11 +22,11 @@ const AlertModal = () => {
                 width={400}
             >
             <Alert
-                message="Error"
+                message={alertType==="error"?"Error":"Success"}
                 description={alertText}
-                type="error"
+                type={alertType}
                 showIcon
-                style={{border:"0px"}}
+                style={{border:"0px", backgroundColor: "inherit"}}
             />
             </Modal>
     );

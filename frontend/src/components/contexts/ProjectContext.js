@@ -45,16 +45,26 @@ export const ProjectProvider = props => {
 
     const[alertVisible,setAlertVisible]=useState(false);
     const [alertText,setAlertText] =useState("");
+    const [alertType,setAlertType] =useState("")
 
     function handleAlertCancel() {
         setAlertVisible(false);
         setAlertText("")
     }
 
-    function showAlert(text) {
+    function showErrorAlert(text) {
+        setAlertType("error");
         setAlertText(text);
         setAlertVisible(true);
     }
+
+    function showSuccessAlert(text) {
+        setAlertType("success");
+        setAlertText(text);
+        setAlertVisible(true);
+    }
+
+
 
 
     return (
@@ -71,8 +81,10 @@ export const ProjectProvider = props => {
 
                     setAlertVisible,
                     alertVisible,
+                    showErrorAlert,
+                    showSuccessAlert,
                     handleAlertCancel,
-                    showAlert,
+                    alertType,
                     alertText
 
             }}

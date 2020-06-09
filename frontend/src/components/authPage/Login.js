@@ -11,6 +11,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState();
     const history = useHistory();
     const {getProjects, projects} = useContext(ProjectContext);
+    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
 
     const onLogin = async () => {
         let user = {
@@ -20,13 +21,12 @@ const LoginPage = () => {
         try {
             let axiosResponse = await axios.post("http://localhost:8080/auth/signin", user);
             if (axiosResponse.status === 200) {
-                console.log(axiosResponse.data);
                 localStorage.setItem("username",axiosResponse.data.username);
                 history.push("/");
             }
         } catch (e) {
             console.log(e);
-            alert("Login failed")
+            showErrorAlert("Login failed")
         }
     };
 

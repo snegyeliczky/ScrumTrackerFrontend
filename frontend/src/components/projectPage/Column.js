@@ -1,14 +1,16 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useContext} from 'react';
 import Task from "./Task";
 import {
     DeleteOutlined
 } from '@ant-design/icons';
 import axios from "axios";
 import UseComponentVisible from "../UseComponentVisible";
+import {ProjectContext} from "../contexts/ProjectContext";
 
 const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend, statusFlag, addNewTask}) => {
 
     const newTaskNameRef = useRef();
+    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
 
     //Click outside effect fields
     const {
@@ -30,7 +32,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
     const handleAddNewTask = () => {
         console.log(newTaskNameRef.current.value);
         if (newTaskNameRef.current.value.length < 3) {
-            alert("please minimum 3 character!");
+            showErrorAlert("please minimum 3 character!");
             newTaskNameRef.current.value = "";
             return;
         }

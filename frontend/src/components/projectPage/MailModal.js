@@ -11,7 +11,7 @@ const MailModal = ({projectId}) => {
 
     const [visible, setVisible] = useState(false);
     const [email,setEmail] = useState("");
-    const {showAlert} = useContext(ProjectContext);
+    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
 
     function handleCancel() {
         setVisible(false);
@@ -27,17 +27,18 @@ const MailModal = ({projectId}) => {
     }
 
     async function handleSend() {
-        let emailCred = {email:email};
+        console.log(validateEmail(email));
         if(validateEmail(email)){
+            let emailCred = {email:email};
             try {
                 await axios.post("http://localhost:8080/project/email/"+projectId,emailCred);
-                alert("Succesfull e-mail sending");
+                showSuccessAlert("Succesfull e-mail sending");
                 setVisible(false);
             } catch (e) {
-                alert("Invalid e-mail adresse try again!");
+                showErrorAlert("Invalid e-mail adresse try again!");
             }
         }else {
-            showAlert("Incorrect Email form use 'example@example.com'-form ");
+            showErrorAlert("Incorrect Email form use 'example@example.com'-form ");
         }
     }
 

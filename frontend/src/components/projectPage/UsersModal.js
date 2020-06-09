@@ -20,7 +20,6 @@ const UsersModal = ({projectId, participants}) => {
         if (userName.length > 2) {
             let userObj = {username: userName};
             let axiosResponse = await axios.post("http://localhost:8080/user/search", userObj);
-            console.log(axiosResponse.data);
             setUsers(axiosResponse.data);
         }
 
