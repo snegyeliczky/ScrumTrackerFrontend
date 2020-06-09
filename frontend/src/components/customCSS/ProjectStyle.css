@@ -169,7 +169,7 @@ textarea {
     display: block;
 }
 
-.text_input.description:focus + .modal_btn{
+.text_input.userStory:focus + .modal_btn{
     display: block;
 }
 

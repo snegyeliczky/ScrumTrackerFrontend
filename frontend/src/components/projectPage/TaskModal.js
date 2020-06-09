@@ -11,8 +11,9 @@ const TaskModal = ({task, setTask}) => {
     const [visible, setVisible] = useState(false);
 
     const businessValueRef = useRef(task.businessValue);
-    const descriptionRef = useRef(task.description);
-    const titleRef = useRef(task.title);
+    const acceptanceCriteriaRef = useRef(task.acceptanceCriteria);
+    const userStoryRef = useRef(task.userStory);
+    const titleRef = useRef(task.storyTitle);
     const positionRef = useRef(task.position);
 
     const handleEdit = () => {
@@ -24,8 +25,9 @@ const TaskModal = ({task, setTask}) => {
             id: null,
             author: null,
             businessValue: task.businessValue == businessValueRef.current.value ? null : businessValueRef.current.value,
-            description: task.description == descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
-            title: task.title == titleRef.current.value ? null : titleRef.current.value,
+            userStory: task.userStory == userStoryRef.current.value && task.userStory === null ? null : userStoryRef.current.value,
+            acceptanceCriteria: task.acceptanceCriteria == acceptanceCriteriaRef.current.value && task.acceptanceCriteria === null ? null : acceptanceCriteriaRef.current.value,
+            title: task.storyTitle == titleRef.current.value ? null : titleRef.current.value,
             position: task.position == positionRef.current.value ? null : positionRef.current.value
         };
         let axiosResponse = await axios.put("http://localhost:8080/task/edit/" + task.id, editedTask);
@@ -57,23 +59,34 @@ const TaskModal = ({task, setTask}) => {
                 <h2>Edit Task</h2>
                 <div className={"task_modal"}>
                     <div className={"text_modal"}>
-                        <label>Title: </label>
+                        <label>Story Title: </label>
                         <input
                             className={"text_input title"}
-                            placeholder={"Title"}
-                            defaultValue={task.title}
+                            placeholder={"Story Title"}
+                            defaultValue={task.storyTitle}
                             ref={titleRef}/>
                         <div className="modal_btn"
                              onClick={handleEdit}>Save
                         </div>
                     </div>
                     <div className={"text_modal"}>
-                        <label>Description: </label>
+                        <label>User Story: </label>
                         <textArea
-                            className={"text_input description"}
-                            placeholder={"Description"}
-                            defaultValue={task.description}
-                            ref={descriptionRef}/>
+                            className={"text_input userStory"}
+                            placeholder={"user story"}
+                            defaultValue={task.userStory}
+                            ref={userStoryRef}/>
+                        <div className="modal_btn"
+                             onClick={handleEdit}>Save
+                        </div>
+                    </div>
+                    <div className={"text_modal"}>
+                        <label>Acceptance Criteria: </label>
+                        <textArea
+                            className={"text_input userStory"}
+                            placeholder={"acceptance criteria"}
+                            defaultValue={task.acceptanceCriteria}
+                            ref={acceptanceCriteriaRef}/>
                         <div className="modal_btn"
                              onClick={handleEdit}>Save
                         </div>

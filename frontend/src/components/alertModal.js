@@ -23,7 +23,7 @@ const AlertModal = () => {
             >
             <Alert
                 message={alertType==="error"?"Error":"Success"}
-                description={alertText}
+                userStory={alertText}
                 type={alertType}
                 showIcon
                 style={{border:"0px", backgroundColor: "inherit"}}
