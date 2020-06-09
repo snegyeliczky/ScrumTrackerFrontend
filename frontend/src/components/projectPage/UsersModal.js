@@ -47,7 +47,7 @@ const UsersModal = ({projectId, participants}) => {
         <div>
             <UsergroupAddOutlined onClick={showModal}
                                   style={{
-                                      fontSize: "35px",
+                                      fontSize: "30px",
                                       color: "#373A55",
                                       paddingLeft: "10px"
                                   }}/>
