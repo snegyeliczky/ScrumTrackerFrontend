@@ -4,19 +4,21 @@ import {Link} from "react-router-dom";
 import "../components/customCSS/NavStyle.css"
 import {ProjectContext} from "./contexts/ProjectContext";
 import {useHistory} from "react-router-dom";
+import AlertModal from "./alertModal";
 
 
 const Navbar = () => {
 
     const history = useHistory();
     const {setProjects} = useContext(ProjectContext);
+    const {showSuccessAlert} = useContext(ProjectContext);
 
     async function handleLogout() {
         await axios.get("http://localhost:8080/auth/logout");
         setProjects([]);
         localStorage.clear();
 
-        alert("Logout successful");
+        showSuccessAlert("Logout successful");
         history.push("/login");
     }
 

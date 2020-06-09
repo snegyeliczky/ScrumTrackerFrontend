@@ -41,6 +41,31 @@ export const ProjectProvider = props => {
         };
 
 
+    /*Alert modal*/
+
+    const[alertVisible,setAlertVisible]=useState(false);
+    const [alertText,setAlertText] =useState("");
+    const [alertType,setAlertType] =useState("")
+
+    function handleAlertCancel() {
+        setAlertVisible(false);
+        setAlertText("")
+    }
+
+    function showErrorAlert(text) {
+        setAlertType("error");
+        setAlertText(text);
+        setAlertVisible(true);
+    }
+
+    function showSuccessAlert(text) {
+        setAlertType("success");
+        setAlertText(text);
+        setAlertVisible(true);
+    }
+
+
+
 
     return (
         <ProjectContext.Provider
@@ -52,7 +77,16 @@ export const ProjectProvider = props => {
                     archiveProjects,
                     getArchiveProjects,
                     setArchiveProjects,
-                    participateProjects
+                    participateProjects,
+
+                    setAlertVisible,
+                    alertVisible,
+                    showErrorAlert,
+                    showSuccessAlert,
+                    handleAlertCancel,
+                    alertType,
+                    alertText
+
             }}
         >
             {props.children}
