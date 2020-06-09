@@ -6,6 +6,7 @@ import ProjectPage from "./components/projectPage/ProjectPage";
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
 import AuthPage from "./components/authPage/AuthPage";
+import AlertModal from "./components/alertModal";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route exact path="/project/:id" component={ProjectPage}/>
                     <Route exact path="/projects" component={MyProjects}/>
                     <Route exact path="/" component={HomePage}/>
+                    <AlertModal/>
                 </div>
             </ProjectProvider>
         </Router>

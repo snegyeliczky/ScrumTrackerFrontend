@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import "../components/customCSS/NavStyle.css"
 import {ProjectContext} from "./contexts/ProjectContext";
 import {useHistory} from "react-router-dom";
+import AlertModal from "./alertModal";
 
 
 const Navbar = () => {
