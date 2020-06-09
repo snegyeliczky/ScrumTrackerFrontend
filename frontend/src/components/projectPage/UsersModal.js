@@ -37,7 +37,6 @@ const UsersModal = ({projectId, participants}) => {
 
     async function handleAddUser() {
         let user = {username: value};
-        console.log(user);
         let axiosResponse = await axios.post("http://localhost:8080/project/adduser/" + projectId, user);
         setProjectParticipants(axiosResponse.data);
     }

@@ -9,7 +9,6 @@ const RegistrationPage = () => {
 
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
-    const history = useHistory();
     const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
 
     const onSubmit = async () => {
