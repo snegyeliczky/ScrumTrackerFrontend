@@ -67,11 +67,13 @@ const ProjectPage = () => {
                         </div>
                             <UsersModal projectId={project.id} participants={project.participants}/>
                     </ContentContainer>
+                    <div className={"scrum_table_container"}>
                     <ScrumTable key={project.table.id}
                                 table={project.table}
                                 addNewColumn={addNewColumn}
                                 addNewTask={addNewTask}
                     />
+                    </div>
                 </div>
             }
         </div>

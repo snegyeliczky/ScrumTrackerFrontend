@@ -25,10 +25,9 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
     const ProjectBackground = {
 
-        background: `linear-gradient(90deg, rgba(124,33,33,0.7) 0% ${startEndColor}% ,
-         rgba(253,192,29,0.7) ${startEndColor}%  ${inProgressEndColorPercentage}% ,
-         rgba(69,252,70,0.7) ${inProgressEndColorPercentage}%  ${finalEndColorPercentage}% )`,
-        opacity: `0.8`
+        background: `linear-gradient(90deg, rgba(124,33,33,0.8) 0% ${startEndColor}% ,
+         rgba(253,192,29,0.8) ${startEndColor}%  ${inProgressEndColorPercentage}% ,
+         rgba(69,252,70,0.8) ${inProgressEndColorPercentage}%  ${finalEndColorPercentage}% )`,
     };
 
     const handleDelete = async (e) => {

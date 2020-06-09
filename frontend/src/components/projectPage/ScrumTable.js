@@ -88,7 +88,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask}) => {
     };
 
     return (
-        <ContentContainer className={"scrum_table"}
+        <div className={"scrum_table"}
                           onDragOver={(e) => e.preventDefault()}>
             {
                 statuses.map((status, i) => {
@@ -125,11 +125,11 @@ const ScrumTable = ({table, addNewColumn, addNewTask}) => {
                 )}
                 {!isComponentVisible && (
                     <div onClick={() => setIsComponentVisible(true)}>
-                        <PlusOutlined style={{width:"100px"}}/>
+                        <PlusOutlined id={"add_status_icon"}/>
                     </div>
                 )}
             </div>
-        </ContentContainer>
+        </div>
     );
 };
 

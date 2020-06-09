@@ -12,6 +12,21 @@ input:focus {
 .project_item_container {
     display: block;
     justify-content: center;
+
+}
+
+.scrum_table_container{
+    display: block;
+    width: 98%;
+    margin-left: 1%;
+    overflow: auto;
+}
+
+.scrum_table{
+    display: inline-flex;
+    min-width: 95%;
+    margin: 2.5%;
+    justify-content: center;
 }
 
 .add_component_container,
@@ -48,6 +63,7 @@ input:focus {
     justify-content: center;
     height: fit-content;
     font-size: 15px;
+    overflow-wrap: anywhere;
 }
 
 .project_card_title {
@@ -59,6 +75,7 @@ input:focus {
     width: fit-content;
     display: flex;
     justify-content: center;
+    overflow-wrap: anywhere;
 }
 
 .status_tool_container{
@@ -298,3 +315,14 @@ textarea {
     cursor: pointer;
 }
 /*-----------------------------PROJECT ARCHIVE PART-----------------------------*/
+
+
+@media screen and (max-width: 600px) {
+    .scrum_table {
+        flex-wrap: wrap;
+    }
+
+    #add_status_icon{
+        width: 300px;
+    }
+}
