@@ -4,6 +4,7 @@ import axios from "axios";
 import ScrumTable from "./ScrumTable";
 import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
 import UsersModal from "./UsersModal";
+import MailModal from "./MailModal";
 
 
 const ProjectPage = () => {
@@ -66,6 +67,7 @@ const ProjectPage = () => {
                             <h2>{project.title}</h2>
                         </div>
                             <UsersModal projectId={project.id} participants={project.participants}/>
+                            <MailModal/>
                     </ContentContainer>
                     <div className={"scrum_table_container"}>
                     <ScrumTable key={project.table.id}
