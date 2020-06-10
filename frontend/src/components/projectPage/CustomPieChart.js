@@ -8,10 +8,23 @@ const CustomPieChart = ({data, visualMark, label}) => {
     const [selectedPart, setSelectedPart] = useState();
 
 
-    const labelStyle = {fontSize: "0.5rem"};
+    const labelStyle = {
+        fontSize: "0.3rem",
+        fontWeight: "bold"
+    };
 
     const handleSelectPart = (segmentIndex) => {
         setSelectedPart(segmentIndex)
+    };
+
+    const handleVisual = (dataEntry) => {
+        if (visualMark === "value") {
+            return Math.round(dataEntry.value) === 0 ? "" : `${Math.round(dataEntry.value)} total`
+        } else {
+            return Math.round(dataEntry.percentage) === 0 ? "" : `${Math.round(dataEntry.percentage)} %`
+        }
+
+
     };
 
     return (
@@ -20,10 +33,7 @@ const CustomPieChart = ({data, visualMark, label}) => {
         <PieChart
                 className="chart"
                 label={({dataEntry}) => {
-                    return visualMark === "value" ?
-                        `${Math.round(dataEntry.value)} `
-                        :
-                        `${Math.round(dataEntry.percentage)} %`
+                   return handleVisual(dataEntry)
                 }}
                 labelStyle={labelStyle}
                 animate={true}
