@@ -48,7 +48,7 @@ input:focus {
     padding: 1rem;
     margin: 0.3rem;
     width: 225px;
-    background-color: #e8dede;
+    background-color: #ddd4d4;
     color: #373A55;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     overflow: auto;
@@ -109,7 +109,7 @@ input:focus {
 
 .task_card:hover,
 .task_card:active {
-    background-color: #f9f7f7;
+    background-color: #f2eaea;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
