@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url("pictures/ideas-whiteboard-person-working-7369.jpg");
 }
 
 .login_form,
@@ -11,22 +15,19 @@
 
 .authpage_text {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 0 1rem 1rem 1rem;
     padding:  0 1rem 1rem 1rem;
     color: #373A55;
-    font-weight: bold;
 }
 
 .authpage_form {
     align-self: center;
     text-align: center;
-    background: #373A55;
+    background: rgba(55, 58, 85,0.9);
     padding: 2rem;
-    border-radius: 4px;
-    font-size: 1.5rem;
-    width: 40%;
-    height: 40%;
+    border-radius: 15px;
+
 }
 
 .registration_input,

@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useHistory} from "react-router-dom";
 import '../customCSS/AuthStyle.css';
 import {ProjectContext} from "../contexts/ProjectContext";
+import {ContentContainer} from "../styledComps/styled";
 
 
 const RegistrationPage = () => {
