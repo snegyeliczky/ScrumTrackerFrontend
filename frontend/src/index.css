@@ -7,7 +7,7 @@
 }
 
 body{
-  padding-top: 60px;
+  padding-top: 10vh;
 }
 
 /*----------------------SCROLL BAR STYLE----------------------*/
@@ -46,7 +46,7 @@ body::-webkit-scrollbar-thumb {
 /*----------------------NAVBAR----------------------*/
 .main-nav {
   width: 100%;
-  height: 4rem;
+  height: 10vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -89,9 +89,33 @@ body::-webkit-scrollbar-thumb {
 /*----------------------NAVBAR----------------------*/
 
 
+
+.homepage_container{
+  display: flex;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position-y: 0%;
+  background-image: url("components/customCSS/pictures/person-writing-on-notebook-669615.jpg");
+  height: 90vh;
+  width: 100%;
+}
+
 .homepage {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  width: 90%;
+}
+
+.homepage_data_container{
   text-align: center;
-  margin-top: 4rem;
+  background-color: rgba(245, 242, 224,0.9);
+  padding: 1rem;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
 }
 
 .content_container {

@@ -6,7 +6,7 @@ import {ProjectContext} from "../contexts/ProjectContext";
 import {ContentContainer} from "../styledComps/styled";
 
 
-const RegistrationPage = () => {
+const RegistrationPage = ({handleLogin}) => {
 
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
@@ -31,8 +31,10 @@ const RegistrationPage = () => {
             let axiosResponse = await axios.post("http://localhost:8080/auth/registration", user);
             if (axiosResponse.status === 200) {
                 showSuccessAlert("registration success please Sign in");
+                handleLogin();
             }
         } catch (e) {
+            console.log(e);
             if (e instanceof TypeError) showErrorAlert("Invalid E-mail adresse please use example@example.com form");
             else if (e instanceof ReferenceError) showErrorAlert("Username, password and email fields are required! ");
             else showErrorAlert("Registration failed! This username is in use!");
