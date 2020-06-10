@@ -1,4 +1,6 @@
 .authpage_container {
+    position: fixed;
+    top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,7 +8,10 @@
     background-attachment: fixed;
     background-size: cover;
     background-image: url("pictures/ideas-whiteboard-person-working-7369.jpg");
+    height: 100vh;
+    width: 100%;
 }
+
 
 .login_form,
 .registration_form {
