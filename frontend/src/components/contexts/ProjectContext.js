@@ -44,8 +44,8 @@ export const ProjectProvider = props => {
     /*Alert modal*/
 
     const[alertVisible,setAlertVisible]=useState(false);
-    const [alertText,setAlertText] =useState("");
-    const [alertType,setAlertType] =useState("")
+    const [alertText,setAlertText] =useState("semmi");
+    const [alertType,setAlertType] =useState("");
 
     function handleAlertCancel() {
         setAlertVisible(false);
@@ -53,14 +53,14 @@ export const ProjectProvider = props => {
     }
 
     function showErrorAlert(text) {
-        setAlertType("error");
         setAlertText(text);
+        setAlertType("error");
         setAlertVisible(true);
     }
 
     function showSuccessAlert(text) {
-        setAlertType("success");
         setAlertText(text);
+        setAlertType("success");
         setAlertVisible(true);
     }
 

@@ -26,7 +26,7 @@ const LoginPage = () => {
             }
         } catch (e) {
             console.log(e);
-            showErrorAlert("Login failed")
+            showErrorAlert("Login failed! Invalid username or password")
         }
     };
 

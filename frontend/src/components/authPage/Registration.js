@@ -23,7 +23,7 @@ const RegistrationPage = () => {
             }
         } catch (e) {
             console.log(e);
-            showErrorAlert("Registration failed");
+            showErrorAlert("Registration failed! This username is in use!");
         }
     };
 

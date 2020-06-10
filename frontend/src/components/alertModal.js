@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import Alert from "antd/es/alert";
+import { Alert } from 'antd';
 import {Modal} from "antd";
 import {ProjectContext} from "./contexts/ProjectContext";
 
@@ -12,8 +12,6 @@ const AlertModal = () => {
         alertType
         } = useContext(ProjectContext);
 
-
-
     return (
             <Modal
                 visible={alertVisible}
@@ -23,7 +21,7 @@ const AlertModal = () => {
             >
             <Alert
                 message={alertType==="error"?"Error":"Success"}
-                userStory={alertText}
+                description={alertText}
                 type={alertType}
                 showIcon
                 style={{border:"0px", backgroundColor: "inherit"}}
