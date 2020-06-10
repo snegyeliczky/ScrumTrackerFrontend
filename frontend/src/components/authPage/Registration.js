@@ -39,6 +39,7 @@ const RegistrationPage = () => {
         }
     };
 
+
     return (
         <div className="registration_container">
             <div className="registration_form">
