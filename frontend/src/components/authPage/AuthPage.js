@@ -30,7 +30,7 @@ const AuthPage = () => {
             </div>
 
             <div className="authpage_content">
-                {login ? <LoginPage/> : <RegistrationPage/>}
+                {login ? <LoginPage/> : <RegistrationPage handleLogin ={handleLogin}/>}
             </div>
             </div>
         </div>
