@@ -7,13 +7,12 @@ import UsersModal from "./UsersModal";
 import MailModal from "./MailModal";
 import { PieChart } from 'react-minimal-pie-chart';
 
-
-
 const ProjectPage = () => {
 
     const {id} = useParams();
     const [project, setProject] = useState();
-    const [statuses, setStatuses] = useState();
+    const [taskCount, setTaskCount] = useState();
+    const [businessValueCount, setBusinessValueCount] = useState();
     const [loading, setLoading] = useState(true);
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
 
@@ -29,7 +28,44 @@ const ProjectPage = () => {
             })
         });
         setProject(response.data);
+        tasksDistributionInStatuses(response.data.table.statuses);
+        countBusinessValue(response.data.table.statuses);
         setLoading(false);
+    };
+
+    function tasksDistributionInStatuses(statuses) {
+        let projectStatuses = statuses;
+        let taskCounts = {start: 0, inProgress: 0, finish: 0};
+        projectStatuses.map((status) => {
+            if (status.position === 1) {
+                taskCounts.start += status.tasks.length;
+            } else if (status.position === projectStatuses.length) {
+                taskCounts.finish += status.tasks.length;
+            } else {
+                taskCounts.inProgress += status.tasks.length;
+            }
+        });
+        setTaskCount(taskCounts);
+    }
+
+    const countBusinessValue = (statuses) => {
+        let businessValueCount = {start: 0, inProgress: 0, finish: 0};
+        statuses.map(status => {
+            if (status.position === 1) {
+                status.tasks.map(task => {
+                    businessValueCount.start += task.businessValue;
+                })
+            } else if (status.position === statuses.length) {
+                status.tasks.map(task => {
+                    businessValueCount.finish += task.businessValue;
+                })
+            } else {
+                status.tasks.map(task => {
+                    businessValueCount.inProgress += task.businessValue;
+                })
+            }
+        });
+        setBusinessValueCount(businessValueCount);
     };
 
     const addNewColumn = async (columnName) => {
@@ -76,16 +112,29 @@ const ProjectPage = () => {
                                 table={project.table}
                                 addNewColumn={addNewColumn}
                                 addNewTask={addNewTask}
+                                setTaskCount={setTaskCount}
+                                tasksDistributionInStatuses={tasksDistributionInStatuses}
+                                countBusinessValue={countBusinessValue}
+
                     />
                     </div>
                     <div className="chart_container">
                     <PieChart
+                        className="chart"
                         data={[
-                            { title: 'One', value: 10, color: '#E38627' },
-                            { title: 'Two', value: 15, color: '#C13C37' },
-                            { title: 'Three', value: 20, color: '#6A2135' },
+                            { title: 'Not Started', value: taskCount.start, color: '#dd2911' },
+                            { title: 'In Progress', value: taskCount.inProgress, color: '#efc310' },
+                            { title: 'Finished', value: taskCount.finish, color: '#5bc128' },
                         ]}
-                    />;
+                    />
+                    <PieChart
+                        className="chart"
+                        data={[
+                            { title: 'Not Started', value: businessValueCount.start, color: '#dd2911' },
+                            { title: 'In Progress', value: businessValueCount.inProgress, color: '#efc310' },
+                            { title: 'Finished', value: businessValueCount.finish, color: '#5bc128' },
+                        ]}
+                    />
                     </div>
                 </div>
             }

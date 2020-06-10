@@ -5,7 +5,7 @@ import {ContentContainer} from "../styledComps/styled"
 import {PlusOutlined} from "@ant-design/icons";
 import UseComponentVisible from "../UseComponentVisible";
 
-const ScrumTable = ({table, addNewColumn, addNewTask}) => {
+const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuses, countBusinessValue}) => {
 
     const [statuses, setStatuses] = useState(table.statuses);
     const newColumnRef = useRef();
@@ -35,7 +35,8 @@ const ScrumTable = ({table, addNewColumn, addNewTask}) => {
                 return a.position - b.position;
             })
         });
-
+        tasksDistributionInStatuses(axiosResponse.data.statuses);
+        countBusinessValue(axiosResponse.data.statuses);
         setStatuses(axiosResponse.data.statuses);
     };
 
@@ -74,6 +75,8 @@ const ScrumTable = ({table, addNewColumn, addNewTask}) => {
                 status.tasks.push(dragItem.current.taskObject)
             }
         }
+        tasksDistributionInStatuses(newStatuses);
+        countBusinessValue(newStatuses);
         return newStatuses;
     };
 
