@@ -16,6 +16,12 @@ const ProjectPage = () => {
     const [loading, setLoading] = useState(true);
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
 
+    //pie chart
+    const segmentsStyle = { transition: 'stroke .3s', cursor: 'pointer' };
+    const [selectedTaskCount, setSelectedTaskCount] = useState();
+    const [selectedBusinessValueCount, setSelectedBusinessValueCount] = useState();
+
+
     const getProject = async () => {
         setLoading(true);
         let response = await axios.get("http://localhost:8080/project/" + id);
@@ -121,6 +127,16 @@ const ProjectPage = () => {
                     <div className="chart_container">
                     <PieChart
                         className="chart"
+                        animate={true}
+                        animationDuration={1000}
+                        lineWidth={75}
+                        radius={40}
+                        onClick={(e, segmentIndex) => setSelectedTaskCount(segmentIndex)}
+                        segmentsStyle={(index) => {
+                            return index === selectedTaskCount
+                                ? { ...segmentsStyle, strokeWidth: 40 }
+                                : segmentsStyle;
+                        }}
                         data={[
                             { title: 'Not Started', value: taskCount.start, color: '#dd2911' },
                             { title: 'In Progress', value: taskCount.inProgress, color: '#efc310' },
@@ -129,6 +145,16 @@ const ProjectPage = () => {
                     />
                     <PieChart
                         className="chart"
+                        animate={true}
+                        animationDuration={1000}
+                        lineWidth={75}
+                        radius={40}
+                        onClick={(e, segmentIndex) => setSelectedBusinessValueCount(segmentIndex)}
+                        segmentsStyle={(index) => {
+                            return index === selectedBusinessValueCount
+                                ? { ...segmentsStyle, strokeWidth: 40 }
+                                : segmentsStyle;
+                        }}
                         data={[
                             { title: 'Not Started', value: businessValueCount.start, color: '#dd2911' },
                             { title: 'In Progress', value: businessValueCount.inProgress, color: '#efc310' },
