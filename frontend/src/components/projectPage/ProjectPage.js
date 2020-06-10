@@ -5,7 +5,8 @@ import ScrumTable from "./ScrumTable";
 import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
 import UsersModal from "./UsersModal";
 import MailModal from "./MailModal";
-import { PieChart } from 'react-minimal-pie-chart';
+import {PieChart} from 'react-minimal-pie-chart';
+import CustomPieChart from "./CustomPieChart";
 
 const ProjectPage = () => {
 
@@ -15,11 +16,6 @@ const ProjectPage = () => {
     const [businessValueCount, setBusinessValueCount] = useState();
     const [loading, setLoading] = useState(true);
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
-
-    //pie chart
-    const segmentsStyle = { transition: 'stroke .3s', cursor: 'pointer' };
-    const [selectedTaskCount, setSelectedTaskCount] = useState();
-    const [selectedBusinessValueCount, setSelectedBusinessValueCount] = useState();
 
 
     const getProject = async () => {
@@ -34,12 +30,12 @@ const ProjectPage = () => {
             })
         });
         setProject(response.data);
-        tasksDistributionInStatuses(response.data.table.statuses);
-        countBusinessValue(response.data.table.statuses);
+        getTaskChartData(response.data.table.statuses);
+        getBusinessValueChartData(response.data.table.statuses);
         setLoading(false);
     };
 
-    function tasksDistributionInStatuses(statuses) {
+    function getTaskChartData(statuses) {
         let projectStatuses = statuses;
         let taskCounts = {start: 0, inProgress: 0, finish: 0};
         projectStatuses.map((status) => {
@@ -54,7 +50,7 @@ const ProjectPage = () => {
         setTaskCount(taskCounts);
     }
 
-    const countBusinessValue = (statuses) => {
+    const getBusinessValueChartData = (statuses) => {
         let businessValueCount = {start: 0, inProgress: 0, finish: 0};
         statuses.map(status => {
             if (status.position === 1) {
@@ -110,57 +106,23 @@ const ProjectPage = () => {
                         <div className={"project_title_container"}>
                             <h2>{project.title}</h2>
                         </div>
-                            <UsersModal projectId={project.id} participants={project.participants}/>
-                            <MailModal projectId={project.id} />
+                        <UsersModal projectId={project.id} participants={project.participants}/>
+                        <MailModal projectId={project.id}/>
                     </ContentContainer>
                     <div className={"scrum_table_container"}>
-                    <ScrumTable key={project.table.id}
-                                table={project.table}
-                                addNewColumn={addNewColumn}
-                                addNewTask={addNewTask}
-                                setTaskCount={setTaskCount}
-                                tasksDistributionInStatuses={tasksDistributionInStatuses}
-                                countBusinessValue={countBusinessValue}
+                        <ScrumTable key={project.table.id}
+                                    table={project.table}
+                                    addNewColumn={addNewColumn}
+                                    addNewTask={addNewTask}
+                                    setTaskCount={setTaskCount}
+                                    tasksDistributionInStatuses={getTaskChartData}
+                                    countBusinessValue={getBusinessValueChartData}
 
-                    />
+                        />
                     </div>
                     <div className="chart_container">
-                    <PieChart
-                        className="chart"
-                        animate={true}
-                        animationDuration={1000}
-                        lineWidth={75}
-                        radius={40}
-                        onClick={(e, segmentIndex) => setSelectedTaskCount(segmentIndex)}
-                        segmentsStyle={(index) => {
-                            return index === selectedTaskCount
-                                ? { ...segmentsStyle, strokeWidth: 40 }
-                                : segmentsStyle;
-                        }}
-                        data={[
-                            { title: 'Not Started', value: taskCount.start, color: '#dd2911' },
-                            { title: 'In Progress', value: taskCount.inProgress, color: '#efc310' },
-                            { title: 'Finished', value: taskCount.finish, color: '#5bc128' },
-                        ]}
-                    />
-                    <PieChart
-                        className="chart"
-                        animate={true}
-                        animationDuration={1000}
-                        lineWidth={75}
-                        radius={40}
-                        onClick={(e, segmentIndex) => setSelectedBusinessValueCount(segmentIndex)}
-                        segmentsStyle={(index) => {
-                            return index === selectedBusinessValueCount
-                                ? { ...segmentsStyle, strokeWidth: 40 }
-                                : segmentsStyle;
-                        }}
-                        data={[
-                            { title: 'Not Started', value: businessValueCount.start, color: '#dd2911' },
-                            { title: 'In Progress', value: businessValueCount.inProgress, color: '#efc310' },
-                            { title: 'Finished', value: businessValueCount.finish, color: '#5bc128' },
-                        ]}
-                    />
+                        <CustomPieChart data={taskCount}/>
+                        <CustomPieChart data={businessValueCount}/>
                     </div>
                 </div>
             }
