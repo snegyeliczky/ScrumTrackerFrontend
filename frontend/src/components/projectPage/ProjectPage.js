@@ -121,8 +121,12 @@ const ProjectPage = () => {
                         />
                     </div>
                     <div className="chart_container">
-                        <CustomPieChart data={taskCount}/>
-                        <CustomPieChart data={businessValueCount}/>
+                        <CustomPieChart data={taskCount}
+                                        visualMark={"percentage"}
+                                        label="Sprint progress"/>
+                        <CustomPieChart data={businessValueCount}
+                                        visualMark={"value"}
+                                        label="Business value distribution"/>
                     </div>
                 </div>
             }

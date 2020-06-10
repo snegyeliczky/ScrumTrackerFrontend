@@ -333,13 +333,19 @@ textarea {
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-content: center;
 
 }
 
+.chart_box {
+    width: inherit;
+    height: inherit;
+    text-align: center;
+}
+
 .chart {
-    width: 30%;
-    height: 30%;
     margin: 1rem;
     opacity: 0.8;
+    width: 70%;
+    height: 70%;
 }
