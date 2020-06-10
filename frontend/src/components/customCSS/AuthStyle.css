@@ -6,7 +6,8 @@
     justify-content: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
+    background-position: 95% 70%;
+    background-size: 140%;
     background-image: url("pictures/ideas-whiteboard-person-working-7369.jpg");
     height: 100vh;
     width: 100%;
@@ -19,15 +20,16 @@
 }
 
 .authpage_text {
-    text-align: center;
+    text-align: right;
     font-size: 2rem;
-    margin: 0 1rem 1rem 1rem;
+    margin: 0 2rem 1rem 1rem;
     padding:  0 1rem 1rem 1rem;
     color: #373A55;
 }
 
 .authpage_form {
-    align-self: center;
+    align-self: flex-end;
+    margin-right: 2rem;
     text-align: center;
     background: rgba(55, 58, 85,0.9);
     padding: 2rem;
@@ -87,4 +89,10 @@
 .btn_active.auth {
     width: 50%;
     align-self: center;
+}
+
+@media screen and (max-width: 600px) {
+    .authpage_container{
+        background-size: cover;
+    }
 }
