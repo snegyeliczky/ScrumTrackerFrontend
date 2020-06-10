@@ -5,6 +5,8 @@ import ScrumTable from "./ScrumTable";
 import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
 import UsersModal from "./UsersModal";
 import MailModal from "./MailModal";
+import { PieChart } from 'react-minimal-pie-chart';
+
 
 
 const ProjectPage = () => {
@@ -75,6 +77,15 @@ const ProjectPage = () => {
                                 addNewColumn={addNewColumn}
                                 addNewTask={addNewTask}
                     />
+                    </div>
+                    <div className="chart_container">
+                    <PieChart
+                        data={[
+                            { title: 'One', value: 10, color: '#E38627' },
+                            { title: 'Two', value: 15, color: '#C13C37' },
+                            { title: 'Three', value: 20, color: '#6A2135' },
+                        ]}
+                    />;
                     </div>
                 </div>
             }
