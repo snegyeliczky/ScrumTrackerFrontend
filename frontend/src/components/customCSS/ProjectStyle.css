@@ -327,3 +327,7 @@ textarea {
         width: 300px;
     }
 }
+
+.chart_container {
+    width: 50%;
+}
