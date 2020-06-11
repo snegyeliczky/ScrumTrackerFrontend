@@ -53,7 +53,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
                 <div>
                     <DeleteOutlined onClick={deleteTask}/>
                 </div>
-                <TaskModal task={thisTask} setTask={setTask}/>
+                <TaskModal task={thisTask} setTask={setTask} refreshStatusesFromBackend={refreshStatusesFromBackend}/>
                 <div style={{display:"none"}}>
                     <ApiOutlined onClick={(e)=>archiveTask(e)}/>
                 </div>

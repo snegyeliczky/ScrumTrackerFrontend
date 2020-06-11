@@ -6,7 +6,7 @@ import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
 import axios from 'axios';
 
 
-const TaskModal = ({task, setTask}) => {
+const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
 
     const [visible, setVisible] = useState(false);
 
@@ -31,8 +31,8 @@ const TaskModal = ({task, setTask}) => {
             position: task.position == positionRef.current.value ? null : positionRef.current.value
         };
         let axiosResponse = await axios.put("http://localhost:8080/task/edit/" + task.id, editedTask);
+        refreshStatusesFromBackend();
         setTask(axiosResponse.data);
-
     }
 
     function handleOk() {

@@ -11,16 +11,15 @@ import CustomPieChart from "./CustomPieChart";
 const ProjectPage = () => {
 
     const {id} = useParams();
-    const [project, setProject] = useState();
-    const [taskCount, setTaskCount] = useState();
-    const [businessValueCount, setBusinessValueCount] = useState();
-    const [loading, setLoading] = useState(true);
+    const [project, setProject] = useState(null);
+    const [taskCount, setTaskCount] = useState({});
+    const [businessValueCount, setBusinessValueCount] = useState({});
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
 
 
     const getProject = async () => {
-        setLoading(true);
         let response = await axios.get("http://localhost:8080/project/" + id);
+        console.log(response.data);
         response.data.table.statuses.sort(function (a, b) {
             return a.position - b.position;
         });
@@ -29,10 +28,11 @@ const ProjectPage = () => {
                 return a.position - b.position;
             })
         });
+        setProject(null);
         setProject(response.data);
         getTaskChartData(response.data.table.statuses);
         getBusinessValueChartData(response.data.table.statuses);
-        setLoading(false);
+
     };
 
     function getTaskChartData(statuses) {
@@ -71,7 +71,6 @@ const ProjectPage = () => {
     };
 
     const addNewColumn = async (columnName) => {
-        //setLoading(true);
         let projectId = id;
         let newStatus = {statusName: columnName, projectId: projectId};
         await axios.post("http://localhost:8080/project/newstatus", newStatus);
@@ -79,7 +78,6 @@ const ProjectPage = () => {
     };
 
     const addNewTask = async (taskName, statusId) => {
-        setLoading(true);
         let task = {
             statusId: statusId,
             title: taskName
@@ -98,7 +96,7 @@ const ProjectPage = () => {
 
         <div className={"project_item_container_canvas"}>
 
-            {loading ?
+            {!project ?
                 <h1>loading....</h1>
                 :
                 <div className={"project_item_container"}>
