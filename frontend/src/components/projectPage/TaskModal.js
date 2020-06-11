@@ -31,8 +31,8 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
             position: task.position == positionRef.current.value ? null : positionRef.current.value
         };
         let axiosResponse = await axios.put("http://localhost:8080/task/edit/" + task.id, editedTask);
-        refreshStatusesFromBackend();
         setTask(axiosResponse.data);
+        refreshStatusesFromBackend();
     }
 
     function handleOk() {
