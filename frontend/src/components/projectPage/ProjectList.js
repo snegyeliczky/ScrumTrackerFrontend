@@ -78,7 +78,7 @@ const ProjectList = () => {
             <AddNewProject/>
             <ContentContainer>
                 <div className="project_text participate">
-                    Projects i participated
+                    Projects I participated in
                 </div>
             </ContentContainer>
             <ContentContainer className="project_page__project_list_container">

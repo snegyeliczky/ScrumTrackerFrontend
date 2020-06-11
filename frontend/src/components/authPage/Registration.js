@@ -25,6 +25,10 @@ const RegistrationPage = ({handleLogin}) => {
             password: password,
             email:email
         };
+        if (username.length < 5 || password.length < 5) {
+            showErrorAlert("Please use at least five character to your username/password");
+            return;
+        }
         try {
             if (username===null||password===null||email===null) throw new ReferenceError("empty fields");
             else if (!validateEmail(email)) throw new TypeError("invalid e-mail");

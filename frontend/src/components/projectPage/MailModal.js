@@ -32,10 +32,10 @@ const MailModal = ({projectId}) => {
             let emailCred = {email:email};
             try {
                 await axios.post("http://localhost:8080/project/email/"+projectId,emailCred);
-                showSuccessAlert("Succesfull e-mail sending");
+                showSuccessAlert("Successful e-mail sending");
                 setVisible(false);
             } catch (e) {
-                showErrorAlert("Invalid e-mail adresse try again!");
+                showErrorAlert("Invalid e-mail adress try again!");
             }
         }else {
             showErrorAlert("Incorrect Email form use 'example@example.com'-form ");

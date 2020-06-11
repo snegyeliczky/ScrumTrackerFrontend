@@ -28,7 +28,7 @@ const AddNewProject = () => {
     return (
         <div className="project_page__create_project_container">
             <AdderComponent>
-                <label>Crate Project</label>
+                <label>Create Project</label>
                 <Input
                     placeholder={"Project Name"}
                     ref={projectNameRef}

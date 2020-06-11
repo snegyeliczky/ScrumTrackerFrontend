@@ -20,7 +20,7 @@ const AuthPage = () => {
 
     return (
         <div className="authpage_container">
-            <div className="authpage_text">Welcome to ScrumTracker</div>
+            <div className="authpage_text">Welcome to ProjectTracker</div>
             <div className="authpage_form">
             <div className="authpage_select_container">
                 <div className="authpage_select_btn_container">
