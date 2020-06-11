@@ -97,7 +97,7 @@ const ProjectPage = () => {
         <div className={"project_item_container_canvas"}>
 
             {!project ?
-                <h1>loading....</h1>
+                <div className="loading">loading....</div>
                 :
                 <div className={"project_item_container"}>
                     <ContentContainer>

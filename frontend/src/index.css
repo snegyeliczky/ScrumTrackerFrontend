@@ -154,3 +154,11 @@ body::-webkit-scrollbar-thumb {
 .add_new_column:hover {
   cursor: pointer;
 }
+
+.loading {
+  text-align: center;
+  color: #373A55;
+  font-weight: bold;
+  font-size: 4rem;
+  margin: 3rem;
+}
