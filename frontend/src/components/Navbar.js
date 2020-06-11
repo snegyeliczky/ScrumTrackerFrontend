@@ -5,6 +5,7 @@ import "../components/customCSS/NavStyle.css"
 import {ProjectContext} from "./contexts/ProjectContext";
 import {useHistory} from "react-router-dom";
 import AlertModal from "./alertModal";
+import UnorderedListOutlined from "@ant-design/icons/lib/icons/UnorderedListOutlined";
 
 
 const Navbar = () => {
@@ -25,6 +26,9 @@ const Navbar = () => {
     return (
         <nav className="main-nav">
             <ul className="nav-items">
+                <li className="nav-item nav_menu">
+                    <UnorderedListOutlined className="nav_menu"/>
+                </li>
                 <li className="nav-item">
                     <Link className='text-link' to="/"> Home</Link>
                 </li>
