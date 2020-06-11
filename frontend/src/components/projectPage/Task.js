@@ -1,4 +1,4 @@
-import React, {useState, useRef, useContext} from 'react';
+import React, {useState, useRef, useContext, useEffect} from 'react';
 import Column from "./Column";
 import {DeleteOutlined, ApiOutlined} from "@ant-design/icons";
 import {ContentContainer} from "../styledComps/styled";
@@ -10,6 +10,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
 
     const [thisTask, setTask] = useState(task);
     const [dragging, setDragging] = useState(false);
+
 
     const handleDrag = (e) => {
         let dragItemParams = {
@@ -53,7 +54,11 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
                 <div>
                     <DeleteOutlined onClick={deleteTask}/>
                 </div>
-                <TaskModal task={thisTask} setTask={setTask} refreshStatusesFromBackend={refreshStatusesFromBackend}/>
+                <TaskModal
+                    task={thisTask}
+                    setTask={setTask}
+                    refreshStatusesFromBackend={refreshStatusesFromBackend}
+                />
                 <div style={{display:"none"}}>
                     <ApiOutlined onClick={(e)=>archiveTask(e)}/>
                 </div>

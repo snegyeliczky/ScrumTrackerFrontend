@@ -1,4 +1,4 @@
-import React, {useState, useRef, useContext} from 'react';
+import React, {useState, useRef, useContext, useEffect} from 'react';
 import Task from "./Task";
 import {
     DeleteOutlined
@@ -11,6 +11,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
 
     const newTaskNameRef = useRef();
     const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
+
 
     //Click outside effect fields
     const {

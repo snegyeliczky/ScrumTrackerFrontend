@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Modal, Button} from 'antd';
 import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
@@ -15,6 +15,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
     const userStoryRef = useRef(task.userStory);
     const titleRef = useRef(task.storyTitle);
     const positionRef = useRef(task.position);
+
 
     const handleEdit = () => {
         uploadChanges();
@@ -74,8 +75,9 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                         <textArea
                             className={"text_input userStory"}
                             placeholder={"user story"}
-                            defaultValue={task.userStory}
-                            ref={userStoryRef}/>
+                            ref={userStoryRef}>
+                            {task.userStory}
+                        </textArea>
                         <div className="modal_btn"
                              onClick={handleEdit}>Save
                         </div>
@@ -86,7 +88,9 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                             className={"text_input userStory"}
                             placeholder={"acceptance criteria"}
                             defaultValue={task.acceptanceCriteria}
-                            ref={acceptanceCriteriaRef}/>
+                            ref={acceptanceCriteriaRef}>
+                            {task.acceptanceCriteria}
+                        </textArea>
                         <div className="modal_btn"
                              onClick={handleEdit}>Save
                         </div>

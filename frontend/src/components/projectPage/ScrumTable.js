@@ -12,6 +12,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
 
+
     //Click outside effect fields
     const {
         ref,
