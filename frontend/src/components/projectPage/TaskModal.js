@@ -56,6 +56,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                 onOk={handleOk}
                 onCancel={handleCancel}
                 width={800}
+                footer={null}
             >
                 <h2>Edit Task</h2>
                 <div className={"task_modal"}>
