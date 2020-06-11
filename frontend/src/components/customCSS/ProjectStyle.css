@@ -199,7 +199,7 @@ textarea {
 .anticon-close:hover,
 .anticon-close:active {
     cursor: pointer;
-    background-color: #e8dede;
+    background-color: #ddd4d4;
     border-radius: 8px;
 }
 
@@ -255,7 +255,7 @@ textarea {
 }
 
 .add_new_task:hover {
-    background-color: #e0d0d0;
+    background-color: #d1c4c4;
     cursor: pointer;
     border-radius: 4px;
 }
