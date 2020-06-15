@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Modal, Button} from 'antd';
 import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
-import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
+import {AdderComponent, ContentContainer, Input} from "../../Assets/StyledComps/styled";
 import axios from 'axios';
 
 
@@ -88,7 +88,6 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                         <textArea
                             className={"text_input userStory"}
                             placeholder={"acceptance criteria"}
-                            defaultValue={task.acceptanceCriteria}
                             ref={acceptanceCriteriaRef}>
                             {task.acceptanceCriteria}
                         </textArea>

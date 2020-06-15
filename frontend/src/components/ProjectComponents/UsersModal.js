@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Modal, Button} from 'antd';
 import 'antd/dist/antd.css';
 import {UsergroupAddOutlined, UserAddOutlined, UserOutlined} from "@ant-design/icons";
-import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
+import {AdderComponent, ContentContainer, Input} from "../../Assets/StyledComps/styled";
 import Autocomplete from 'react-autocomplete';
 import axios from "axios";
 

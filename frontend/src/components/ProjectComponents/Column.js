@@ -4,8 +4,9 @@ import {
     DeleteOutlined
 } from '@ant-design/icons';
 import axios from "axios";
-import UseComponentVisible from "../UseComponentVisible";
-import {ProjectContext} from "../contexts/ProjectContext";
+import UseComponentVisible from "../../Utils/UseComponentVisible";
+import {ProjectContext} from "../../Contexts/ProjectContext";
+import TaskCalls from "../../Services/TaskCalls";
 
 const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend, statusFlag, addNewTask}) => {
 
@@ -26,7 +27,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
 
     const handleDeleteTask = async (taskId) => {
         console.log("delete");
-        await axios.delete("http://localhost:8080/task/delete/" + taskId);
+        await TaskCalls.handleDeleteTask(taskId);
         refreshStatusesFromBackend();
     };
 

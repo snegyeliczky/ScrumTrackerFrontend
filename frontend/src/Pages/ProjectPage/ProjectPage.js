@@ -1,12 +1,13 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import {useParams} from "react-router";
 import axios from "axios";
-import ScrumTable from "./ScrumTable";
-import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
-import UsersModal from "./UsersModal";
-import MailModal from "./MailModal";
+import ScrumTable from "../../components/ProjectComponents/ScrumTable";
+import {ContentContainer} from "../../Assets/StyledComps/styled";
+import UsersModal from "../../components/ProjectComponents/UsersModal";
+import MailModal from "../../components/ProjectComponents/MailModal";
 import {PieChart} from 'react-minimal-pie-chart';
-import CustomPieChart from "./CustomPieChart";
+import CustomPieChart from "../../components/ProjectComponents/CustomPieChart";
+import ProjectCalls from "../../Services/ProjectCalls";
 
 const ProjectPage = () => {
 
@@ -18,20 +19,20 @@ const ProjectPage = () => {
 
 
     const getProject = async () => {
-        let response = await axios.get("http://localhost:8080/project/" + id);
-        console.log(response.data);
-        response.data.table.statuses.sort(function (a, b) {
+        let myProject = await ProjectCalls.getProject(id);
+
+        myProject.table.statuses.sort(function (a, b) {
             return a.position - b.position;
         });
-        response.data.table.statuses.map(status => {
+        myProject.table.statuses.map(status => {
             status.tasks.sort(function (a, b) {
                 return a.position - b.position;
             })
         });
         setProject(null);
-        setProject(response.data);
-        getTaskChartData(response.data.table.statuses);
-        getBusinessValueChartData(response.data.table.statuses);
+        setProject(myProject);
+        getTaskChartData(myProject.table.statuses);
+        getBusinessValueChartData(myProject.table.statuses);
 
     };
 
@@ -73,7 +74,7 @@ const ProjectPage = () => {
     const addNewColumn = async (columnName) => {
         let projectId = id;
         let newStatus = {statusName: columnName, projectId: projectId};
-        await axios.post("http://localhost:8080/project/newstatus", newStatus);
+        await ProjectCalls.addNewColumn(newStatus)
         getProject();
     };
 
@@ -82,7 +83,7 @@ const ProjectPage = () => {
             statusId: statusId,
             title: taskName
         };
-        await axios.post("http://localhost:8080/project/newtask", task);
+        await ProjectCalls.addNewTask(task);
         getProject();
 
     };

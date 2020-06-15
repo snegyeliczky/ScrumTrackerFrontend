@@ -1,9 +1,8 @@
 import React, {useContext} from 'react';
 import {useHistory} from "react-router-dom";
 import {ApiOutlined, DeleteOutlined} from "@ant-design/icons";
-import {ContentContainer} from "../styledComps/styled";
-import {ProjectContext} from "../contexts/ProjectContext";
-import axios from "axios";
+import {ProjectContext} from "../../Contexts/ProjectContext";
+import ProjectCalls from "../../Services/ProjectCalls";
 
 const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
@@ -32,13 +31,13 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
     const handleDelete = async (e) => {
         e.stopPropagation();
-        await axios.delete("http://localhost:8080/project/delete/" + project.id);
+        await ProjectCalls.deleteProject(project.id);
         getProjects();
     };
 
     const archiveProject = async (e) =>{
         e.stopPropagation();
-        await axios.put("http://localhost:8080/project/archive/"+project.id);
+        await ProjectCalls.archiveProject(project.id);
         getProjects();
 
     };

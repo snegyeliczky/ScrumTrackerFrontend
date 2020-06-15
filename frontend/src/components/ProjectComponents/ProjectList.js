@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
-import {ProjectContext} from "../contexts/ProjectContext";
+import {ProjectContext} from "../../Contexts/ProjectContext";
 import AddNewProject from "./AddNewProject";
 import ProjectCard from "./ProjectCard";
-import {ContentContainer} from "../styledComps/styled"
+import {ContentContainer} from "../../Assets/StyledComps/styled"
 import {ApiOutlined} from "@ant-design/icons";
 
 const ProjectList = () => {

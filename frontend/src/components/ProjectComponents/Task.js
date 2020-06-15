@@ -1,9 +1,10 @@
 import React, {useState, useRef, useContext, useEffect} from 'react';
 import Column from "./Column";
 import {DeleteOutlined, ApiOutlined} from "@ant-design/icons";
-import {ContentContainer} from "../styledComps/styled";
+import {ContentContainer} from "../../Assets/StyledComps/styled";
 import TaskModal from "./TaskModal";
 import axios from "axios";
+import TaskCalls from "../../Services/TaskCalls";
 
 
 const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStatusesFromBackend}) => {
@@ -35,7 +36,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
 
     async function archiveTask(e) {
         e.stopPropagation();
-        await axios.put("http://localhost:8080/task/archive/" + task.id);
+        await TaskCalls.archiveTask(task.id);
         refreshStatusesFromBackend();
     }
 

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import RegistrationPage from "./Registration";
 import LoginPage from "./Login";
-import '../customCSS/AuthStyle.css';
+import "../../Assets/Styles/AuthStyle.css";
 
 const AuthPage = () => {
 

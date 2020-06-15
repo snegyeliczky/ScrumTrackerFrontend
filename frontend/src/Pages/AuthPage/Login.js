@@ -1,8 +1,9 @@
 import React, {useContext, useState} from "react";
 import axios from 'axios';
 import {useHistory} from "react-router-dom";
-import {ProjectContext} from "../contexts/ProjectContext";
-import '../customCSS/AuthStyle.css';
+import {ProjectContext} from "../../Contexts/ProjectContext";
+import '../../Assets/Styles/AuthStyle.css';
+import AuthCalls from "../../Services/AuthCalls";
 
 
 const LoginPage = () => {
@@ -19,7 +20,7 @@ const LoginPage = () => {
             password: password
         };
         try {
-            let axiosResponse = await axios.post("http://localhost:8080/auth/signin", user);
+            let axiosResponse = await AuthCalls.login(user);
             if (axiosResponse.status === 200) {
                 localStorage.setItem("username",axiosResponse.data.username);
                 history.push("/");
