@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import { Alert } from 'antd';
 import {Modal} from "antd";
-import {ProjectContext} from "./contexts/ProjectContext";
+import {ProjectContext} from "../Contexts/ProjectContext";
 
 const AlertModal = () => {
 

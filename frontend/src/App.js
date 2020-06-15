@@ -1,11 +1,11 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import MyProjects from "./components/projectPage/MyProjects";
-import {ProjectProvider} from "./components/contexts/ProjectContext";
-import ProjectPage from "./components/projectPage/ProjectPage";
+import MyProjects from "./Pages/ProjectPage/MyProjects";
+import {ProjectProvider} from "./Contexts/ProjectContext";
+import ProjectPage from "./Pages/ProjectPage/ProjectPage";
 import Navbar from "./components/Navbar";
-import HomePage from "./components/HomePage";
-import AuthPage from "./components/authPage/AuthPage";
+import HomePage from "./Pages/HomePage";
+import AuthPage from "./Pages/AuthPage/AuthPage";
 import AlertModal from "./components/alertModal";
 
 

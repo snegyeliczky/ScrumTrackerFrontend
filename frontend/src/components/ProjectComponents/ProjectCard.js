@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {useHistory} from "react-router-dom";
 import {ApiOutlined, DeleteOutlined} from "@ant-design/icons";
-import {ContentContainer} from "../styledComps/styled";
-import {ProjectContext} from "../contexts/ProjectContext";
+import {ContentContainer} from "../../Assets/StyledComps/styled";
+import {ProjectContext} from "../../Contexts/ProjectContext";
 import axios from "axios";
 
 const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {

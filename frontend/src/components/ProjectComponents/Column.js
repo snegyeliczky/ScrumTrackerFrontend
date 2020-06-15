@@ -4,8 +4,8 @@ import {
     DeleteOutlined
 } from '@ant-design/icons';
 import axios from "axios";
-import UseComponentVisible from "../UseComponentVisible";
-import {ProjectContext} from "../contexts/ProjectContext";
+import UseComponentVisible from "../../Utils/UseComponentVisible";
+import {ProjectContext} from "../../Contexts/ProjectContext";
 
 const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend, statusFlag, addNewTask}) => {
 

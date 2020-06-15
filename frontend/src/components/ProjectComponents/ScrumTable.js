@@ -1,9 +1,9 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import Column from "./Column";
 import axios from "axios";
-import {ContentContainer} from "../styledComps/styled"
+import {ContentContainer} from "../../Assets/StyledComps/styled"
 import {PlusOutlined} from "@ant-design/icons";
-import UseComponentVisible from "../UseComponentVisible";
+import UseComponentVisible from "../../Utils/UseComponentVisible";
 
 const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuses, countBusinessValue}) => {
 

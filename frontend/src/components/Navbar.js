@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
-import "../components/customCSS/NavStyle.css"
-import {ProjectContext} from "./contexts/ProjectContext";
+import "../Assets/Styles/NavStyle.css"
+import {ProjectContext} from "../Contexts/ProjectContext";
 import {useHistory} from "react-router-dom";
 import AlertModal from "./alertModal";
 import UnorderedListOutlined from "@ant-design/icons/lib/icons/UnorderedListOutlined";

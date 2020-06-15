@@ -1,7 +1,7 @@
 import React, {useContext, useRef} from "react";
 import axios from 'axios';
-import {ProjectContext} from '../contexts/ProjectContext'
-import {AdderComponent,Input} from "../styledComps/styled";
+import {ProjectContext} from '../../Contexts/ProjectContext'
+import {AdderComponent,Input} from "../../Assets/StyledComps/styled";
 import {
     PlusCircleOutlined,
 } from '@ant-design/icons';

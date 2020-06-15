@@ -2,10 +2,10 @@ import React, {useContext, useState} from 'react';
 import 'antd/dist/antd.css';
 import {MailOutlined} from "@ant-design/icons";
 import {Button, Modal} from "antd";
-import {ContentContainer} from "../styledComps/styled";
+import {ContentContainer} from "../../Assets/StyledComps/styled";
 import axios from "axios";
 import Alert from "antd/es/alert";
-import {ProjectContext} from "../contexts/ProjectContext";
+import {ProjectContext} from "../../Contexts/ProjectContext";
 
 const MailModal = ({projectId}) => {
 

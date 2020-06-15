@@ -1,12 +1,12 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import {useParams} from "react-router";
 import axios from "axios";
-import ScrumTable from "./ScrumTable";
-import {AdderComponent, ContentContainer, Input} from "../styledComps/styled";
-import UsersModal from "./UsersModal";
-import MailModal from "./MailModal";
+import ScrumTable from "../../components/ProjectComponents/ScrumTable";
+import {ContentContainer} from "../../Assets/StyledComps/styled";
+import UsersModal from "../../components/ProjectComponents/UsersModal";
+import MailModal from "../../components/ProjectComponents/MailModal";
 import {PieChart} from 'react-minimal-pie-chart';
-import CustomPieChart from "./CustomPieChart";
+import CustomPieChart from "../../components/ProjectComponents/CustomPieChart";
 
 const ProjectPage = () => {
 
