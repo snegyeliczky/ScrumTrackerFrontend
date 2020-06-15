@@ -2,7 +2,7 @@ import React, {useState, useRef, useContext, useEffect} from 'react';
 import Column from "./Column";
 import {DeleteOutlined, ApiOutlined} from "@ant-design/icons";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
-import TaskModal from "./TaskModal";
+import TaskModal from "../TaskModal";
 import axios from "axios";
 import TaskCalls from "../../Services/TaskCalls";
 

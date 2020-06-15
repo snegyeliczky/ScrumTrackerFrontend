@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import MyProjects from "./Pages/ProjectPage/MyProjects";
 import {ProjectProvider} from "./Contexts/ProjectContext";
 import ProjectPage from "./Pages/ProjectPage/ProjectPage";
-import Navbar from "./components/Navbar";
+import Navbar from "./Parts/Navbar";
 import HomePage from "./Pages/HomePage";
 import AuthPage from "./Pages/AuthPage/AuthPage";
 import AlertModal from "./components/alertModal";

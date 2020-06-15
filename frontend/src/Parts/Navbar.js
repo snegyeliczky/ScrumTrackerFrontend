@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import "../Assets/Styles/NavStyle.css"
 import {ProjectContext} from "../Contexts/ProjectContext";
 import {useHistory} from "react-router-dom";
-import AlertModal from "./alertModal";
 import UnorderedListOutlined from "@ant-design/icons/lib/icons/UnorderedListOutlined";
 
 

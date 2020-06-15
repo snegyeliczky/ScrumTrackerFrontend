@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Modal, Button} from 'antd';
 import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
-import {AdderComponent, ContentContainer, Input} from "../../Assets/StyledComps/styled";
+import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/styled";
 import axios from 'axios';
 
 

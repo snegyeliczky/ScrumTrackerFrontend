@@ -4,7 +4,7 @@ import axios from "axios";
 import ScrumTable from "../../components/ProjectComponents/ScrumTable";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
 import UsersModal from "../../components/ProjectComponents/UsersModal";
-import MailModal from "../../components/ProjectComponents/MailModal";
+import MailModal from "../../components/MailModal";
 import {PieChart} from 'react-minimal-pie-chart';
 import CustomPieChart from "../../components/ProjectComponents/CustomPieChart";
 import ProjectCalls from "../../Services/ProjectCalls";
