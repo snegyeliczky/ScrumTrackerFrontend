@@ -4,6 +4,7 @@ import {useHistory} from "react-router-dom";
 import '../../Assets/Styles/AuthStyle.css';
 import {ProjectContext} from "../../Contexts/ProjectContext";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
+import AuthCalls from "../../Services/AuthCalls";
 
 const RegistrationPage = ({handleLogin}) => {
 
@@ -31,7 +32,7 @@ const RegistrationPage = ({handleLogin}) => {
         try {
             if (username===null||password===null||email===null) throw new ReferenceError("empty fields");
             else if (!validateEmail(email)) throw new TypeError("invalid e-mail");
-            let axiosResponse = await axios.post("http://localhost:8080/auth/registration", user);
+            let axiosResponse = await AuthCalls.registration(user);
             if (axiosResponse.status === 200) {
                 showSuccessAlert("registration success please Sign in");
                 handleLogin();
