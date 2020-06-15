@@ -4,6 +4,8 @@ import axios from "axios";
 import {ContentContainer} from "../../Assets/StyledComps/styled"
 import {PlusOutlined} from "@ant-design/icons";
 import UseComponentVisible from "../../Utils/UseComponentVisible";
+import ProjectCalls from "../../Services/ProjectCalls";
+import TaskCalls from "../../Services/TaskCalls";
 
 const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuses, countBusinessValue}) => {
 
@@ -22,23 +24,23 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
 
 
     const deleteStatus = async (statusID) => {
-        await axios.delete("http://localhost:8080/project/deletestatus?statusid=" + statusID + "&tableid=" + table.id);
+        await ProjectCalls.deleteStatus(statusID,table.id);
         refreshStatusesFromBackend();
     };
 
     const refreshStatusesFromBackend = async () => {
-        let axiosResponse = await axios.get("http://localhost:8080/project/gettable/" + table.id);
-        axiosResponse.data.statuses.sort(function (a, b) {
+        let ScrumTable = await ProjectCalls.getScrumTable(table.id);
+        ScrumTable.statuses.sort(function (a, b) {
             return a.position - b.position;
         });
-        axiosResponse.data.statuses.map(status =>{
+        ScrumTable.statuses.map(status =>{
             status.tasks.sort(function (a,b) {
                 return a.position - b.position;
             })
         });
-        tasksDistributionInStatuses(axiosResponse.data.statuses);
-        countBusinessValue(axiosResponse.data.statuses);
-        setStatuses(axiosResponse.data.statuses);
+        tasksDistributionInStatuses(ScrumTable.statuses);
+        countBusinessValue(ScrumTable.statuses);
+        setStatuses(ScrumTable.statuses);
     };
 
     const uploadStatusChangeToDatabase = async () => {
@@ -47,7 +49,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
             fromStatusId: dragItem.current.statusId,
             taskId: dragItem.current.taskObject.id
         };
-        await axios.put("http://localhost:8080/task/transfer", refreshItem);
+        await TaskCalls.uploadStatusChangeToDatabase(refreshItem);
     };
 
 

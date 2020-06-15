@@ -5,6 +5,7 @@ import {AdderComponent,Input} from "../../Assets/StyledComps/styled";
 import {
     PlusCircleOutlined,
 } from '@ant-design/icons';
+import ProjectCalls from "../../Services/ProjectCalls";
 
 const AddNewProject = () => {
 
@@ -20,7 +21,7 @@ const AddNewProject = () => {
         let projectNameObject = {
             projectName: projectNameRef.current.value
         };
-        await axios.post("http://localhost:8080/project/create", projectNameObject);
+        await ProjectCalls.addNewProject(projectNameObject);
         projectNameRef.current.value = "";
         getProjects();
     }

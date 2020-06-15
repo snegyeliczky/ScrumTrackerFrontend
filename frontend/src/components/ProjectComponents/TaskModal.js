@@ -87,7 +87,6 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                         <textArea
                             className={"text_input userStory"}
                             placeholder={"acceptance criteria"}
-                            defaultValue={task.acceptanceCriteria}
                             ref={acceptanceCriteriaRef}>
                             {task.acceptanceCriteria}
                         </textArea>

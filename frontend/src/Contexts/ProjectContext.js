@@ -1,6 +1,6 @@
 import React, {useState, createContext, useEffect} from "react";
 import axios from "axios";
-
+import ProjectCalls from "../Services/ProjectCalls";
 export const ProjectContext = createContext();
 
 export const ProjectProvider = props => {
@@ -21,8 +21,8 @@ export const ProjectProvider = props => {
     };
 
     const getMyProjects = async () => {
-        let response = await axios.get("http://localhost:8080/project/getactiveprojects");
-        setProjects(response.data);
+        let myProjects =await ProjectCalls.getMyProjects();
+        setProjects(myProjects);
     };
 
     /*const getProjectsWithArchive = async () => {
@@ -31,13 +31,13 @@ export const ProjectProvider = props => {
     };
 */
     const getArchiveProjects = async () => {
-        let response = await axios.get("http://localhost:8080/project/getarchiveprojects");
-        setArchiveProjects(response.data);
+        let archiveProjects = await ProjectCalls.getArchiveProjects();
+        setArchiveProjects(archiveProjects);
     };
 
     const getParticipatedProjects = async () => {
-            let response = await axios.get("http://localhost:8080/project/getparticipateprojects");
-            setParticipateProjects(response.data);
+            let participatedProjects = await ProjectCalls.getParticipatedProjects();
+            setParticipateProjects(participatedProjects);
         };
 
 
