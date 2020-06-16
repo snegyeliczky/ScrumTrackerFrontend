@@ -1,5 +1,5 @@
 
-.dragged.task_card {
+.dragged.task_card:active {
     display: none;
 }
 

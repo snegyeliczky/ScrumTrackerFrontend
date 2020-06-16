@@ -14,7 +14,7 @@ const ProjectPage = () => {
     const [taskCount, setTaskCount] = useState({});
     const [businessValueCount, setBusinessValueCount] = useState({});
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
-    const [usersOnProject,setUsersOnProject] = useState([]);
+    const [usersOnProject, setUsersOnProject] = useState([]);
 
     function getColaboratorsFromProject(project) {
         return [...project.participants, project.author];
@@ -99,43 +99,42 @@ const ProjectPage = () => {
         getProject();
     }, []);
 
+    if (!project) {
+        return <div className="loading">loading....</div>
+
+    }
 
     return (
-
         <div className={"project_item_container_canvas"}>
-
-            {!project ?
-                <div className="loading">loading....</div>
-                :
-                <div className={"project_item_container"}>
-                    <ContentContainer>
-                        <div className={"project_title_container"}>
-                            <h2>{project.title}</h2>
-                        </div>
-                        <UsersModal projectId={project.id} participants={project.participants}/>
-                        <MailModal projectId={project.id}/>
-                    </ContentContainer>
-                    <div className={"scrum_table_container"}>
-                        <ScrumTable key={project.table.id}
-                                    table={project.table}
-                                    addNewColumn={addNewColumn}
-                                    addNewTask={addNewTask}
-                                    setTaskCount={setTaskCount}
-                                    tasksDistributionInStatuses={getTaskChartData}
-                                    countBusinessValue={getBusinessValueChartData}
-                                    usersOnProject={usersOnProject}
-
-                        />
+            <div className={"project_item_container"}>
+                <ContentContainer>
+                    <div className={"project_title_container"}>
+                        <h2>{project.title}</h2>
                     </div>
-                    <div className="chart_container">
-                        <CustomPieChart data={taskCount}
-                                        visualMark={"percentage"}
-                                        label="Sprint progress by user story"/>
-                        <CustomPieChart data={businessValueCount}
-                                        visualMark={"value"}
-                                        label="Sprint progress by value distribution"/>
-                    </div>
+                    <UsersModal projectId={project.id} participants={project.participants}/>
+                    <MailModal projectId={project.id}/>
+                </ContentContainer>
+                <div className={"scrum_table_container"}>
+                    <ScrumTable key={project.table.id}
+                                table={project.table}
+                                addNewColumn={addNewColumn}
+                                addNewTask={addNewTask}
+                                setTaskCount={setTaskCount}
+                                tasksDistributionInStatuses={getTaskChartData}
+                                countBusinessValue={getBusinessValueChartData}
+                                usersOnProject={usersOnProject}
+
+                    />
                 </div>
+                <div className="chart_container">
+                    <CustomPieChart data={taskCount}
+                                    visualMark={"percentage"}
+                                    label="Sprint progress by user story"/>
+                    <CustomPieChart data={businessValueCount}
+                                    visualMark={"value"}
+                                    label="Sprint progress by value distribution"/>
+                </div>
+            </div>
             }
         </div>
     );
