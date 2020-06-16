@@ -8,10 +8,11 @@ import UseComponentVisible from "../../Utils/UseComponentVisible";
 import {ProjectContext} from "../../Contexts/ProjectContext";
 import TaskCalls from "../../Services/TaskCalls";
 
-const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend, statusFlag, addNewTask}) => {
+const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend, statusFlag, addNewTask, usersOnProject}) => {
 
     const newTaskNameRef = useRef();
     const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
+
 
 
     //Click outside effect fields
@@ -65,6 +66,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
                         key={task.id}
                         task={task}
                         onDragEnter={onDragEnter}
+                        usersOnProject={usersOnProject}
                     />
                 })}
             <div ref={ref}>

@@ -3,18 +3,18 @@ import {Modal, Button} from 'antd';
 import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
 import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/styled";
-import axios from 'axios';
 import TaskCalls from "../Services/TaskCalls";
 import Select from "antd/es/select";
 
 
-const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
+const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) => {
 
     const {Option} = Select;
     const priorityList = Array.from({length: 10}, (k, v) => v + 1);
 
     const [visible, setVisible] = useState(false);
-    const [priorityRef,setPriorityRef]= useState(task.priority);
+    const [priorityRef, setPriorityRef] = useState(task.priority);
+    const [ownerRef, setOwnerRef] = useState(task.owner);
     const descriptionRef = useRef(task.description);
     const titleRef = useRef(task.title);
     const positionRef = useRef(task.position);
@@ -28,10 +28,11 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
         let editedTask = {
             id: null,
             author: null,
-            priority: task.priority == priorityRef ? null : priorityRef,
-            description: task.description == descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
-            title: task.title == titleRef.current.value ? null : titleRef.current.value,
-            position: task.position == positionRef.current.value ? null : positionRef.current.value,
+            priority: task.priority === priorityRef ? null : priorityRef,
+            description: task.description === descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
+            title: task.title === titleRef.current.value ? null : titleRef.current.value,
+            position: task.position === positionRef.current.value ? null : positionRef.current.value,
+            owner: task.owner === ownerRef ? null : ownerRef
         };
         let axiosResponse = await TaskCalls.uploadChanges(task.id, editedTask);
         setTask(axiosResponse);
@@ -86,30 +87,50 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                              onClick={handleEdit}>Save
                         </div>
                     </div>
-                <ContentContainer>
-                    <AdderComponent>
-                        <label>Priority: </label>
-                        <Select
-                            className={"priority"}
-                            defaultValue={task.priority}
-                            onChange={(value) => {
-                                setPriorityRef(value);
+                    <ContentContainer>
+                        <AdderComponent>
+                            <label>Priority: </label>
+                            <Select
+                                className={"priority"}
+                                defaultValue={task.priority}
+                                onChange={(value) => {
+                                    setPriorityRef(value);
                                 }
-                            }
-                            type="number"
-                        >
-                            {
-                                priorityList.map((num) => {
-                                    return <Option value={num}>{num}</Option>
-                                })
+                                }
+                                type="number"
+                            >
+                                {
+                                    priorityList.map((num) => {
+                                        return <Option key={num} value={num}>{num}</Option>
+                                    })
+                                }
+                            </Select>
+                            <div className="modal_btn"
+                                 onClick={handleEdit}>Save
+                            </div>
+                        </AdderComponent>
+                        <AdderComponent>
+                            <label>Owner: </label>
+                            <Select
+                                className={"owner"}
+                                defaultValue={task.owner ? task.owner.username : "no Owner Yet :("}
+                                onChange={(value) => {
+                                    usersOnProject.map((user) => {
+                                        if (user.username === value) {
+                                            setOwnerRef(user);
+                                        }
+                                    });
+                                }}>
+                                {usersOnProject.map((user) => {
+                                    return <Option key={user.id} value={user.username}>{user.username}</Option>
+                                })}
 
-                            }
-                        </Select>
-                        <div className="modal_btn"
-                             onClick={handleEdit}>Save
-                        </div>
-                    </AdderComponent>
-                </ContentContainer>
+                            </Select>
+                            <div className="modal_btn"
+                                 onClick={handleEdit}>Save
+                            </div>
+                        </AdderComponent>
+                    </ContentContainer>
                 </div>
 
             </Modal>

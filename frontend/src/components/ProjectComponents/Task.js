@@ -7,7 +7,7 @@ import axios from "axios";
 import TaskCalls from "../../Services/TaskCalls";
 
 
-const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStatusesFromBackend}) => {
+const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStatusesFromBackend, usersOnProject}) => {
 
     const [thisTask, setTask] = useState(task);
     const [dragging, setDragging] = useState(false);
@@ -59,6 +59,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
                     task={thisTask}
                     setTask={setTask}
                     refreshStatusesFromBackend={refreshStatusesFromBackend}
+                    usersOnProject={usersOnProject}
                 />
                 <div style={{display:"none"}}>
                     <ApiOutlined onClick={(e)=>archiveTask(e)}/>

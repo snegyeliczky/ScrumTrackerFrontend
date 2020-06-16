@@ -14,11 +14,22 @@ const ProjectPage = () => {
     const [taskCount, setTaskCount] = useState({});
     const [businessValueCount, setBusinessValueCount] = useState({});
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
+    const [usersOnProject,setUsersOnProject] = useState([]);
+
+    function getColaboratorsFromProject(project) {
+        let usersOnProject = [];
+        usersOnProject.push(project.author);
+        for(let participant of project.participants ){
+            usersOnProject.push(participant);
+        }
+        return usersOnProject;
+    }
 
 
     const getProject = async () => {
         let myProject = await ProjectCalls.getProject(id);
 
+        setUsersOnProject(getColaboratorsFromProject(myProject));
         myProject.table.statuses.sort(function (a, b) {
             return a.position - b.position;
         });
@@ -115,6 +126,7 @@ const ProjectPage = () => {
                                     setTaskCount={setTaskCount}
                                     tasksDistributionInStatuses={getTaskChartData}
                                     countBusinessValue={getBusinessValueChartData}
+                                    usersOnProject={usersOnProject}
 
                         />
                     </div>

@@ -7,7 +7,7 @@ import UseComponentVisible from "../../Utils/UseComponentVisible";
 import ProjectCalls from "../../Services/ProjectCalls";
 import TaskCalls from "../../Services/TaskCalls";
 
-const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuses, countBusinessValue}) => {
+const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuses, countBusinessValue,usersOnProject}) => {
 
     const [statuses, setStatuses] = useState(table.statuses);
     const newColumnRef = useRef();
@@ -117,6 +117,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
                         onDragEnter={onDragEnter}
                         refreshStatusesFromBackend={refreshStatusesFromBackend}
                         addNewTask={addNewTask}
+                        usersOnProject={usersOnProject}
                     />
 
                 })

@@ -177,6 +177,10 @@ textarea {
     display: block;
 }
 
+.owner:focus-within + .modal_btn {
+    display: block;
+}
+
 .participant_users{
     margin: 20px;
 }
