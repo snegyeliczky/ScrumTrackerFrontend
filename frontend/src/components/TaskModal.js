@@ -28,7 +28,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
         let editedTask = {
             id: null,
             author: null,
-            priority: task.priority == priorityRef.current.value ? null : priorityRef.current.value,
+            priority: task.priority == priorityRef ? null : priorityRef,
             description: task.description == descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
             title: task.title == titleRef.current.value ? null : titleRef.current.value,
             position: task.position == positionRef.current.value ? null : positionRef.current.value
@@ -37,6 +37,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
         setTask(axiosResponse);
         refreshStatusesFromBackend();
     }
+
 
     function handleOk() {
         setVisible(false);
@@ -89,11 +90,10 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                     <AdderComponent>
                         <label>Priority: </label>
                         <Select
-                            className="business_value"
+                            className={"priority"}
                             defaultValue={task.priority}
-                            onChange={async (value) => {
-                                await setPriorityRef(value);
-                                handleEdit()
+                            onChange={(value) => {
+                                setPriorityRef(value);
                                 }
                             }
                             type="number"
