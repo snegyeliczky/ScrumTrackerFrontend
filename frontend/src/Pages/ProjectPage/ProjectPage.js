@@ -17,11 +17,11 @@ const ProjectPage = () => {
     const [usersOnProject,setUsersOnProject] = useState([]);
 
     function getColaboratorsFromProject(project) {
-        let usersOnProject = [];
-        usersOnProject.push(project.author);
+        let usersOnProject = [...project.participants, project.author];
+        /*usersOnProject.push(project.author);
         for(let participant of project.participants ){
             usersOnProject.push(participant);
-        }
+        }*/
         return usersOnProject;
     }
 

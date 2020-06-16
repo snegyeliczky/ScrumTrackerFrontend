@@ -113,7 +113,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                             <label>Owner: </label>
                             <Select
                                 className={"owner"}
-                                defaultValue={task.owner ? task.owner.username : "no Owner Yet :("}
+                                defaultValue={task.owner ? task.owner.username : "No Owner Yet"}
                                 onChange={(value) => {
                                     usersOnProject.map((user) => {
                                         if (user.username === value) {
