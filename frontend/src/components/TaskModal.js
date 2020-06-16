@@ -5,13 +5,16 @@ import {FormOutlined} from "@ant-design/icons";
 import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/styled";
 import axios from 'axios';
 import TaskCalls from "../Services/TaskCalls";
+import Select from "antd/es/select";
 
 
 const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
 
-    const [visible, setVisible] = useState(false);
+    const {Option} = Select;
+    const priorityList = Array.from({length: 10}, (k, v) => v + 1);
 
-    const priorityRef = useRef(task.priority);
+    const [visible, setVisible] = useState(false);
+    const [priorityRef,setPriorityRef]= useState(task.priority);
     const descriptionRef = useRef(task.description);
     const titleRef = useRef(task.title);
     const positionRef = useRef(task.position);
@@ -30,8 +33,8 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
             title: task.title == titleRef.current.value ? null : titleRef.current.value,
             position: task.position == positionRef.current.value ? null : positionRef.current.value
         };
-        let  axiosResponse = TaskCalls.uploadChanges(task.id,editedTask);
-        setTask(axiosResponse.data);
+        let axiosResponse = await TaskCalls.uploadChanges(task.id, editedTask);
+        setTask(axiosResponse);
         refreshStatusesFromBackend();
     }
 
@@ -82,22 +85,32 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                              onClick={handleEdit}>Save
                         </div>
                     </div>
-                </div>
                 <ContentContainer>
                     <AdderComponent>
                         <label>Priority: </label>
-                        <Input
+                        <Select
                             className="business_value"
-                            placeholder={"Business Value"}
                             defaultValue={task.priority}
-                            ref={priorityRef}
+                            onChange={async (value) => {
+                                await setPriorityRef(value);
+                                handleEdit()
+                                }
+                            }
                             type="number"
-                        />
+                        >
+                            {
+                                priorityList.map((num) => {
+                                    return <Option value={num}>{num}</Option>
+                                })
+
+                            }
+                        </Select>
                         <div className="modal_btn"
                              onClick={handleEdit}>Save
                         </div>
                     </AdderComponent>
                 </ContentContainer>
+                </div>
 
             </Modal>
 
