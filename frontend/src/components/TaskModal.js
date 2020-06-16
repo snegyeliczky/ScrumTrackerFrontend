@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
 import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/styled";
 import axios from 'axios';
+import TaskCalls from "../Services/TaskCalls";
 
 
 const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
@@ -31,7 +32,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
             title: task.storyTitle == titleRef.current.value ? null : titleRef.current.value,
             position: task.position == positionRef.current.value ? null : positionRef.current.value
         };
-        let axiosResponse = await axios.put("http://localhost:8080/task/edit/" + task.id, editedTask);
+        let axiosResponse = TaskCalls.uploadChanges(task.id,editedTask);
         setTask(axiosResponse.data);
         refreshStatusesFromBackend();
     }

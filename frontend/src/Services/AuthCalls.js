@@ -11,7 +11,10 @@ export default {
     registration : async (user) =>{
         let axiosResponse = await axios.post("http://localhost:8080/auth/registration", user);
         return axiosResponse;
+    },
 
-    }
+    handleLogout: async () => {
+        await axios.get("http://localhost:8080/auth/logout")
+    },
 
 }

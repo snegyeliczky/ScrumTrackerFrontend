@@ -13,5 +13,10 @@ export default {
 
     archiveTask : async(taskId)=> {
         await axios.put("http://localhost:8080/task/archive/" + taskId);
-    }
+    },
+
+    uploadChanges: async (taskId,editedTask)=> {
+        let axiosResponse = await axios.put("http://localhost:8080/task/edit/" + taskId, editedTask);
+        return axiosResponse.data;
+    },
 }

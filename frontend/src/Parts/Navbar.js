@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
-import axios from "axios";
 import {Link} from "react-router-dom";
 import "../Assets/Styles/NavStyle.css"
 import {ProjectContext} from "../Contexts/ProjectContext";
 import {useHistory} from "react-router-dom";
 import UnorderedListOutlined from "@ant-design/icons/lib/icons/UnorderedListOutlined";
+import AuthCalls from "../Services/AuthCalls";
 
 
 const Navbar = () => {
@@ -14,12 +14,13 @@ const Navbar = () => {
     const {showSuccessAlert} = useContext(ProjectContext);
 
     async function handleLogout() {
-        await axios.get("http://localhost:8080/auth/logout");
+        await AuthCalls.handleLogout();
         setProjects([]);
         localStorage.clear();
 
         showSuccessAlert("Logout successful");
         history.push("/login");
+
     }
 
     return (
