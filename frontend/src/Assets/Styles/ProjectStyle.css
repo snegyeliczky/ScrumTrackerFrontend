@@ -173,7 +173,7 @@ textarea {
     display: block;
 }
 
-.business_value:focus + .modal_btn {
+.priority:focus-within + .modal_btn {
     display: block;
 }
 
