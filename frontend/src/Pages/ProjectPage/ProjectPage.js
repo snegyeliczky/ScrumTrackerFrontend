@@ -1,11 +1,9 @@
 import React, {useState, useContext, useEffect, useRef} from 'react';
 import {useParams} from "react-router";
-import axios from "axios";
 import ScrumTable from "../../components/ProjectComponents/ScrumTable";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
 import UsersModal from "../../components/ProjectComponents/UsersModal";
 import MailModal from "../../components/MailModal";
-import {PieChart} from 'react-minimal-pie-chart';
 import CustomPieChart from "../../components/ProjectComponents/CustomPieChart";
 import ProjectCalls from "../../Services/ProjectCalls";
 
@@ -29,6 +27,7 @@ const ProjectPage = () => {
                 return a.position - b.position;
             })
         });
+        console.log({myProject});
         setProject(null);
         setProject(myProject);
         getTaskChartData(myProject.table.statuses);
@@ -56,15 +55,15 @@ const ProjectPage = () => {
         statuses.map(status => {
             if (status.position === 1) {
                 status.tasks.map(task => {
-                    businessValueCount.start += task.businessValue;
+                    businessValueCount.start += task.priority;
                 })
             } else if (status.position === statuses.length) {
                 status.tasks.map(task => {
-                    businessValueCount.finish += task.businessValue;
+                    businessValueCount.finish += task.priority;
                 })
             } else {
                 status.tasks.map(task => {
-                    businessValueCount.inProgress += task.businessValue;
+                    businessValueCount.inProgress += task.priority;
                 })
             }
         });
