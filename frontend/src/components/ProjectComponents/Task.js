@@ -28,8 +28,6 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
         return currTaskId === dragItem.current.taskObject.id ? "dragged task_card" : "task_card";
     };
 
-    console.log(usersOnProject);
-
     const handleDragEnd = (e) => {
         onDragEnd(task);
         setDragging(false);
