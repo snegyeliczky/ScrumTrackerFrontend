@@ -64,7 +64,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
                     <ApiOutlined onClick={(e)=>archiveTask(e)}/>
                 </div>
             </div>
-            <div className="project_title">{thisTask.storyTitle}</div>
+            <div className="project_title">{thisTask.title}</div>
             <div className={"businessValue"}>Priority: {thisTask.priority}</div>
         </div>
     );

@@ -11,9 +11,9 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
 
     const [visible, setVisible] = useState(false);
 
-    const businessValueRef = useRef(task.businessValue);
+    const priorityRef = useRef(task.businessValue);
     const acceptanceCriteriaRef = useRef(task.acceptanceCriteria);
-    const userStoryRef = useRef(task.userStory);
+    const descriptionRef = useRef(task.userStory);
     const titleRef = useRef(task.storyTitle);
     const positionRef = useRef(task.position);
 
@@ -26,8 +26,8 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
         let editedTask = {
             id: null,
             author: null,
-            businessValue: task.priority == businessValueRef.current.value ? null : businessValueRef.current.value,
-            userStory: task.description == userStoryRef.current.value && task.description === null ? null : userStoryRef.current.value,
+            priority: task.priority == priorityRef.current.value ? null : priorityRef.current.value,
+            description: task.description == descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
             title: task.title == titleRef.current.value ? null : titleRef.current.value,
             position: task.position == positionRef.current.value ? null : positionRef.current.value
         };
@@ -61,7 +61,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                 <h2>Edit Task</h2>
                 <div className={"task_modal"}>
                     <div className={"text_modal"}>
-                        <label>Story Title: </label>
+                        <label>Title: </label>
                         <input
                             className={"text_input title"}
                             placeholder={"Story Title"}
@@ -72,11 +72,11 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                         </div>
                     </div>
                     <div className={"text_modal"}>
-                        <label>User Story: </label>
+                        <label>Description: </label>
                         <textArea
                             className={"text_input userStory"}
                             placeholder={"user story"}
-                            ref={userStoryRef}>
+                            ref={descriptionRef}>
                             {task.description}
                         </textArea>
                         <div className="modal_btn"
@@ -86,12 +86,12 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                 </div>
                 <ContentContainer>
                     <AdderComponent>
-                        <label>Business value: </label>
+                        <label>Priority: </label>
                         <Input
                             className="business_value"
                             placeholder={"Business Value"}
                             defaultValue={task.priority}
-                            ref={businessValueRef}
+                            ref={priorityRef}
                             type="number"
                         />
                         <div className="modal_btn"
