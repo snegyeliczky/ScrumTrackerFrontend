@@ -11,10 +11,9 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
 
     const [visible, setVisible] = useState(false);
 
-    const priorityRef = useRef(task.businessValue);
-    const acceptanceCriteriaRef = useRef(task.acceptanceCriteria);
-    const descriptionRef = useRef(task.userStory);
-    const titleRef = useRef(task.storyTitle);
+    const priorityRef = useRef(task.priority);
+    const descriptionRef = useRef(task.description);
+    const titleRef = useRef(task.title);
     const positionRef = useRef(task.position);
 
 
