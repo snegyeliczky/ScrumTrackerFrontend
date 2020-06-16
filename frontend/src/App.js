@@ -7,6 +7,7 @@ import Navbar from "./Parts/Navbar";
 import HomePage from "./Pages/HomePage";
 import AuthPage from "./Pages/AuthPage/AuthPage";
 import AlertModal from "./components/alertModal";
+import AuthCheck from "./Utils/AuthCheck";
 
 
 function App() {
@@ -19,10 +20,10 @@ function App() {
                     <Route exact path="/projects" component={Navbar}/>
                     <Route exact path="/project/:id" component={Navbar}/>
 
-                    <Route exact path="/login" component={AuthPage}/>
-                    <Route exact path="/project/:id" component={ProjectPage}/>
-                    <Route exact path="/projects" component={MyProjects}/>
-                    <Route exact path="/" component={HomePage}/>
+                    <Route exact path="/login" component={AuthCheck(AuthPage, false)}/>
+                    <Route exact path="/project/:id" component={AuthCheck(ProjectPage, true)}/>
+                    <Route exact path="/projects" component={AuthCheck(MyProjects, true)}/>
+                    <Route exact path="/" component={AuthCheck(HomePage, true)}/>
                     <AlertModal/>
                 </div>
             </ProjectProvider>

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import ScrumTable from "../../components/ProjectComponents/ScrumTable";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
@@ -17,12 +17,8 @@ const ProjectPage = () => {
     const [usersOnProject,setUsersOnProject] = useState([]);
 
     function getColaboratorsFromProject(project) {
-        let usersOnProject = [...project.participants, project.author];
-        /*usersOnProject.push(project.author);
-        for(let participant of project.participants ){
-            usersOnProject.push(participant);
-        }*/
-        return usersOnProject;
+        return [...project.participants, project.author];
+
     }
 
 
@@ -38,7 +34,6 @@ const ProjectPage = () => {
                 return a.position - b.position;
             })
         });
-        console.table(myProject);
         setProject(null);
         setProject(myProject);
         getTaskChartData(myProject.table.statuses);
@@ -82,9 +77,11 @@ const ProjectPage = () => {
     };
 
     const addNewColumn = async (columnName) => {
-        let projectId = id;
-        let newStatus = {statusName: columnName, projectId: projectId};
-        await ProjectCalls.addNewColumn(newStatus)
+        let newStatus = {
+            statusName: columnName,
+            projectId: id
+        };
+        await ProjectCalls.addNewColumn(newStatus);
         getProject();
     };
 
