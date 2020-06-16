@@ -27,7 +27,7 @@ const ProjectPage = () => {
                 return a.position - b.position;
             })
         });
-        console.log({myProject});
+        console.table(myProject);
         setProject(null);
         setProject(myProject);
         getTaskChartData(myProject.table.statuses);

@@ -31,7 +31,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
             priority: task.priority == priorityRef ? null : priorityRef,
             description: task.description == descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
             title: task.title == titleRef.current.value ? null : titleRef.current.value,
-            position: task.position == positionRef.current.value ? null : positionRef.current.value
+            position: task.position == positionRef.current.value ? null : positionRef.current.value,
         };
         let axiosResponse = await TaskCalls.uploadChanges(task.id, editedTask);
         setTask(axiosResponse);
