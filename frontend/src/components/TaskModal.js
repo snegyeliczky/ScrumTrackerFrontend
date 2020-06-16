@@ -26,10 +26,9 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
         let editedTask = {
             id: null,
             author: null,
-            businessValue: task.businessValue == businessValueRef.current.value ? null : businessValueRef.current.value,
-            userStory: task.userStory == userStoryRef.current.value && task.userStory === null ? null : userStoryRef.current.value,
-            acceptanceCriteria: task.acceptanceCriteria == acceptanceCriteriaRef.current.value && task.acceptanceCriteria === null ? null : acceptanceCriteriaRef.current.value,
-            title: task.storyTitle == titleRef.current.value ? null : titleRef.current.value,
+            businessValue: task.priority == businessValueRef.current.value ? null : businessValueRef.current.value,
+            userStory: task.description == userStoryRef.current.value && task.description === null ? null : userStoryRef.current.value,
+            title: task.title == titleRef.current.value ? null : titleRef.current.value,
             position: task.position == positionRef.current.value ? null : positionRef.current.value
         };
         let axiosResponse = TaskCalls.uploadChanges(task.id,editedTask);
@@ -66,7 +65,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                         <input
                             className={"text_input title"}
                             placeholder={"Story Title"}
-                            defaultValue={task.storyTitle}
+                            defaultValue={task.title}
                             ref={titleRef}/>
                         <div className="modal_btn"
                              onClick={handleEdit}>Save
@@ -78,19 +77,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                             className={"text_input userStory"}
                             placeholder={"user story"}
                             ref={userStoryRef}>
-                            {task.userStory}
-                        </textArea>
-                        <div className="modal_btn"
-                             onClick={handleEdit}>Save
-                        </div>
-                    </div>
-                    <div className={"text_modal"}>
-                        <label>Acceptance Criteria: </label>
-                        <textArea
-                            className={"text_input userStory"}
-                            placeholder={"acceptance criteria"}
-                            ref={acceptanceCriteriaRef}>
-                            {task.acceptanceCriteria}
+                            {task.description}
                         </textArea>
                         <div className="modal_btn"
                              onClick={handleEdit}>Save
@@ -103,7 +90,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend}) => {
                         <Input
                             className="business_value"
                             placeholder={"Business Value"}
-                            defaultValue={task.businessValue}
+                            defaultValue={task.priority}
                             ref={businessValueRef}
                             type="number"
                         />

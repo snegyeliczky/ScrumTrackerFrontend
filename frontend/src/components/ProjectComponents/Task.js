@@ -65,7 +65,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
                 </div>
             </div>
             <div className="project_title">{thisTask.storyTitle}</div>
-            <div className={"businessValue"}>Value: {thisTask.businessValue}</div>
+            <div className={"businessValue"}>Priority: {thisTask.priority}</div>
         </div>
     );
 };
