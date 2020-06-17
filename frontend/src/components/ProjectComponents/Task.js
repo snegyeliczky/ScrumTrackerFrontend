@@ -7,7 +7,7 @@ import axios from "axios";
 import TaskCalls from "../../Services/TaskCalls";
 
 
-const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStatusesFromBackend, usersOnProject}) => {
+const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshStatusesFromBackend, usersOnProject}) => {
 
     const [thisTask, setTask] = useState(task);
     const [dragging, setDragging] = useState(false);
@@ -44,12 +44,19 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
         handleDeleteTask(task.id)
     };
 
+    const backgroundIfMyTask ={
+        backgroundColor : localStorage.getItem("username")===task.owner.username ? "rgba(95, 194, 226,0.8)" : ""
+    };
+
+
+
     return (
-        <div className={dragging ? draggingStyle(task.id) : "task_card"}
-             draggable={true}
-             aria-dropeffect={"none"}
-             onDragStart={(event) => (handleDrag(event))}
-             onDragEnd={(e) => handleDragEnd(e)}
+        <div style={backgroundIfMyTask}
+            className={dragging ? draggingStyle(task.id) : "task_card"}
+            draggable={true}
+            aria-dropeffect={"none"}
+            onDragStart={(event) => (handleDrag(event))}
+            onDragEnd={(e) => handleDragEnd(e)}
         >
             <div className={"status_tool_container"}>
                 <div>
@@ -61,8 +68,8 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask,refreshStat
                     refreshStatusesFromBackend={refreshStatusesFromBackend}
                     usersOnProject={usersOnProject}
                 />
-                <div style={{display:"none"}}>
-                    <ApiOutlined onClick={(e)=>archiveTask(e)}/>
+                <div style={{display: "none"}}>
+                    <ApiOutlined onClick={(e) => archiveTask(e)}/>
                 </div>
             </div>
             <div className="project_title">{thisTask.title}</div>
