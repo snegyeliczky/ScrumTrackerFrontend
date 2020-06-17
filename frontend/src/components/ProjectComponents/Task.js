@@ -43,7 +43,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
     };
 
     const backgroundIfMyTask ={
-        backgroundColor : localStorage.getItem("username") === task.owner.username ? "rgba(95, 194, 226,0.8)" : ""
+        backgroundColor : localStorage.getItem("username")===(task.owner?.username ?? "" ) ? "rgba(95, 194, 226,0.8)" : ""
     };
 
 
@@ -72,7 +72,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
             </div>
             <div className="project_title">{thisTask.title}</div>
             <div className={"businessValue"}>Priority: {thisTask.priority}</div>
-            <div className={"businessValue"}>{new Intl.DateTimeFormat('en-US', visualDateFormat).format(new Date(thisTask.deadline))}</div>
+            <div className={"businessValue"}>{thisTask.deadline?new Intl.DateTimeFormat('en-US', visualDateFormat).format(new Date(thisTask.deadline)):""}</div>
         </div>
     );
 };

@@ -141,7 +141,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                             <DatePicker
                                 style={{width:"90%"}}
                                 className={"deadline_picker"}
-                                defaultValue={moment(deadlineRef)}
+                                defaultValue={deadlineRef?moment(deadlineRef):moment(new Date())}
                                 format={'MM.DD'}
                                 onChange={setDeadlineRef}/>
 
