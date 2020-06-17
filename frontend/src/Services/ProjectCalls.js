@@ -1,7 +1,9 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+
 
 export default {
+
 
     getMyProjects: async () => {
         let response = await axios.get("http://localhost:8080/project/getactiveprojects");
@@ -23,8 +25,16 @@ export default {
     },
 
     getProject: async (id) => {
-        let response = await axios.get("http://localhost:8080/project/" + id);
-        return response.data;
+        try {
+            let response = await axios.get("http://localhost:8080/project/" + id);
+            return response.data;
+        } catch (e) {
+
+            alert(e.response.data.message);
+            return [];
+
+        }
+
     },
 
     addNewColumn : async (newStatus) => {

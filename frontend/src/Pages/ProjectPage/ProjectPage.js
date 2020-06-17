@@ -23,6 +23,7 @@ const ProjectPage = () => {
 
 
     const getProject = async () => {
+
         let myProject = await ProjectCalls.getProject(id);
 
         setUsersOnProject(getColaboratorsFromProject(myProject));
