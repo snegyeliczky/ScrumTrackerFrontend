@@ -1,5 +1,5 @@
 import React, {useState, useRef, useContext, useEffect} from 'react';
-import {DeleteOutlined, ApiOutlined} from "@ant-design/icons";
+import {DeleteOutlined, ApiOutlined, AlertTwoTone } from "@ant-design/icons";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
 import TaskModal from "../TaskModal";
 import TaskCalls from "../../Services/TaskCalls";
@@ -9,7 +9,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
     const [thisTask, setTask] = useState(task);
     const [dragging, setDragging] = useState(false);
 
-    const visualDateFormat = { month: 'long', day: 'numeric'};
+    const visualDateFormat = {month: 'long', day: 'numeric'};
 
     const handleDrag = (e) => {
         let dragItemParams = {
@@ -42,19 +42,32 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
         handleDeleteTask(task.id)
     };
 
-    const backgroundIfMyTask ={
-        backgroundColor : localStorage.getItem("username")===(task.owner?.username ?? "" ) ? "rgba(95, 194, 226,0.8)" : ""
+    const backgroundIfMyTask = {
+        backgroundColor: localStorage.getItem("username") === (task.owner?.username ?? "") ? "rgba(95, 194, 226,0.8)" : ""
     };
 
+    function alertColor() {
+        let number = new Date(task.deadline )-new Date();
+        console.log(number)
+        if (number<40000000){
+            return "red";
+        }
+        else if (number<100000000){
+            return "Orange";
+        }
+        else{
+            return "";
+        }
 
+    };
 
     return (
         <div style={backgroundIfMyTask}
-            className={dragging ? draggingStyle(task.id) : "task_card"}
-            draggable={true}
-            aria-dropeffect={"none"}
-            onDragStart={(event) => (handleDrag(event))}
-            onDragEnd={(e) => handleDragEnd(e)}
+             className={dragging ? draggingStyle(task.id) : "task_card"}
+             draggable={true}
+             aria-dropeffect={"none"}
+             onDragStart={(event) => (handleDrag(event))}
+             onDragEnd={(e) => handleDragEnd(e)}
         >
             <div className={"status_tool_container"}>
                 <div>
@@ -71,8 +84,14 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
                 </div>
             </div>
             <div className="project_title">{thisTask.title}</div>
-            <div className={"businessValue"}>Priority: {thisTask.priority}</div>
-            <div className={"businessValue"}>{thisTask.deadline?new Intl.DateTimeFormat('en-US', visualDateFormat).format(new Date(thisTask.deadline)):""}</div>
+            <div className={"task_data_container"}>
+                <div className={"businessValue"}>{thisTask.priority>0?"Pri.: "+thisTask.priority:''}</div>
+                <div className={"deadline"}>
+                    {thisTask.deadline ? new Intl.DateTimeFormat('en-US', visualDateFormat).format(new Date(thisTask.deadline)) : ""}
+                    {" "}
+                    {thisTask.deadline ?<AlertTwoTone twoToneColor={alertColor()}/> : ''}
+                </div>
+            </div>
         </div>
     );
 };
