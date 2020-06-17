@@ -113,7 +113,23 @@ input:focus {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
+.task_data_container{
+    display: flex;
+    justify-content: center;
+}
+
 .businessValue{
+    padding: 5px;
+    font-size: 12px;
+}
+
+.deadline{
+    padding: 5px;
+    font-size: 12px;
+
+}
+
+.alert{
     font-size: 12px;
 }
 
