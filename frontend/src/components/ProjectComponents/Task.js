@@ -46,7 +46,6 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
 
     const backgroundIfMyTask ={
         backgroundColor : localStorage.getItem("username")===task.owner.username ? "rgba(95, 194, 226,0.8)" : ""
-
     };
 
 
