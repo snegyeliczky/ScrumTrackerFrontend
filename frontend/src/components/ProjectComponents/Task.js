@@ -88,7 +88,8 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
                 <div className={"businessValue"}>{thisTask.priority>0?"Pri.: "+thisTask.priority:''}</div>
                 <div className={"deadline"}>
                     {thisTask.deadline ? new Intl.DateTimeFormat('en-US', visualDateFormat).format(new Date(thisTask.deadline)) : ""}
-                    {thisTask.deadline ? <AlertTwoTone twoToneColor={alertColor()}/> : ''}
+                    {" "}
+                    {thisTask.deadline ?<AlertTwoTone twoToneColor={alertColor()}/> : ''}
                 </div>
             </div>
         </div>
