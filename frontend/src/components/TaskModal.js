@@ -92,9 +92,10 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                         </div>
                     </div>
                     <ContentContainer>
-                        <AdderComponent>
+                        <div className={"task_data_selector"}>
                             <label>Priority: </label>
                             <Select
+                                style={{width:"90%"}}
                                 className={"priority"}
                                 defaultValue={task.priority}
                                 onChange={(value) => {
@@ -112,10 +113,11 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                             <div className="modal_btn"
                                  onClick={handleEdit}>Save
                             </div>
-                        </AdderComponent>
-                        <AdderComponent>
+                        </div>
+                        <div className={"task_data_selector"}>
                             <label>Owner: </label>
                             <Select
+                                style={{width:"90%"}}
                                 className={"owner"}
                                 defaultValue={task.owner ? task.owner.username : "No Owner Yet"}
                                 onChange={(value) => {
@@ -133,14 +135,20 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                             <div className="modal_btn"
                                  onClick={handleEdit}>Save
                             </div>
-                        </AdderComponent>
-                        <AdderComponent>
+                        </div>
+                        <div className={"task_data_selector"}>
                             <label>Deadline: </label>
-                            <DatePicker className={"deadline_picker"} defaultValue={moment(deadlineRef)} format={'MM.DD'} onChange={setDeadlineRef}/>
+                            <DatePicker
+                                style={{width:"90%"}}
+                                className={"deadline_picker"}
+                                defaultValue={moment(deadlineRef)}
+                                format={'MM.DD'}
+                                onChange={setDeadlineRef}/>
+
                             <div className="modal_btn"
                                  onClick={handleEdit}>Save
                             </div>
-                        </AdderComponent>
+                        </div>
                     </ContentContainer>
                 </div>
 

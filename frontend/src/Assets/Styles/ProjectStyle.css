@@ -194,6 +194,10 @@ textarea {
     font-size: 20px;
 }
 
+.task_data_selector{
+    color: #373A55;
+}
+
 /*-------------------------MODAL STYLE------------------------- */
 
 .anticon-plus,
