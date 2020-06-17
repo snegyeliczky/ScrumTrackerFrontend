@@ -33,7 +33,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
             priority: task.priority === priorityRef ? null : priorityRef,
             description: task.description === descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
             title: task.title === titleRef.current.value ? null : titleRef.current.value,
-            position: task.position === positionRef.current.value ? null : positionRef.current.value,
+            position: null,
             owner: task.owner === ownerRef ? null : ownerRef,
             deadline: task.deadline === deadlineRef ? null : deadlineRef
         };

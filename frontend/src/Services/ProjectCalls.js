@@ -30,7 +30,7 @@ export default {
             return response.data;
         } catch (e) {
 
-            alert(e.response.data.message);
+            alert(e.response.data.errors);
             return [];
 
         }
