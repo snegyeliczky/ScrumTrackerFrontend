@@ -30,10 +30,10 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
         let editedTask = {
             id: null,
             author: null,
+            position: task.position === positionRef.current.value ? null : positionRef.current.value,
             priority: task.priority === priorityRef ? null : priorityRef,
             description: task.description === descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
             title: task.title === titleRef.current.value ? null : titleRef.current.value,
-            position: task.position === positionRef.current.value ? null : positionRef.current.value,
             owner: task.owner === ownerRef ? null : ownerRef,
             deadline: task.deadline === deadlineRef ? null : deadlineRef
         };
@@ -141,9 +141,10 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                             <DatePicker
                                 style={{width:"90%"}}
                                 className={"deadline_picker"}
-                                defaultValue={deadlineRef?moment(deadlineRef):moment(new Date())}
+                                defaultValue={deadlineRef?moment(deadlineRef):''}
                                 format={'MM.DD'}
-                                onChange={setDeadlineRef}/>
+                                onChange={setDeadlineRef}
+                            />
 
                             <div className="modal_btn"
                                  onClick={handleEdit}>Save
