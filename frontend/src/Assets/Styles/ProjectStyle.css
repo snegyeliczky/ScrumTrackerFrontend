@@ -181,6 +181,10 @@ textarea {
     display: block;
 }
 
+.deadline_picker:focus-within + .modal_btn {
+    display: block;
+}
+
 .participant_users{
     margin: 20px;
 }
@@ -188,6 +192,10 @@ textarea {
 .user_icon{
     text-align: center;
     font-size: 20px;
+}
+
+.task_data_selector{
+    color: #373A55;
 }
 
 /*-------------------------MODAL STYLE------------------------- */

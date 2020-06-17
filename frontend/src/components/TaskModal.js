@@ -1,10 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Modal, Button} from 'antd';
+import {Modal, Button, DatePicker} from 'antd';
 import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
 import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/styled";
 import TaskCalls from "../Services/TaskCalls";
 import Select from "antd/es/select";
+import moment from 'moment';
+
 
 
 const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) => {
@@ -18,7 +20,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     const descriptionRef = useRef(task.description);
     const titleRef = useRef(task.title);
     const positionRef = useRef(task.position);
-
+    const [deadlineRef,setDeadlineRef] = useState(task.deadline);
 
     const handleEdit = () => {
         uploadChanges();
@@ -32,7 +34,8 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
             description: task.description === descriptionRef.current.value && task.description === null ? null : descriptionRef.current.value,
             title: task.title === titleRef.current.value ? null : titleRef.current.value,
             position: task.position === positionRef.current.value ? null : positionRef.current.value,
-            owner: task.owner === ownerRef ? null : ownerRef
+            owner: task.owner === ownerRef ? null : ownerRef,
+            deadline: task.deadline === deadlineRef ? null : deadlineRef
         };
         let axiosResponse = await TaskCalls.uploadChanges(task.id, editedTask);
         setTask(axiosResponse);
@@ -51,6 +54,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     function showModal() {
         setVisible(true)
     }
+
 
     return (
         <div>
@@ -88,9 +92,10 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                         </div>
                     </div>
                     <ContentContainer>
-                        <AdderComponent>
+                        <div className={"task_data_selector"}>
                             <label>Priority: </label>
                             <Select
+                                style={{width:"90%"}}
                                 className={"priority"}
                                 defaultValue={task.priority}
                                 onChange={(value) => {
@@ -108,10 +113,11 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                             <div className="modal_btn"
                                  onClick={handleEdit}>Save
                             </div>
-                        </AdderComponent>
-                        <AdderComponent>
+                        </div>
+                        <div className={"task_data_selector"}>
                             <label>Owner: </label>
                             <Select
+                                style={{width:"90%"}}
                                 className={"owner"}
                                 defaultValue={task.owner ? task.owner.username : "No Owner Yet"}
                                 onChange={(value) => {
@@ -129,7 +135,20 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                             <div className="modal_btn"
                                  onClick={handleEdit}>Save
                             </div>
-                        </AdderComponent>
+                        </div>
+                        <div className={"task_data_selector"}>
+                            <label>Deadline: </label>
+                            <DatePicker
+                                style={{width:"90%"}}
+                                className={"deadline_picker"}
+                                defaultValue={moment(deadlineRef)}
+                                format={'MM.DD'}
+                                onChange={setDeadlineRef}/>
+
+                            <div className="modal_btn"
+                                 onClick={handleEdit}>Save
+                            </div>
+                        </div>
                     </ContentContainer>
                 </div>
 

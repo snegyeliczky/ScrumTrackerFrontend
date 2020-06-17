@@ -1,17 +1,15 @@
 import React, {useState, useRef, useContext, useEffect} from 'react';
-import Column from "./Column";
 import {DeleteOutlined, ApiOutlined} from "@ant-design/icons";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
 import TaskModal from "../TaskModal";
-import axios from "axios";
 import TaskCalls from "../../Services/TaskCalls";
-
 
 const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshStatusesFromBackend, usersOnProject}) => {
 
     const [thisTask, setTask] = useState(task);
     const [dragging, setDragging] = useState(false);
 
+    const visualDateFormat = { month: 'long', day: 'numeric'};
 
     const handleDrag = (e) => {
         let dragItemParams = {
@@ -74,6 +72,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
             </div>
             <div className="project_title">{thisTask.title}</div>
             <div className={"businessValue"}>Priority: {thisTask.priority}</div>
+            <div className={"businessValue"}>{new Intl.DateTimeFormat('en-US', visualDateFormat).format(new Date(thisTask.deadline))}</div>
         </div>
     );
 };
