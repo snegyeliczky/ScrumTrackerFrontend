@@ -5,7 +5,6 @@ import {FormOutlined} from "@ant-design/icons";
 import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/styled";
 import TaskCalls from "../Services/TaskCalls";
 import Select from "antd/es/select";
-import {LocalDate} from "@js-joda/core";
 import moment from 'moment';
 
 
@@ -43,9 +42,6 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
         refreshStatusesFromBackend();
     }
 
-    function changeDeadline(date) {
-        setDeadlineRef(date);
-    }
 
     function handleOk() {
         setVisible(false);
@@ -140,7 +136,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                         </AdderComponent>
                         <AdderComponent>
                             <label>Deadline: </label>
-                            <DatePicker className={"deadline_picker"} defaultValue={moment(deadlineRef)} format={'MM.DD'} onChange={changeDeadline}/>
+                            <DatePicker className={"deadline_picker"} defaultValue={moment(deadlineRef)} format={'MM.DD'} onChange={setDeadlineRef}/>
                             <div className="modal_btn"
                                  onClick={handleEdit}>Save
                             </div>
