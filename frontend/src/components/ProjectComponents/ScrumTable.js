@@ -34,11 +34,9 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
             return a.position - b.position;
         });
         ScrumTable.statuses.map(status =>{
-            console.log(status.tasks)
             status.tasks.sort(function (a,b) {
                 return a.position - b.position;
             });
-            console.log(status.tasks)
         });
         tasksDistributionInStatuses(ScrumTable.statuses);
         countBusinessValue(ScrumTable.statuses);

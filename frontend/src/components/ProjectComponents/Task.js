@@ -11,6 +11,8 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
 
     const visualDateFormat = {month: 'long', day: 'numeric'};
 
+
+
     const handleDrag = (e) => {
         let dragItemParams = {
             statusId: statusId,

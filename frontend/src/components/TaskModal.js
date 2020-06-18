@@ -6,6 +6,8 @@ import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/sty
 import TaskCalls from "../Services/TaskCalls";
 import Select from "antd/es/select";
 import moment from 'moment';
+import locale from 'antd/es/date-picker/locale/hu_HU';
+import {LocalDate} from "@js-joda/core";
 
 
 
@@ -22,7 +24,10 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     const positionRef = useRef(task.position);
     const [deadlineRef,setDeadlineRef] = useState(task.deadline);
 
-    console.log(deadlineRef);
+    const options = {
+        year: 'numeric', month: 'numeric', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', second: 'numeric'
+    };
 
     const handleEdit = () => {
         uploadChanges();
@@ -40,7 +45,9 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
             owner: task.owner === ownerRef ? null : ownerRef,
             deadline: task.deadline === deadlineRef ? null : deadlineRef
         };
+        console.log(editedTask.deadline)
         let axiosResponse = await TaskCalls.uploadChanges(task.id, editedTask);
+        console.log(axiosResponse.deadline);
         setTask(axiosResponse);
         refreshStatusesFromBackend();
     }
@@ -58,9 +65,10 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
         setVisible(true)
     }
 
-    function handleTimeChange(date){
-        setDeadlineRef(date._d)
-        console.log(date._d)
+    function handleTimeChange(date, dateString){
+        date= new Date(date)
+        console.log(date)
+        setDeadlineRef(date);
     }
 
 
@@ -147,12 +155,13 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                         <div className={"task_data_selector"}>
                             <label>Deadline: </label>
                             <DatePicker
+                                locale={locale}
                                 style={{width:"90%"}}
                                 className={"deadline_picker"}
                                 defaultValue={deadlineRef?moment(deadlineRef):''}
-                                format={'MM.DD HH:mm'}
+                                format={'MM.DD'}
                                 onChange={handleTimeChange}
-                                showTime={true}
+
                             />
 
                             <div className="modal_btn"
