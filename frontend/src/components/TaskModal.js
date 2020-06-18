@@ -22,11 +22,14 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     const positionRef = useRef(task.position);
     const [deadlineRef,setDeadlineRef] = useState(task.deadline);
 
+    console.log(deadlineRef);
+
     const handleEdit = () => {
         uploadChanges();
     };
 
     async function uploadChanges() {
+        console.log(deadlineRef);
         let editedTask = {
             id: null,
             author: null,
@@ -53,6 +56,11 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
 
     function showModal() {
         setVisible(true)
+    }
+
+    function handleTimeChange(date){
+        setDeadlineRef(date._d)
+        console.log(date._d)
     }
 
 
@@ -142,8 +150,9 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                                 style={{width:"90%"}}
                                 className={"deadline_picker"}
                                 defaultValue={deadlineRef?moment(deadlineRef):''}
-                                format={'MM.DD'}
-                                onChange={setDeadlineRef}
+                                format={'MM.DD HH:mm'}
+                                onChange={handleTimeChange}
+                                showTime={true}
                             />
 
                             <div className="modal_btn"
