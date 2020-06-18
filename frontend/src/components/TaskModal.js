@@ -34,7 +34,6 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     };
 
     async function uploadChanges() {
-        console.log(deadlineRef);
         let editedTask = {
             id: null,
             author: null,
@@ -45,9 +44,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
             owner: task.owner === ownerRef ? null : ownerRef,
             deadline: task.deadline === deadlineRef ? null : deadlineRef
         };
-        console.log(editedTask.deadline)
         let axiosResponse = await TaskCalls.uploadChanges(task.id, editedTask);
-        console.log(axiosResponse.deadline);
         setTask(axiosResponse);
         refreshStatusesFromBackend();
     }
@@ -66,8 +63,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     }
 
     function handleTimeChange(date, dateString){
-        date= new Date(date)
-        console.log(date)
+        date= new Date(date);
         setDeadlineRef(date);
     }
 
