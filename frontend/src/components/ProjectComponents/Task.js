@@ -48,7 +48,6 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
 
     function alertColor() {
         let number = new Date(task.deadline )-new Date();
-        console.log(number)
         if (number<40000000){
             return "red";
         }
