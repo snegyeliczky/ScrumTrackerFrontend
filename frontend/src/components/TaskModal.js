@@ -155,13 +155,13 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                         <div className={"task_data_selector"}>
                             <label>Deadline: </label>
                             <DatePicker
-                                locale={locale}
+                                //locale={locale}
                                 style={{width:"90%"}}
                                 className={"deadline_picker"}
                                 defaultValue={deadlineRef?moment(deadlineRef):''}
-                                format={'MM.DD'}
+                                format={'MM.DD'/* + "hh.mm"*/}
                                 onChange={handleTimeChange}
-
+                                //showTime={true}
                             />
 
                             <div className="modal_btn"
