@@ -64,6 +64,11 @@ export default {
     getScrumTable : async (tableId) =>{
         let axiosResponse = await axios.get("http://localhost:8080/project/gettable/" + tableId);
         return axiosResponse.data;
+    },
+
+    sendProjectInProgressLimit : async (tableCredentials) =>{
+        let axiosResponse = await axios.put("http://localhost:8080/project/table/limit/", tableCredentials);
+        return axiosResponse.data;
     }
 
 

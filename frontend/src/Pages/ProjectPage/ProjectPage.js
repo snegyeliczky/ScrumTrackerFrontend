@@ -6,6 +6,7 @@ import UsersModal from "../../components/ProjectComponents/UsersModal";
 import MailModal from "../../components/MailModal";
 import CustomPieChart from "../../components/ProjectComponents/CustomPieChart";
 import ProjectCalls from "../../Services/ProjectCalls";
+import InProgressLimitModal from "../../components/InProgressLimitModal";
 
 const ProjectPage = () => {
 
@@ -114,6 +115,10 @@ const ProjectPage = () => {
                     </div>
                     <UsersModal projectId={project.id} participants={project.participants}/>
                     <MailModal projectId={project.id}/>
+                    <InProgressLimitModal tableId={project.table.id}
+                                          getProject={getProject}
+                                          taskLimit={project.table.taskLimit}
+                    />
                 </ContentContainer>
                 <div className={"scrum_table_container"}>
                     <ScrumTable key={project.table.id}
