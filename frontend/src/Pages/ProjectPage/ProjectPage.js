@@ -12,6 +12,7 @@ const ProjectPage = () => {
 
     const {id} = useParams();
     const [project, setProject] = useState(null);
+    const [scrumTable,setScrumTable] = useState(null);
     const [taskCount, setTaskCount] = useState({});
     const [businessValueCount, setBusinessValueCount] = useState({});
     const [mouseOverAccept, setMouseOverAccept] = useState(false);
@@ -36,12 +37,30 @@ const ProjectPage = () => {
                 return a.position - b.position;
             })
         });
+        setScrumTable(myProject.table);
         setProject(null);
         setProject(myProject);
         getTaskChartData(myProject.table.statuses);
         getBusinessValueChartData(myProject.table.statuses);
 
     };
+
+    const refreshScrumTableBackend = async () => {
+        let newScrumTable = await ProjectCalls.getScrumTable(project.table.id);
+        newScrumTable.statuses.sort(function (a, b) {
+            return a.position - b.position;
+        });
+        newScrumTable.statuses.map(status =>{
+            status.tasks.sort(function (a,b) {
+                return a.position - b.position;
+            });
+        });
+        getTaskChartData(newScrumTable.statuses);
+        getBusinessValueChartData(newScrumTable.statuses);
+        setScrumTable(newScrumTable);
+    };
+
+
 
     function getTaskChartData(statuses) {
         let projectStatuses = statuses;
@@ -121,14 +140,15 @@ const ProjectPage = () => {
                     />
                 </ContentContainer>
                 <div className={"scrum_table_container"}>
-                    <ScrumTable key={project.table.id}
-                                table={project.table}
+                    <ScrumTable key={scrumTable.id}
+                                table={scrumTable}
                                 addNewColumn={addNewColumn}
                                 addNewTask={addNewTask}
                                 setTaskCount={setTaskCount}
                                 tasksDistributionInStatuses={getTaskChartData}
-                                countBusinessValue={getBusinessValueChartData}
                                 usersOnProject={usersOnProject}
+                                countBusinessValue={getBusinessValueChartData}
+                                refreshScrumTableBackend={refreshScrumTableBackend}
 
                     />
                 </div>
