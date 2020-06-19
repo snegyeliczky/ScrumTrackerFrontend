@@ -7,13 +7,15 @@ import UseComponentVisible from "../../Utils/UseComponentVisible";
 import ProjectCalls from "../../Services/ProjectCalls";
 import TaskCalls from "../../Services/TaskCalls";
 
-const ScrumTable = ({table, addNewColumn, addNewTask, countBusinessValue,
-                        usersOnProject, tasksDistributionInStatuses,refreshScrumTableBackend}) => {
+const ScrumTable = ({
+                        table, addNewColumn, addNewTask, countBusinessValue,
+                        usersOnProject, tasksDistributionInStatuses, refreshScrumTableBackend
+                    }) => {
 
+    let statuses = table.statuses;
     const newColumnRef = useRef();
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
-
 
 
     //Click outside effect fields
@@ -25,7 +27,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask, countBusinessValue,
 
 
     const deleteStatus = async (statusID) => {
-        await ProjectCalls.deleteStatus(statusID,table.id);
+        await ProjectCalls.deleteStatus(statusID, table.id);
         refreshScrumTableBackend();
     };
 
@@ -45,13 +47,13 @@ const ScrumTable = ({table, addNewColumn, addNewTask, countBusinessValue,
     };
 
     const onDragEnd = async () => {
-        table.statuses=refreshStatus(DragItemColumnId);
+        statuses = refreshStatus(DragItemColumnId);
         await uploadStatusChangeToDatabase();
     };
 
 
     const refreshStatus = (newStatusId) => {
-        let newStatuses = [...table.statuses];
+        let newStatuses = [...statuses];
         for (let status of newStatuses) {
             if (status.id === dragItem.current.statusId) {
                 let taskArr = [...status.tasks];
@@ -82,15 +84,15 @@ const ScrumTable = ({table, addNewColumn, addNewTask, countBusinessValue,
 
     return (
         <div className={"scrum_table"}
-                          onDragOver={(e) => e.preventDefault()}>
+             onDragOver={(e) => e.preventDefault()}>
             {
-                table.statuses.map((status, i) => {
+                statuses.map((status, i) => {
                     let statusFlag = null;
 
                     if (i === 0) {
                         statusFlag = "start";
                     }
-                    if (i === table.statuses.length - 1) {
+                    if (i === statuses.length - 1) {
                         statusFlag = "finish";
                     }
 
