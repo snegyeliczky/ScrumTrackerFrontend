@@ -71,7 +71,7 @@ const ProjectPage = () => {
                     let owner=task.owner.username;
                     usersWithTasks[owner]=(usersWithTasks[owner]||0)+1;
                 }else {
-                    usersWithTasks["no owner"] =(usersWithTasks["no owner"]||0)+1;
+                    usersWithTasks["need owner"] =(usersWithTasks["need owner"]||0)+1;
                 }
 
             })
