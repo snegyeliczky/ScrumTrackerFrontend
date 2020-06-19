@@ -29,7 +29,6 @@ const CustomPieChart = ({data, visualMark, label}) => {
 
     return (
         <div className="chart_box">
-            <h1>{label}</h1>
         <PieChart
                 className="chart"
                 label={({dataEntry}) => {
@@ -52,6 +51,7 @@ const CustomPieChart = ({data, visualMark, label}) => {
                     {title: 'Finished', value: data.finish, color: '#5bc128'},
                 ]}
             />
+            <h1>{label}</h1>
         </div>
     );
 };

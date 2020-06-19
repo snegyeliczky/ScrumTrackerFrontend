@@ -7,6 +7,7 @@ import MailModal from "../../components/MailModal";
 import CustomPieChart from "../../components/ProjectComponents/CustomPieChart";
 import ProjectCalls from "../../Services/ProjectCalls";
 import InProgressLimitModal from "../../components/InProgressLimitModal";
+import TaskDistibution from "../../components/ProjectComponents/taskDistibution";
 
 const ProjectPage = () => {
 
@@ -42,7 +43,7 @@ const ProjectPage = () => {
         setProject(myProject);
         getTaskChartData(myProject.table.statuses);
         getBusinessValueChartData(myProject.table.statuses);
-        getUsersWithTasks(myProject.table);
+
 
     };
 
@@ -58,7 +59,6 @@ const ProjectPage = () => {
         });
         getTaskChartData(newScrumTable.statuses);
         getBusinessValueChartData(newScrumTable.statuses);
-        getUsersWithTasks(scrumTable);
         setScrumTable(newScrumTable);
     };
 
@@ -76,7 +76,6 @@ const ProjectPage = () => {
 
             })
         });
-        console.log(usersWithTasks);
         return usersWithTasks;
 
     }
@@ -159,6 +158,7 @@ const ProjectPage = () => {
                                           taskLimit={project.table.taskLimit}
                     />
                 </ContentContainer>
+
                 <div className={"scrum_table_container"}>
                     <ScrumTable key={scrumTable.id}
                                 table={scrumTable}
@@ -171,6 +171,13 @@ const ProjectPage = () => {
                                 refreshScrumTableBackend={refreshScrumTableBackend}
 
                     />
+                </div>
+                <div className={"task_distribution_container"}>
+                    {
+                        Object.entries(getUsersWithTasks(scrumTable)).map((key) => {
+                            return <TaskDistibution user={key}/>;
+                        })
+                    }
                 </div>
                 <div className="chart_container">
                     <CustomPieChart data={taskCount}

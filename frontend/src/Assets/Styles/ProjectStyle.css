@@ -375,6 +375,17 @@ textarea {
 
 /*-----------------------------PIE CHART STYLE-----------------------------*/
 
+.task_distribution_container{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.task_distribution{
+    padding: 20px;
+    font-size: 16px;
+    color: #373A55;
+}
 
 @media screen and (max-width: 600px) {
     .scrum_table {
