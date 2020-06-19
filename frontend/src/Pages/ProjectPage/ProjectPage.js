@@ -42,6 +42,7 @@ const ProjectPage = () => {
         setProject(myProject);
         getTaskChartData(myProject.table.statuses);
         getBusinessValueChartData(myProject.table.statuses);
+        getUsersWithTasks(myProject.table);
 
     };
 
@@ -57,9 +58,28 @@ const ProjectPage = () => {
         });
         getTaskChartData(newScrumTable.statuses);
         getBusinessValueChartData(newScrumTable.statuses);
+        getUsersWithTasks(scrumTable);
         setScrumTable(newScrumTable);
     };
 
+
+    function getUsersWithTasks(scrumTable) {
+        let usersWithTasks = {};
+        scrumTable.statuses.map( (status)=>{
+            status.tasks.map((task)=>{
+                if (task.owner!=null){
+                    let owner=task.owner.username;
+                    usersWithTasks[owner]=(usersWithTasks[owner]||0)+1;
+                }else {
+                    usersWithTasks["no owner"] =(usersWithTasks["no owner"]||0)+1;
+                }
+
+            })
+        });
+        console.log(usersWithTasks);
+        return usersWithTasks;
+
+    }
 
 
     function getTaskChartData(statuses) {
