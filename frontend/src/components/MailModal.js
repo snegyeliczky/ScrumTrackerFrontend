@@ -36,6 +36,7 @@ const MailModal = ({projectId}) => {
                 showSuccessAlert("Successful e-mail sending");
                 setVisible(false);
             } catch (e) {
+                setVisible(false);
                 showErrorAlert("Invalid e-mail adress try again!");
             }
         }else {
