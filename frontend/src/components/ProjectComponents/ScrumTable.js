@@ -12,7 +12,7 @@ const ScrumTable = ({
                         usersOnProject, tasksDistributionInStatuses, refreshScrumTableBackend
                     }) => {
 
-    let statuses = table.statuses;
+    const [statuses, setStatuses] = useState(table.statuses);
     const newColumnRef = useRef();
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
@@ -45,7 +45,7 @@ const ScrumTable = ({
         });
         tasksDistributionInStatuses(ScrumTable.statuses);
         countBusinessValue(ScrumTable.statuses);
-        setStatuses(ScrumTable.statuses);
+        //setStatuses(ScrumTable.statuses);
     };
 
     const uploadStatusChangeToDatabase = async () => {
@@ -59,7 +59,7 @@ const ScrumTable = ({
         try {
             await TaskCalls.uploadStatusChangeToDatabase(refreshItem);
         } catch (e) {
-            alert(e.response.data.errors)
+            alert(e.response.data.errors);
             console.log(prevColumn);
 
         }
@@ -71,7 +71,7 @@ const ScrumTable = ({
     };
 
     const onDragEnd = async () => {
-        statuses = refreshStatus(DragItemColumnId);
+        setStatuses(refreshStatus(DragItemColumnId));
         await uploadStatusChangeToDatabase();
     };
 
