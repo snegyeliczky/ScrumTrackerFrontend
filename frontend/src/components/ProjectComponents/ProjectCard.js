@@ -6,8 +6,8 @@ import ProjectCalls from "../../Services/ProjectCalls";
 
 const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
+    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
     const history = useHistory();
-
     const {getProjects} = useContext(ProjectContext);
 
     const handleClick = () => {
@@ -35,7 +35,7 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
             await ProjectCalls.deleteProject(project.id);
             getProjects();
         } catch (e) {
-            alert(e.response.data.errors)
+            showErrorAlert(e.response.data.errors)
         }
 
     };

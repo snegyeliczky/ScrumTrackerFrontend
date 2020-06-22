@@ -6,12 +6,14 @@ import {PlusOutlined} from "@ant-design/icons";
 import UseComponentVisible from "../../Utils/UseComponentVisible";
 import ProjectCalls from "../../Services/ProjectCalls";
 import TaskCalls from "../../Services/TaskCalls";
+import {ProjectContext} from "../../Contexts/ProjectContext";
 
 const ScrumTable = ({
                         table, addNewColumn, addNewTask, countBusinessValue,
                         usersOnProject, tasksDistributionInStatuses, refreshScrumTableBackend
                     }) => {
 
+    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
     const [statuses, setStatuses] = useState(table.statuses);
     const newColumnRef = useRef();
     const [DragItemColumnId, setDragItemColumnId] = useState();
@@ -59,7 +61,8 @@ const ScrumTable = ({
         try {
             await TaskCalls.uploadStatusChangeToDatabase(refreshItem);
         } catch (e) {
-            alert(e.response.data.errors);
+            showErrorAlert(e.response.data.errors);
+            //alert(e.response.data.errors);
             refreshStatusesFromBackend();
             console.log(prevColumn);
 
