@@ -45,7 +45,7 @@ const ScrumTable = ({
         });
         tasksDistributionInStatuses(ScrumTable.statuses);
         countBusinessValue(ScrumTable.statuses);
-        //setStatuses(ScrumTable.statuses);
+        setStatuses(ScrumTable.statuses);
     };
 
     const uploadStatusChangeToDatabase = async () => {
@@ -60,6 +60,7 @@ const ScrumTable = ({
             await TaskCalls.uploadStatusChangeToDatabase(refreshItem);
         } catch (e) {
             alert(e.response.data.errors);
+            refreshStatusesFromBackend();
             console.log(prevColumn);
 
         }
