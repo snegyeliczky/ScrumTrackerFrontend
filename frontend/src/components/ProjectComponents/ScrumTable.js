@@ -132,7 +132,7 @@ const ScrumTable = ({
                         key={status.id}
                         status={status}
                         onDragEnter={onDragEnter}
-                        refreshStatusesFromBackend={refreshScrumTableBackend}
+                        refreshStatusesFromBackend={refreshStatusesFromBackend}
                         addNewTask={addNewTask}
                         usersOnProject={usersOnProject}
                     />
