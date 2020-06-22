@@ -19,6 +19,11 @@ const RegistrationPage = ({handleLogin}) => {
         return re.test(String(email).toLowerCase());
     }
 
+    function validateInput(username) {
+        const re = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/
+        return re.test(String(username).toLowerCase());
+    }
+
     const onSubmit = async () => {
         let user = {
             username: username,
@@ -32,6 +37,8 @@ const RegistrationPage = ({handleLogin}) => {
         try {
             if (username===null||password===null||email===null) throw new ReferenceError("empty fields");
             else if (!validateEmail(email)) throw new TypeError("invalid e-mail");
+            else if (!validateInput(username)) throw new RangeError("invalid username/password");
+            else if (!validateInput(password)) throw new RangeError("invalid username/password");
             let axiosResponse = await AuthCalls.registration(user);
             if (axiosResponse.status === 200) {
                 showSuccessAlert("registration success please Sign in");
@@ -41,6 +48,7 @@ const RegistrationPage = ({handleLogin}) => {
             console.log(e);
             if (e instanceof TypeError) showErrorAlert("Invalid E-mail adresse please use example@example.com form");
             else if (e instanceof ReferenceError) showErrorAlert("Username, password and email fields are required! ");
+            else if (e instanceof RangeError) showErrorAlert("Wrong username or password, try again!");
             else showErrorAlert("Registration failed! This username is in use!");
         }
     };
