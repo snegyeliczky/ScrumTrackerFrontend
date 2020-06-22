@@ -7,9 +7,12 @@ import UseComponentVisible from "../../Utils/UseComponentVisible";
 import ProjectCalls from "../../Services/ProjectCalls";
 import TaskCalls from "../../Services/TaskCalls";
 
-const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuses, countBusinessValue, usersOnProject}) => {
+const ScrumTable = ({
+                        table, addNewColumn, addNewTask, countBusinessValue,
+                        usersOnProject, tasksDistributionInStatuses, refreshScrumTableBackend
+                    }) => {
 
-    const [statuses, setStatuses] = useState(table.statuses);
+    let statuses = table.statuses;
     const newColumnRef = useRef();
     const [DragItemColumnId, setDragItemColumnId] = useState();
     const dragItem = useRef(); //dragged task id and status id where it come from
@@ -25,7 +28,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
 
     const deleteStatus = async (statusID) => {
         await ProjectCalls.deleteStatus(statusID, table.id);
-        refreshStatusesFromBackend();
+        refreshScrumTableBackend();
     };
 
     const refreshStatusesFromBackend = async () => {
@@ -33,9 +36,9 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
         ScrumTable.statuses.sort(function (a, b) {
             return a.position - b.position;
         });
-        ScrumTable.statuses.map(status => {
+        ScrumTable.statuses.map(status =>{
             console.log(status.tasks)
-            status.tasks.sort(function (a, b) {
+            status.tasks.sort(function (a,b) {
                 return a.position - b.position;
             });
             console.log(status.tasks)
@@ -67,10 +70,9 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
         setDragItemColumnId(newStatusId);
     };
 
-    const onDragEnd = () => {
-        uploadStatusChangeToDatabase();
-        setStatuses(refreshStatus(DragItemColumnId));
-
+    const onDragEnd = async () => {
+        statuses = refreshStatus(DragItemColumnId);
+        await uploadStatusChangeToDatabase();
     };
 
 
@@ -126,7 +128,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
                         key={status.id}
                         status={status}
                         onDragEnter={onDragEnter}
-                        refreshStatusesFromBackend={refreshStatusesFromBackend}
+                        refreshStatusesFromBackend={refreshScrumTableBackend}
                         addNewTask={addNewTask}
                         usersOnProject={usersOnProject}
                     />

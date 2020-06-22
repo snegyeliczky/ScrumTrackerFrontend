@@ -1,5 +1,5 @@
 import React, {useState, useRef, useContext, useEffect} from 'react';
-import {DeleteOutlined, ApiOutlined, AlertTwoTone } from "@ant-design/icons";
+import {DeleteOutlined, ApiOutlined, AlertTwoTone,SmileTwoTone  } from "@ant-design/icons";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
 import TaskModal from "../TaskModal";
 import TaskCalls from "../../Services/TaskCalls";
@@ -10,6 +10,8 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
     const [dragging, setDragging] = useState(false);
 
     const visualDateFormat = {month: 'long', day: 'numeric'};
+
+
 
     const handleDrag = (e) => {
         let dragItemParams = {
@@ -84,6 +86,7 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
             </div>
             <div className="project_title">{thisTask.title}</div>
             <div className={"task_data_container"}>
+                <div className={"owner"}>{thisTask.owner?<SmileTwoTone />:''}</div>
                 <div className={"businessValue"}>{thisTask.priority>0?"Pri.: "+thisTask.priority:''}</div>
                 <div className={"deadline"}>
                     {thisTask.deadline ? new Intl.DateTimeFormat('en-US', visualDateFormat).format(new Date(thisTask.deadline)) : ""}

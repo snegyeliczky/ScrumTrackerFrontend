@@ -6,6 +6,8 @@ import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/sty
 import TaskCalls from "../Services/TaskCalls";
 import Select from "antd/es/select";
 import moment from 'moment';
+import locale from 'antd/es/date-picker/locale/hu_HU';
+import {LocalDate} from "@js-joda/core";
 
 
 
@@ -22,13 +24,16 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     const positionRef = useRef(task.position);
     const [deadlineRef,setDeadlineRef] = useState(task.deadline);
 
+    const options = {
+        year: 'numeric', month: 'numeric', day: 'numeric',
+        hour: 'numeric', minute: 'numeric', second: 'numeric'
+    };
 
     const handleEdit = () => {
         uploadChanges();
     };
 
     async function uploadChanges() {
-        console.log(deadlineRef);
         let editedTask = {
             id: null,
             author: null,
@@ -57,9 +62,9 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
         setVisible(true)
     }
 
-    function handleTimeChange(date){
-        console.log(date);
-        setDeadlineRef(date._i)
+    function handleTimeChange(date, dateString){
+        date= new Date(date);
+        setDeadlineRef(date);
     }
 
 
@@ -146,12 +151,13 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                         <div className={"task_data_selector"}>
                             <label>Deadline: </label>
                             <DatePicker
+                                //locale={locale}
                                 style={{width:"90%"}}
                                 className={"deadline_picker"}
                                 defaultValue={deadlineRef?moment(deadlineRef):''}
-                                format={'MM.DD HH:mm'}
+                                format={'MM.DD'/* + "hh.mm"*/}
                                 onChange={handleTimeChange}
-                                showTime={true}
+                                //showTime={true}
                             />
 
                             <div className="modal_btn"

@@ -120,13 +120,17 @@ input:focus {
 
 .businessValue{
     padding: 5px;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .deadline{
     padding: 5px;
-    font-size: 12px;
+    font-size: 10px;
 
+}
+
+.owner{
+    font-size: 14px;
 }
 
 .alert{
@@ -375,6 +379,17 @@ textarea {
 
 /*-----------------------------PIE CHART STYLE-----------------------------*/
 
+.task_distribution_container{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.task_distribution{
+    padding: 20px;
+    font-size: 16px;
+    color: #373A55;
+}
 
 @media screen and (max-width: 600px) {
     .scrum_table {
