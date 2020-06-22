@@ -122,25 +122,34 @@ body::-webkit-scrollbar-thumb {
   background-attachment: fixed;
   background-size: cover;
   background-position-y: 0%;
-  background-image: url("Assets/Pictures/person-writing-on-notebook-669615.jpg");
+  background-image: url("Assets/Pictures/man-wearing-black-and-white-stripe-shirt-looking-at-white-212286.jpg");
   height: 90vh;
   width: 100%;
 }
 
 .homepage {
   display: flex;
-  justify-content: center;
   padding-top: 2rem;
   width: 90%;
 }
 
 .homepage_data_container{
-  text-align: center;
-  background-color: rgba(245, 242, 224,0.9);
+  text-align: left;
+  background-color: rgba(245, 242, 224,0.5);
   padding: 1rem;
   width: fit-content;
   height: fit-content;
   border-radius: 20px;
+}
+
+.homepage_data_container a{
+  color: #373A55;
+  font-size: 20px;
+}
+
+.homepage_data_container a:hover{
+  color: cornflowerblue;
+  cursor: pointer;
 }
 
 .content_container {
