@@ -23,7 +23,7 @@ const HomePage = () => {
                 <div className={"homepage_data_container"}>
                     <h1>WELCOME {localStorage.getItem("username")} !</h1>
                     <a href={"/projects"}>Let's check your projects <SnippetsOutlined /> </a>
-                    {user.projects}
+                    <p> Total projects <SnippetsOutlined /> :  {user.projectsCount} </p>
                 </div>
             </div>
         </div>
