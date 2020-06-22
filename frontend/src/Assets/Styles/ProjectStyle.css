@@ -129,6 +129,10 @@ input:focus {
 
 }
 
+.owner{
+    font-size: 14px;
+}
+
 .alert{
     font-size: 12px;
 }
