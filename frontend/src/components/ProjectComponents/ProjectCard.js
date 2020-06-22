@@ -31,8 +31,13 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
     const handleDelete = async (e) => {
         e.stopPropagation();
-        await ProjectCalls.deleteProject(project.id);
-        getProjects();
+        try {
+            await ProjectCalls.deleteProject(project.id);
+            getProjects();
+        } catch (e) {
+            alert(e.response.data.errors)
+        }
+
     };
 
     const archiveProject = async (e) =>{

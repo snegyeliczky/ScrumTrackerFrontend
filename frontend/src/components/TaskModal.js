@@ -22,7 +22,6 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     const positionRef = useRef(task.position);
     const [deadlineRef,setDeadlineRef] = useState(task.deadline);
 
-    console.log(deadlineRef);
 
     const handleEdit = () => {
         uploadChanges();
@@ -59,8 +58,8 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     }
 
     function handleTimeChange(date){
-        setDeadlineRef(date._d)
-        console.log(date._d)
+        console.log(date);
+        setDeadlineRef(date._i)
     }
 
 

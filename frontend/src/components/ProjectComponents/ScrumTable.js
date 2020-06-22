@@ -7,7 +7,7 @@ import UseComponentVisible from "../../Utils/UseComponentVisible";
 import ProjectCalls from "../../Services/ProjectCalls";
 import TaskCalls from "../../Services/TaskCalls";
 
-const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuses, countBusinessValue,usersOnProject}) => {
+const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuses, countBusinessValue, usersOnProject}) => {
 
     const [statuses, setStatuses] = useState(table.statuses);
     const newColumnRef = useRef();
@@ -24,7 +24,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
 
 
     const deleteStatus = async (statusID) => {
-        await ProjectCalls.deleteStatus(statusID,table.id);
+        await ProjectCalls.deleteStatus(statusID, table.id);
         refreshStatusesFromBackend();
     };
 
@@ -33,9 +33,9 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
         ScrumTable.statuses.sort(function (a, b) {
             return a.position - b.position;
         });
-        ScrumTable.statuses.map(status =>{
+        ScrumTable.statuses.map(status => {
             console.log(status.tasks)
-            status.tasks.sort(function (a,b) {
+            status.tasks.sort(function (a, b) {
                 return a.position - b.position;
             });
             console.log(status.tasks)
@@ -46,12 +46,20 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
     };
 
     const uploadStatusChangeToDatabase = async () => {
+        let prevColumn = dragItem.current.statusId;
+        console.log(prevColumn);
         let refreshItem = {
             toStatusId: DragItemColumnId,
             fromStatusId: dragItem.current.statusId,
             taskId: dragItem.current.taskObject.id
         };
-        await TaskCalls.uploadStatusChangeToDatabase(refreshItem);
+        try {
+            await TaskCalls.uploadStatusChangeToDatabase(refreshItem);
+        } catch (e) {
+            alert(e.response.data.errors)
+            console.log(prevColumn);
+
+        }
     };
 
 
@@ -60,8 +68,9 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
     };
 
     const onDragEnd = () => {
-        setStatuses(refreshStatus(DragItemColumnId));
         uploadStatusChangeToDatabase();
+        setStatuses(refreshStatus(DragItemColumnId));
+
     };
 
 
@@ -97,7 +106,7 @@ const ScrumTable = ({table, addNewColumn, addNewTask, tasksDistributionInStatuse
 
     return (
         <div className={"scrum_table"}
-                          onDragOver={(e) => e.preventDefault()}>
+             onDragOver={(e) => e.preventDefault()}>
             {
                 statuses.map((status, i) => {
                     let statusFlag = null;
