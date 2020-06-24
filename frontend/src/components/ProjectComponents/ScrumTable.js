@@ -10,7 +10,8 @@ import {ProjectContext} from "../../Contexts/ProjectContext";
 
 const ScrumTable = ({
                         table, addNewColumn, addNewTask, countBusinessValue,
-                        usersOnProject, tasksDistributionInStatuses, refreshScrumTableBackend
+                        usersOnProject, tasksDistributionInStatuses, refreshScrumTableBackend,
+                        projectAuthor
                     }) => {
 
     const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
@@ -117,13 +118,13 @@ const ScrumTable = ({
             {
                 statuses.map((status, i) => {
                     let statusFlag = null;
-
                     if (i === 0) {
                         statusFlag = "start";
                     }
                     if (i === statuses.length - 1) {
                         statusFlag = "finish";
                     }
+
 
                     return <Column
                         statusFlag={statusFlag}
@@ -136,6 +137,7 @@ const ScrumTable = ({
                         refreshStatusesFromBackend={refreshStatusesFromBackend}
                         addNewTask={addNewTask}
                         usersOnProject={usersOnProject}
+                        projectAuthor = {projectAuthor}
                     />
 
                 })

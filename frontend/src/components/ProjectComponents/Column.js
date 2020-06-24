@@ -8,7 +8,8 @@ import UseComponentVisible from "../../Utils/UseComponentVisible";
 import {ProjectContext} from "../../Contexts/ProjectContext";
 import TaskCalls from "../../Services/TaskCalls";
 
-const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend, statusFlag, addNewTask, usersOnProject}) => {
+const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend,
+                    statusFlag, addNewTask, usersOnProject, projectAuthor }) => {
 
     const newTaskNameRef = useRef();
     const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
@@ -67,6 +68,8 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
                         task={task}
                         onDragEnter={onDragEnter}
                         usersOnProject={usersOnProject}
+                        projectAuthor = {projectAuthor}
+                        statusFlag ={statusFlag}
                     />
                 })}
             <div ref={ref}>

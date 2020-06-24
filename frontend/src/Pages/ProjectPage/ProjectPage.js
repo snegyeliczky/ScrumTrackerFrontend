@@ -169,6 +169,7 @@ const ProjectPage = () => {
                                 usersOnProject={usersOnProject}
                                 countBusinessValue={getBusinessValueChartData}
                                 refreshScrumTableBackend={refreshScrumTableBackend}
+                                projectAuthor = {project.author.username}
 
                     />
                 </div>
