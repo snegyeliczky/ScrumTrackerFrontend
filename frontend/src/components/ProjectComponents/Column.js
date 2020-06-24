@@ -7,6 +7,7 @@ import axios from "axios";
 import UseComponentVisible from "../../Utils/UseComponentVisible";
 import {ProjectContext} from "../../Contexts/ProjectContext";
 import TaskCalls from "../../Services/TaskCalls";
+import LikeOutlined from "@ant-design/icons/lib/icons/LikeOutlined";
 
 const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refreshStatusesFromBackend,
                     statusFlag, addNewTask, usersOnProject, projectAuthor }) => {
@@ -15,6 +16,11 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
     const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
     const [showAccept,setShowAccept] = useState(true);
 
+
+    const handleShowAcceptChange =()=>{
+        setShowAccept(!showAccept);
+        refreshStatusesFromBackend();
+    };
 
     //Click outside effect fields
     const {
@@ -45,6 +51,10 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
         newTaskNameRef.current.value = "";
     };
 
+    const showAcceptStyle={
+        color: showAccept?"green":"",
+    };
+
     return (
         <div className={"project_column"}
              onDragEnter={(e) => (onDragEnter(status.id))}
@@ -52,6 +62,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
             <div>
                 <div className={"status_tool_container"}>
                     <DeleteOutlined onClick={handelDeleteClick}/>
+                    {statusFlag==="finish"? <LikeOutlined style={showAcceptStyle} onClick={handleShowAcceptChange}/>:""}
                 </div>
                 <h3>{status.statusName} </h3>
             </div>
