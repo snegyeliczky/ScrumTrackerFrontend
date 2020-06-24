@@ -1,5 +1,5 @@
 import React, {useState, useRef, useContext, useEffect} from 'react';
-import {DeleteOutlined, ApiOutlined, AlertTwoTone, SmileTwoTone} from "@ant-design/icons";
+import {DeleteOutlined, ApiOutlined, AlertTwoTone, SmileTwoTone,LikeOutlined} from "@ant-design/icons";
 import {ContentContainer} from "../../Assets/StyledComps/styled";
 import TaskModal from "../TaskModal";
 import TaskCalls from "../../Services/TaskCalls";
@@ -64,6 +64,10 @@ const Task = ({
 
     };
 
+    const showAcceptStyle={
+        color: task.finished?"green":"",
+    };
+
     return (
         <div style={backgroundIfMyTask}
              className={dragging ? draggingStyle(task.id) : "task_card"}
@@ -85,7 +89,7 @@ const Task = ({
                 {
                     (projectAuthor === localStorage.getItem("username") && statusFlag === "finish") ?
                         <div>
-                            <ApiOutlined onClick={(e) => acceptTask(e)}/>
+                            <LikeOutlined style={showAcceptStyle} onClick={(e) => acceptTask(e)}/>
                         </div>
                         :
                         ''
