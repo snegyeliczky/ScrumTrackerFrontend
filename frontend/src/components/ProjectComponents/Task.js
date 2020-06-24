@@ -15,7 +15,6 @@ const Task = ({
     const visualDateFormat = {month: 'long', day: 'numeric'};
 
 
-    console.log(projectAuthor);
 
     const handleDrag = (e) => {
         let dragItemParams = {

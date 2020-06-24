@@ -40,13 +40,10 @@ const ScrumTable = ({
             return a.position - b.position;
         });
         ScrumTable.statuses.map(status =>{
-            console.log(status.tasks)
             status.tasks.sort(function (a,b) {
                 return a.position - b.position;
             });
-            console.log(status.tasks)
         });
-        console.log(ScrumTable.statuses);
         tasksDistributionInStatuses(ScrumTable.statuses);
         countBusinessValue(ScrumTable.statuses);
         setStatuses(ScrumTable.statuses);
@@ -54,7 +51,6 @@ const ScrumTable = ({
 
     const uploadStatusChangeToDatabase = async () => {
         let prevColumn = dragItem.current.statusId;
-        console.log(prevColumn);
         let refreshItem = {
             toStatusId: DragItemColumnId,
             fromStatusId: dragItem.current.statusId,
