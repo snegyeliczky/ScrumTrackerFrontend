@@ -13,7 +13,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
 
     const newTaskNameRef = useRef();
     const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
-
+    const [showAccept,setShowAccept] = useState(true);
 
 
     //Click outside effect fields
@@ -58,7 +58,8 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
             {status.tasks.length === 0 ?
                 <h4>No task yet</h4>
                 : status.tasks.map(task => {
-                    return <Task
+                   return  showAccept ?
+                    <Task
                         refreshStatusesFromBackend={refreshStatusesFromBackend}
                         handleDeleteTask={handleDeleteTask}
                         onDragEnd={onDragEnd}
@@ -71,6 +72,21 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
                         projectAuthor = {projectAuthor}
                         statusFlag ={statusFlag}
                     />
+                    : task.finished? ""
+                           :<Task
+                               refreshStatusesFromBackend={refreshStatusesFromBackend}
+                               handleDeleteTask={handleDeleteTask}
+                               onDragEnd={onDragEnd}
+                               dragItem={dragItem}
+                               statusId={status.id}
+                               key={task.id}
+                               task={task}
+                               onDragEnter={onDragEnter}
+                               usersOnProject={usersOnProject}
+                               projectAuthor = {projectAuthor}
+                               statusFlag ={statusFlag}
+                           />;
+
                 })}
             <div ref={ref}>
                 {isComponentVisible && (
