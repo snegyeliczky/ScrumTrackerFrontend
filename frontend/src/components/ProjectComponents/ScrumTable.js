@@ -45,6 +45,7 @@ const ScrumTable = ({
             });
             console.log(status.tasks)
         });
+        console.log(ScrumTable.statuses);
         tasksDistributionInStatuses(ScrumTable.statuses);
         countBusinessValue(ScrumTable.statuses);
         setStatuses(ScrumTable.statuses);

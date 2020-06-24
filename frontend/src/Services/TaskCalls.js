@@ -11,8 +11,8 @@ export default {
         await axios.put("http://localhost:8080/task/transfer", newCardPosition);
     },
 
-    archiveTask : async(taskId)=> {
-        await axios.put("http://localhost:8080/task/archive/" + taskId);
+    acceptTask : async(taskId)=> {
+        await axios.put("http://localhost:8080/task/finishtask/" + taskId);
     },
 
     uploadChanges: async (taskId,editedTask)=> {

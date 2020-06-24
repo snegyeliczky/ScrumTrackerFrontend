@@ -34,9 +34,9 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
         dragItem.current = null;
     };
 
-    async function archiveTask(e) {
+    async function acceptTask(e) {
         e.stopPropagation();
-        await TaskCalls.archiveTask(task.id);
+        await TaskCalls.acceptTask(task.id);
         refreshStatusesFromBackend();
     }
 
@@ -80,8 +80,8 @@ const Task = ({task, statusId, onDragEnd, dragItem, handleDeleteTask, refreshSta
                     refreshStatusesFromBackend={refreshStatusesFromBackend}
                     usersOnProject={usersOnProject}
                 />
-                <div style={{display: "none"}}>
-                    <ApiOutlined onClick={(e) => archiveTask(e)}/>
+                <div>
+                    <ApiOutlined onClick={(e) => acceptTask(e)}/>
                 </div>
             </div>
             <div className="project_title">{thisTask.title}</div>
