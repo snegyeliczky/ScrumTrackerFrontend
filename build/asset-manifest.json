@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.950b7e41.chunk.css",
+    "main.js": "/static/js/main.e1bdaae4.chunk.js",
+    "main.js.map": "/static/js/main.e1bdaae4.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8dc0443e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8dc0443e.js.map",
+    "static/css/2.4c6ee7a4.chunk.css": "/static/css/2.4c6ee7a4.chunk.css",
+    "static/js/2.61939000.chunk.js": "/static/js/2.61939000.chunk.js",
+    "static/js/2.61939000.chunk.js.map": "/static/js/2.61939000.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.d7bd4b9ab198e7952c746f98701f5fbd.js": "/precache-manifest.d7bd4b9ab198e7952c746f98701f5fbd.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.4c6ee7a4.chunk.css.map": "/static/css/2.4c6ee7a4.chunk.css.map",
+    "static/css/main.950b7e41.chunk.css.map": "/static/css/main.950b7e41.chunk.css.map",
+    "static/js/2.61939000.chunk.js.LICENSE.txt": "/static/js/2.61939000.chunk.js.LICENSE.txt",
+    "static/media/AuthStyle.css": "/static/media/ideas-whiteboard-person-working-7369.08dd39d7.jpg",
+    "static/media/index.css": "/static/media/man-wearing-black-and-white-stripe-shirt-looking-at-white-212286.8ada4074.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8dc0443e.js",
+    "static/css/2.4c6ee7a4.chunk.css",
+    "static/js/2.61939000.chunk.js",
+    "static/css/main.950b7e41.chunk.css",
+    "static/js/main.e1bdaae4.chunk.js"
+  ]
+}
