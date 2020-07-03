@@ -1,0 +1,409 @@
+
+.dragged.task_card:active {
+    display: none;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+    border-bottom: 2px solid #373A55;
+}
+
+.project_item_container {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.scrum_table_container{
+    display: block;
+    width: 98%;
+    margin-left: 1%;
+    overflow: auto;
+}
+
+.scrum_table{
+    display: inline-flex;
+    min-width: 95%;
+    margin: 2.5%;
+    justify-content: center;
+}
+
+.add_component_container,
+.project_page__create_project_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.project_column,
+.project_card {
+    display: block;
+    min-height: 120px;
+    max-height: calc(100vh - 210px);
+    height: fit-content;
+    text-align: center;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 0.3rem;
+    width: 225px;
+    background-color: #ddd4d4;
+    color: #373A55;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    overflow: auto;
+}
+
+.project_title_container{
+    width: 70%;
+    text-align: center;
+    font-weight: bold;
+    color: #373A55;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.project_card_title {
+    font-weight: bold;
+    color: #373A55;
+    font-size: 1rem;
+    opacity: 1;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    overflow-wrap: anywhere;
+}
+
+.status_tool_container{
+    float: right;
+    display: flex;
+    height: fit-content;
+    margin: 10px;
+    font-size: 15px;
+}
+
+
+.project_tool_container{
+    display: flex;
+    justify-content: flex-end;
+    height: fit-content;
+    font-size: 15px;
+}
+
+.task_card {
+    justify-content: center;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    min-height: 4rem;
+    background-color: #f9fcfa;
+    font-size: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.task_card:hover,
+.task_card:active {
+    background-color: #f2eaea;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.task_data_container{
+    display: flex;
+    justify-content: center;
+}
+
+.businessValue{
+    padding: 5px;
+    font-size: 10px;
+}
+
+.deadline{
+    padding: 5px;
+    font-size: 10px;
+
+}
+
+.owner{
+    font-size: 14px;
+}
+
+.alert{
+    font-size: 12px;
+}
+
+.task_modal{
+
+}
+
+.text_modal{
+    display: grid;
+    margin-top: 30px;
+    color: #373A55;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.text_input{
+    width: 90%;
+    border: none;
+    border-bottom: 0.5px solid ;
+}
+
+textarea {
+    height: 100px;
+}
+
+.project_title {
+    overflow-wrap: break-word;
+    text-align: left;
+    font-size: small;
+}
+
+/*-------------------------MODAL STYLE------------------------- */
+
+.modal_btn {
+    color: antiquewhite;
+    background-color: forestgreen;
+    width: 4rem;
+    border-radius: 8px;
+    margin: 4px 0 4px 0;
+    text-align: center;
+    display: none;
+    padding: 4px;
+    font-weight: 100;
+}
+
+.modal_btn:hover,
+.modal_btn:active {
+    cursor: pointer;
+    display: block;
+}
+
+.text_input.title:focus + .modal_btn{
+    display: block;
+}
+
+.text_input.userStory:focus + .modal_btn{
+    display: block;
+}
+
+.priority:focus-within + .modal_btn {
+    display: block;
+}
+
+.owner:focus-within + .modal_btn {
+    display: block;
+}
+
+.deadline_picker:focus-within + .modal_btn {
+    display: block;
+}
+
+.participant_users{
+    margin: 20px;
+}
+
+.user_icon{
+    text-align: center;
+    font-size: 20px;
+}
+
+.task_data_selector{
+    color: #373A55;
+}
+
+/*-------------------------MODAL STYLE------------------------- */
+
+.anticon-plus,
+.anticon-close {
+    margin-top: 4px;
+    padding: 8px;
+}
+
+.anticon-plus:hover,
+.anticon-plus:active,
+.anticon-close:hover,
+.anticon-close:active {
+    cursor: pointer;
+    background-color: #ddd4d4;
+    border-radius: 8px;
+}
+
+.add_new_column_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add_new_column_text {
+    width: 180px;
+    border: none;
+    margin-top: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+.add_new_column_text:focus {
+    border-bottom: none;
+}
+
+.add_new_column_text:focus + .add_new_column_btn {
+    display: block;
+}
+
+.add_new_column_btn {
+    color: antiquewhite;
+    background-color: forestgreen;
+    width: 4rem;
+    border-radius: 8px;
+    margin: 4px 0 4px 0;
+    text-align: center;
+    padding: 4px;
+    font-weight: 100;
+    position: relative;
+    display: none;
+}
+
+.add_new_column_btn:hover,
+.add_new_column_btn:active {
+    cursor: pointer;
+    display: block;
+}
+
+/*-----------------------------NEW TASK STYLE-----------------------------*/
+
+.add_new_task_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add_new_task {
+    margin-top: 8px;
+}
+
+.add_new_task:hover {
+    background-color: #d1c4c4;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.add_new_task_text {
+    width: 180px;
+    border: none;
+    margin-top: 1rem;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+.add_new_task_text:focus {
+    display: block;
+    border: none;
+}
+
+.add_new_task_text:focus + .add_new_task_btn {
+    display: block;
+}
+
+.add_new_task_btn {
+    color: antiquewhite;
+    background-color: forestgreen;
+    width: 4rem;
+    border-radius: 8px;
+    margin: 4px 0 4px 0;
+    text-align: center;
+    padding: 4px;
+    font-weight: 100;
+    position: relative;
+    display: none;
+}
+
+.add_new_task_btn:active,
+.add_new_task_btn:hover {
+    display: block;
+    cursor: pointer;
+}
+
+/*-----------------------------NEW TASK STYLE-----------------------------*/
+
+
+/*-----------------------------PROJECT ARCHIVE PART-----------------------------*/
+
+.project_text {
+    background-color: #e8dede;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    padding: 0.5rem;
+
+
+}
+
+
+.project_text.archive:hover {
+    background-color: #e0d0d0;
+    cursor: pointer;
+}
+/*-----------------------------PROJECT ARCHIVE PART-----------------------------*/
+
+
+/*-----------------------------PIE CHART STYLE-----------------------------*/
+
+.chart_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+
+}
+
+.chart_box {
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    max-width: 50%;
+}
+
+.chart {
+    margin: 1rem;
+    opacity: 0.8;
+    width: 70%;
+    height: 70%;
+}
+
+
+/*-----------------------------PIE CHART STYLE-----------------------------*/
+
+.task_distribution_container{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.task_distribution{
+    padding: 20px;
+    font-size: 16px;
+    color: #373A55;
+}
+
+@media screen and (max-width: 600px) {
+    .scrum_table {
+        flex-wrap: wrap;
+    }
+
+    #add_status_icon{
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .chart_box {
+        max-width: 100%;
+    }
+}
+

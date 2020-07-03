@@ -1,0 +1,96 @@
+.authpage_container {
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 95% 70%;
+    background-size: cover;
+    background-image: url("../Pictures/ideas-whiteboard-person-working-7369.jpg");
+    height: 100vh;
+    width: 100%;
+}
+
+
+.login_form,
+.registration_form {
+    text-align:  center;
+}
+
+.authpage_text {
+    text-align: right;
+    font-size: 2rem;
+    margin: 0 2rem 1rem 1rem;
+    padding:  0 1rem 1rem 1rem;
+    color: #373A55;
+}
+
+.authpage_form {
+    align-self: flex-end;
+    margin-right: 2rem;
+    text-align: center;
+    background: rgba(55, 58, 85,0.9);
+    padding: 2rem;
+    border-radius: 15px;
+
+}
+
+.registration_input,
+.login_input {
+    margin: 1rem;
+}
+
+.authpage_select_btn_container {
+    margin: 0 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.auth_submit_btn {
+    margin: 1rem;
+}
+
+.btn_active,
+.btn_not_active{
+    margin: 0 1rem 1rem 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.btn_not_active {
+    font-weight: bold;
+    color: #f9f7f7;
+    background-color: #373A55;
+}
+
+.btn_active {
+    background-color: #f9f7f7;
+    color: #373A55;
+    font-weight: bold;
+}
+
+.btn_active:hover,
+.btn_active:active,
+.btn_not_active:hover,
+.btn_not_active:active {
+    cursor: pointer;
+}
+
+.btn_not_active:hover,
+.btn_not_active:active {
+    background-color: #f9f7f7;
+    color: #373A55;
+}
+
+.btn_active.auth {
+    width: 50%;
+    align-self: center;
+}
+
+@media screen and (max-width: 600px) {
+
+}
