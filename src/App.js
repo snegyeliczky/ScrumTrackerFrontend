@@ -28,7 +28,6 @@ function App() {
                 </div>
             </ProjectProvider>
         </Router>
-
     )
         ;
 }
