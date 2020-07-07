@@ -16,7 +16,6 @@ const ProjectPage = () => {
     const [scrumTable,setScrumTable] = useState(null);
     const [taskCount, setTaskCount] = useState({});
     const [businessValueCount, setBusinessValueCount] = useState({});
-    const [mouseOverAccept, setMouseOverAccept] = useState(false);
     const [usersOnProject, setUsersOnProject] = useState([]);
 
     function getColaboratorsFromProject(project) {
