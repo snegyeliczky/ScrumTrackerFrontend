@@ -6,8 +6,22 @@
   from = "/"
   to = "/index.html"
   status = 200
+[[redirects]]
+  from = "/login"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects"
+  to = "/index.html"
+  status = 200
   
 [[redirects]]
-  from = "/auth"
+  from = "/project/*"
+  to = "/index.html"
+  status = 200
+  
+[[redirects]]
+  from = "/auth/*"
   to ="https://projecttrackcc.herokuapp.com"
   status =200
