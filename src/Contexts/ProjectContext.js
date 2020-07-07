@@ -1,5 +1,4 @@
 import React, {useState, createContext, useEffect} from "react";
-import axios from "axios";
 import ProjectCalls from "../Services/ProjectCalls";
 export const ProjectContext = createContext();
 

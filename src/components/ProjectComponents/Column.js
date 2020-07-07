@@ -1,9 +1,8 @@
-import React, {useState, useRef, useContext, useEffect} from 'react';
+import React, {useState, useRef, useContext} from 'react';
 import Task from "./Task";
 import {
     DeleteOutlined
 } from '@ant-design/icons';
-import axios from "axios";
 import UseComponentVisible from "../../Utils/UseComponentVisible";
 import {ProjectContext} from "../../Contexts/ProjectContext";
 import TaskCalls from "../../Services/TaskCalls";
@@ -13,7 +12,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
                     statusFlag, addNewTask, usersOnProject, projectAuthor }) => {
 
     const newTaskNameRef = useRef();
-    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
+    const {showErrorAlert} = useContext(ProjectContext);
     const [showAccept,setShowAccept] = useState(true);
 
 

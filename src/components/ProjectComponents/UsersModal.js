@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {Modal, Button} from 'antd';
+import {Modal} from 'antd';
 import 'antd/dist/antd.css';
 import {UsergroupAddOutlined, UserAddOutlined, UserOutlined} from "@ant-design/icons";
-import {AdderComponent, ContentContainer, Input} from "../../Assets/StyledComps/styled";
+import { ContentContainer} from "../../Assets/StyledComps/styled";
 import Autocomplete from 'react-autocomplete';
-import axios from "axios";
+
+import UserCalls from "../../Services/UserCalls";
+import ProjectCalls from "../../Services/ProjectCalls";
 
 
 const UsersModal = ({projectId, participants}) => {
@@ -19,8 +21,8 @@ const UsersModal = ({projectId, participants}) => {
         setValue(userName);
         if (userName.length > 2) {
             let userObj = {username: userName};
-            let axiosResponse = await axios.post("http://localhost:8080/user/search", userObj);
-            setUsers(axiosResponse.data);
+            let axiosResponse =await UserCalls.getSearchUsers(userObj);
+            setUsers(axiosResponse);
         }
 
 
@@ -37,8 +39,8 @@ const UsersModal = ({projectId, participants}) => {
 
     async function handleAddUser() {
         let user = {username: value};
-        let axiosResponse = await axios.post("http://localhost:8080/project/adduser/" + projectId, user);
-        setProjectParticipants(axiosResponse.data);
+        let axiosResponse = await ProjectCalls.addUserToProject(projectId,user);
+        setProjectParticipants(axiosResponse);
     }
 
     return (

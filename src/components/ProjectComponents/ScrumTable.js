@@ -1,7 +1,5 @@
-import React, {useState, useContext, useEffect, useRef} from 'react';
+import React, {useState, useContext, useRef} from 'react';
 import Column from "./Column";
-import axios from "axios";
-import {ContentContainer} from "../../Assets/StyledComps/styled"
 import {PlusOutlined} from "@ant-design/icons";
 import UseComponentVisible from "../../Utils/UseComponentVisible";
 import ProjectCalls from "../../Services/ProjectCalls";
@@ -14,7 +12,7 @@ const ScrumTable = ({
                         projectAuthor
                     }) => {
 
-    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
+    const {showErrorAlert} = useContext(ProjectContext);
     const [statuses, setStatuses] = useState(table.statuses);
     const newColumnRef = useRef();
     const [DragItemColumnId, setDragItemColumnId] = useState();

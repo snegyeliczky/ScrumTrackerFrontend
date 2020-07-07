@@ -3,8 +3,6 @@ import 'antd/dist/antd.css';
 import {MailOutlined} from "@ant-design/icons";
 import {Button, Modal} from "antd";
 import {ContentContainer} from "../Assets/StyledComps/styled";
-import axios from "axios";
-import Alert from "antd/es/alert";
 import {ProjectContext} from "../Contexts/ProjectContext";
 import ProjectCalls from "../Services/ProjectCalls";
 

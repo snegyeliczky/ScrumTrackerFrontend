@@ -1,13 +1,11 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
-import {Modal, Button, DatePicker} from 'antd';
+import React, {useContext, useRef, useState} from 'react';
+import {Modal, DatePicker} from 'antd';
 import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
-import {AdderComponent, ContentContainer, Input} from "../Assets/StyledComps/styled";
+import {ContentContainer} from "../Assets/StyledComps/styled";
 import TaskCalls from "../Services/TaskCalls";
 import Select from "antd/es/select";
 import moment from 'moment';
-import locale from 'antd/es/date-picker/locale/hu_HU';
-import {LocalDate} from "@js-joda/core";
 import {ProjectContext} from "../Contexts/ProjectContext";
 
 
@@ -17,7 +15,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     const {Option} = Select;
     const priorityList = Array.from({length: 10}, (k, v) => v + 1);
 
-    const {showErrorAlert, showSuccessAlert} = useContext(ProjectContext);
+    const {showErrorAlert} = useContext(ProjectContext);
     const [visible, setVisible] = useState(false);
     const [priorityRef, setPriorityRef] = useState(task.priority);
     const [ownerRef, setOwnerRef] = useState(task.owner);
@@ -26,10 +24,12 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     const positionRef = useRef(task.position);
     const [deadlineRef,setDeadlineRef] = useState(task.deadline);
 
+    /*
     const options = {
         year: 'numeric', month: 'numeric', day: 'numeric',
         hour: 'numeric', minute: 'numeric', second: 'numeric'
     };
+    */
 
     const handleEdit = () => {
         if (titleRef.current.value === "") {

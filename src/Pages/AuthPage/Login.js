@@ -1,5 +1,4 @@
 import React, {useContext, useState} from "react";
-import axios from 'axios';
 import {useHistory} from "react-router-dom";
 import {ProjectContext} from "../../Contexts/ProjectContext";
 import '../../Assets/Styles/AuthStyle.css';
@@ -11,8 +10,7 @@ const LoginPage = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const history = useHistory();
-    const {getProjects, projects} = useContext(ProjectContext);
-    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
+    const {showErrorAlert} = useContext(ProjectContext);
 
     const onLogin = async () => {
         let user = {

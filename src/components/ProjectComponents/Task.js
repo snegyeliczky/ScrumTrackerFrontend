@@ -1,6 +1,6 @@
-import React, {useState, useRef, useContext, useEffect} from 'react';
-import {DeleteOutlined, ApiOutlined, AlertTwoTone, SmileTwoTone,LikeOutlined} from "@ant-design/icons";
-import {ContentContainer} from "../../Assets/StyledComps/styled";
+import React, {useState} from 'react';
+import {DeleteOutlined, AlertTwoTone, SmileTwoTone,LikeOutlined} from "@ant-design/icons";
+
 import TaskModal from "../TaskModal";
 import TaskCalls from "../../Services/TaskCalls";
 

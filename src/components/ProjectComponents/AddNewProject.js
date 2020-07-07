@@ -1,5 +1,4 @@
 import React, {useContext, useRef} from "react";
-import axios from 'axios';
 import {ProjectContext} from '../../Contexts/ProjectContext'
 import {AdderComponent,Input} from "../../Assets/StyledComps/styled";
 import {
@@ -11,7 +10,7 @@ const AddNewProject = () => {
 
     const projectNameRef = useRef();
     const {getProjects} = useContext(ProjectContext);
-    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
+    const {showErrorAlert} = useContext(ProjectContext);
 
     async function addNewProject() {
         if (projectNameRef.current.value.length < 3) {

@@ -1,9 +1,6 @@
 import React, {useContext, useState} from "react";
-import axios from 'axios';
-import {useHistory} from "react-router-dom";
 import '../../Assets/Styles/AuthStyle.css';
 import {ProjectContext} from "../../Contexts/ProjectContext";
-import {ContentContainer} from "../../Assets/StyledComps/styled";
 import AuthCalls from "../../Services/AuthCalls";
 
 const RegistrationPage = ({handleLogin}) => {

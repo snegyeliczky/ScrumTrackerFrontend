@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 
 
@@ -69,8 +68,10 @@ export default {
     sendProjectInProgressLimit : async (tableCredentials) =>{
         let axiosResponse = await axios.put("/project/table/limit/", tableCredentials);
         return axiosResponse.data;
+    },
+
+    addUserToProject : async (projectId,user)=>{
+        let respons = await axios.post("/project/adduser/" + projectId, user);
+        return respons.data;
     }
-
-
-
 }

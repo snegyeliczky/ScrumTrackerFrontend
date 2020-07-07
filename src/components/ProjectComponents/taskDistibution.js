@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserOutlined,SnippetsOutlined} from "@ant-design/icons";
+import {SnippetsOutlined} from "@ant-design/icons";
 
 const TaskDistibution = ({user}) => {
     return (

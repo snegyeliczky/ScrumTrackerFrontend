@@ -6,7 +6,7 @@ import ProjectCalls from "../../Services/ProjectCalls";
 
 const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
-    const {showErrorAlert,showSuccessAlert} = useContext(ProjectContext);
+    const {showErrorAlert} = useContext(ProjectContext);
     const history = useHistory();
     const {getProjects} = useContext(ProjectContext);
 
