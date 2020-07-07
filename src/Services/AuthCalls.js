@@ -16,6 +16,4 @@ export default {
         await axios.get("https://projecttrackcc.herokuapp.com/auth/logout")
     },
 
-
-
 }
