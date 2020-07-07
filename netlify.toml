@@ -1,7 +1,16 @@
 [build]
   command = "CI=false npm run build"
   publish="build"
+  
+# API proxying
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+    from = "/auth/*"
+    to = "https://projecttrackcc.herokuapp.com/:splat"
+    status = 200
+    force = true
+
+# React Router support
+[[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
