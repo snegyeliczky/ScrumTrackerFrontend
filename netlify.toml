@@ -1,11 +1,13 @@
 [build]
   command = "CI=false npm run build"
   publish="build"
+  
 [[redirects]]
-  from = "/*"
+  from = "/"
   to = "/index.html"
   status = 200
   
+[[redirects]]
   from = "/auth"
   to ="https://projecttrackcc.herokuapp.com"
   status =200
