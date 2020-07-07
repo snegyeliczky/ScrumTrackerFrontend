@@ -6,27 +6,27 @@ export default {
 
 
     getMyProjects: async () => {
-        let response = await axios.get("http://localhost:8080/project/getactiveprojects");
+        let response = await axios.get("project/getactiveprojects");
         return response.data;
     },
 
     getArchiveProjects: async () => {
-        let response = await axios.get("http://localhost:8080/project/getarchiveprojects");
+        let response = await axios.get("/project/getarchiveprojects");
         return response.data;
     },
 
     getParticipatedProjects: async () => {
-        let response = await axios.get("http://localhost:8080/project/getparticipateprojects");
+        let response = await axios.get("/project/getparticipateprojects");
         return response.data;
     },
 
     addNewProject: async (projectNameObject) => {
-        await axios.post("http://localhost:8080/project/create", projectNameObject);
+        await axios.post("/project/create", projectNameObject);
     },
 
     getProject: async (id) => {
         try {
-            let response = await axios.get("http://localhost:8080/project/" + id);
+            let response = await axios.get("/project/" + id);
             return response.data;
         } catch (e) {
 
@@ -38,36 +38,36 @@ export default {
     },
 
     addNewColumn : async (newStatus) => {
-        await axios.post("http://localhost:8080/project/newstatus", newStatus);
+        await axios.post("/project/newstatus", newStatus);
     },
 
     addNewTask : async (task) => {
-        await axios.post("http://localhost:8080/project/newtask", task);
+        await axios.post("/project/newtask", task);
     },
 
      deleteProject : async (projectId) => {
-        await axios.delete("http://localhost:8080/project/delete/" + projectId);
+        await axios.delete("/project/delete/" + projectId);
     },
 
     archiveProject : async (projectId) =>{
-        await axios.put("http://localhost:8080/project/archive/"+projectId);
+        await axios.put("/project/archive/"+projectId);
     },
 
     sendMail : async (projectId,emailCred) =>{
-       await axios.post("http://localhost:8080/project/email/"+projectId,emailCred);
+       await axios.post("/project/email/"+projectId,emailCred);
     },
 
     deleteStatus : async (statusID, tableId) => {
-        await axios.delete("http://localhost:8080/project/deletestatus?statusid=" + statusID + "&tableid=" + tableId);
+        await axios.delete("/project/deletestatus?statusid=" + statusID + "&tableid=" + tableId);
     },
 
     getScrumTable : async (tableId) =>{
-        let axiosResponse = await axios.get("http://localhost:8080/project/gettable/" + tableId);
+        let axiosResponse = await axios.get("/project/gettable/" + tableId);
         return axiosResponse.data;
     },
 
     sendProjectInProgressLimit : async (tableCredentials) =>{
-        let axiosResponse = await axios.put("http://localhost:8080/project/table/limit/", tableCredentials);
+        let axiosResponse = await axios.put("/project/table/limit/", tableCredentials);
         return axiosResponse.data;
     }
 
