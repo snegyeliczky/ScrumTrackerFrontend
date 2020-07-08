@@ -59,7 +59,7 @@ const InProgressLimitModal = ({tableId, getProject, taskLimit}) => {
                            onChange={event => setLimit(event.target.value)}
                            type="number"
                     />
-                    <Button onClick={handleSend}>Send</Button>
+                    <Button onClick={handleSend}>Set</Button>
                 </ContentContainer>
             </Modal>
 

@@ -41,7 +41,7 @@ const Column = ({status, onDragEnter, dragItem, onDragEnd, deleteStatus, refresh
     const handleAddNewTask = () => {
         console.log(newTaskNameRef.current.value);
         if (newTaskNameRef.current.value.length < 3) {
-            showErrorAlert("please minimum 3 character!");
+            showErrorAlert("Please enter minimum 3 characters!");
             newTaskNameRef.current.value = "";
             return;
         }

@@ -7,7 +7,6 @@ import MailModal from "../../components/MailModal";
 import CustomPieChart from "../../components/ProjectComponents/CustomPieChart";
 import ProjectCalls from "../../Services/ProjectCalls";
 import InProgressLimitModal from "../../components/InProgressLimitModal";
-import TaskDistibution from "../../components/ProjectComponents/taskDistibution";
 
 const ProjectPage = () => {
 
@@ -60,25 +59,6 @@ const ProjectPage = () => {
         getBusinessValueChartData(newScrumTable.statuses);
         setScrumTable(newScrumTable);
     };
-
-
-    function getUsersWithTasks(scrumTable) {
-        let usersWithTasks = {};
-        scrumTable.statuses.map( (status)=>{
-            status.tasks.map((task)=>{
-                if (task.owner!=null){
-                    let owner=task.owner.username;
-                    usersWithTasks[owner]=(usersWithTasks[owner]||0)+1;
-                }else {
-                    usersWithTasks["need owner"] =(usersWithTasks["need owner"]||0)+1;
-                }
-
-            })
-        });
-        return usersWithTasks;
-
-    }
-
 
     function getTaskChartData(statuses) {
         let projectStatuses = statuses;
@@ -171,13 +151,6 @@ const ProjectPage = () => {
                                 projectAuthor = {project.author.username}
 
                     />
-                </div>
-                <div className={"task_distribution_container"}>
-                    {
-                        Object.entries(getUsersWithTasks(scrumTable)).map((key) => {
-                            return <TaskDistibution user={key}/>;
-                        })
-                    }
                 </div>
                 <div className="chart_container">
                     <CustomPieChart data={taskCount}

@@ -5,6 +5,7 @@ import UseComponentVisible from "../../Utils/UseComponentVisible";
 import ProjectCalls from "../../Services/ProjectCalls";
 import TaskCalls from "../../Services/TaskCalls";
 import {ProjectContext} from "../../Contexts/ProjectContext";
+import TaskDistibution from "./taskDistibution";
 
 const ScrumTable = ({
                         table, addNewColumn, addNewTask, countBusinessValue,
@@ -106,7 +107,23 @@ const ScrumTable = ({
 
     };
 
+    function getUsersWithTasks(statuses) {
+        let usersWithTasks = {};
+        statuses.map( (status)=>{
+            status.tasks.map((task)=>{
+                if (task.owner!=null){
+                    let owner=task.owner.username;
+                    usersWithTasks[owner]=(usersWithTasks[owner]||0)+1;
+                }else {
+                    usersWithTasks["need owner"] =(usersWithTasks["need owner"]||0)+1;
+                }
+            })
+        });
+        return usersWithTasks;
+    }
+
     return (
+        <div className={"table-data"}>
         <div className={"scrum_table"}
              onDragOver={(e) => e.preventDefault()}>
             {
@@ -151,6 +168,16 @@ const ScrumTable = ({
                 )}
             </div>
         </div>
+        <div className={"task_distribution_container"}>
+        {
+            Object.entries(getUsersWithTasks(statuses)).map((key) => {
+                return <TaskDistibution user={key}/>;
+            })
+        }
+        </div>
+        </div>
+
+
     );
 };
 
