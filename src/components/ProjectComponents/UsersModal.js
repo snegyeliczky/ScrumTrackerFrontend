@@ -9,7 +9,7 @@ import UserCalls from "../../Services/UserCalls";
 import ProjectCalls from "../../Services/ProjectCalls";
 
 
-const UsersModal = ({projectId, participants}) => {
+const UsersModal = ({projectId, participants, getProject}) => {
 
     const [value, setValue] = useState();
     const [visible, setVisible] = useState(false);
@@ -29,6 +29,7 @@ const UsersModal = ({projectId, participants}) => {
     }
 
     function handleCancel() {
+        getProject();
         setVisible(false);
     }
 

@@ -41,8 +41,6 @@ const ProjectPage = () => {
         setProject(myProject);
         getTaskChartData(myProject.table.statuses);
         getBusinessValueChartData(myProject.table.statuses);
-
-
     };
 
     const refreshScrumTableBackend = async () => {
@@ -57,6 +55,7 @@ const ProjectPage = () => {
         });
         getTaskChartData(newScrumTable.statuses);
         getBusinessValueChartData(newScrumTable.statuses);
+        console.log(newScrumTable);
         setScrumTable(newScrumTable);
     };
 
@@ -130,7 +129,7 @@ const ProjectPage = () => {
                     <div className={"project_title_container"}>
                         <h2>{project.title}</h2>
                     </div>
-                    <UsersModal projectId={project.id} participants={project.participants}/>
+                    <UsersModal projectId={project.id} participants={project.participants} getProject={getProject} />
                     <MailModal projectId={project.id}/>
                     <InProgressLimitModal tableId={project.table.id}
                                           getProject={getProject}
@@ -147,7 +146,6 @@ const ProjectPage = () => {
                                 tasksDistributionInStatuses={getTaskChartData}
                                 usersOnProject={usersOnProject}
                                 countBusinessValue={getBusinessValueChartData}
-                                refreshScrumTableBackend={refreshScrumTableBackend}
                                 projectAuthor = {project.author.username}
 
                     />

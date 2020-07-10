@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef} from 'react';
+import React, {useState, useContext, useRef, useEffect} from 'react';
 import Column from "./Column";
 import {PlusOutlined} from "@ant-design/icons";
 import UseComponentVisible from "../../Utils/UseComponentVisible";
@@ -9,7 +9,7 @@ import TaskDistibution from "./taskDistibution";
 
 const ScrumTable = ({
                         table, addNewColumn, addNewTask, countBusinessValue,
-                        usersOnProject, tasksDistributionInStatuses, refreshScrumTableBackend,
+                        usersOnProject, tasksDistributionInStatuses,
                         projectAuthor
                     }) => {
 
@@ -28,9 +28,10 @@ const ScrumTable = ({
     } = UseComponentVisible(false);
 
 
+
     const deleteStatus = async (statusID) => {
         await ProjectCalls.deleteStatus(statusID, table.id);
-        refreshScrumTableBackend();
+        refreshStatusesFromBackend();
     };
 
     const refreshStatusesFromBackend = async () => {
