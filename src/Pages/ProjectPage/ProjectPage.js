@@ -43,6 +43,7 @@ const ProjectPage = () => {
         getBusinessValueChartData(myProject.table.statuses);
     };
 
+    /*
     const refreshScrumTableBackend = async () => {
         let newScrumTable = await ProjectCalls.getScrumTable(project.table.id);
         newScrumTable.statuses.sort(function (a, b) {
@@ -58,6 +59,7 @@ const ProjectPage = () => {
         console.log(newScrumTable);
         setScrumTable(newScrumTable);
     };
+     */
 
     function getTaskChartData(statuses) {
         let projectStatuses = statuses;
