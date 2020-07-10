@@ -1,5 +1,5 @@
 import React, {useContext, useRef, useState} from 'react';
-import {Modal, DatePicker} from 'antd';
+import {Modal, DatePicker, Button} from 'antd';
 import 'antd/dist/antd.css';
 import {FormOutlined} from "@ant-design/icons";
 import {ContentContainer} from "../Assets/StyledComps/styled";
@@ -9,11 +9,10 @@ import moment from 'moment';
 import {ProjectContext} from "../Contexts/ProjectContext";
 
 
-
 const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) => {
 
     const {Option} = Select;
-    const priorityList = Array.from({length: 10}, (k, v) => v + 1);
+    const priorityList = Array.from({length: 5}, (k, v) => v + 1);
 
     const {showErrorAlert} = useContext(ProjectContext);
     const [visible, setVisible] = useState(false);
@@ -22,7 +21,8 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     const descriptionRef = useRef(task.description);
     const titleRef = useRef(task.title);
     const positionRef = useRef(task.position);
-    const [deadlineRef,setDeadlineRef] = useState(task.deadline);
+    const [deadlineRef, setDeadlineRef] = useState(task.deadline);
+    const [disabledBtn, setDisabledBtn] = useState(true);
 
     /*
     const options = {
@@ -38,6 +38,7 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
             return;
         }
         uploadChanges();
+        handleCancel();
     };
 
     async function uploadChanges() {
@@ -57,22 +58,21 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
     }
 
 
-    function handleOk() {
-        setVisible(false);
-    }
-
     function handleCancel() {
         setVisible(false);
+        setDisabledBtn(true);
     }
 
     function showModal() {
         setVisible(true)
     }
 
-    function handleTimeChange(date, dateString){
-        date= new Date(date);
+    function handleTimeChange(date, dateString) {
+        date = new Date(date);
         setDeadlineRef(date);
+        setDisabledBtn(false);
     }
+
 
 
     return (
@@ -80,10 +80,13 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
             <FormOutlined onClick={showModal}/>
             <Modal
                 visible={visible}
-                onOk={handleOk}
                 onCancel={handleCancel}
                 width={800}
-                footer={null}
+                footer={[
+                    <Button key="submit" type="primary"
+                            onClick={handleEdit} disabled={disabledBtn}>
+                        Save & Close
+                    </Button>]}
             >
                 <h2>Edit Task</h2>
                 <div className={"task_modal"}>
@@ -93,32 +96,32 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                             className={"text_input title"}
                             placeholder={"Story Title"}
                             defaultValue={task.title}
-                            ref={titleRef}/>
-                        <div className="modal_btn"
-                             onClick={handleEdit}>Save
-                        </div>
+                            ref={titleRef}
+                            onChange={event => { setDisabledBtn(false)}}
+                        />
                     </div>
                     <div className={"text_modal"}>
                         <label>Description: </label>
                         <textArea
                             className={"text_input userStory"}
                             placeholder={"user story"}
-                            ref={descriptionRef}>
+                            ref={descriptionRef}
+                            onChange={event => { setDisabledBtn(false)}}
+                            >
                             {task.description}
                         </textArea>
-                        <div className="modal_btn"
-                             onClick={handleEdit}>Save
-                        </div>
                     </div>
                     <ContentContainer>
                         <div className={"task_data_selector"}>
                             <label>Priority: </label>
                             <Select
-                                style={{width:"90%"}}
+                                style={{width: "90%"}}
                                 className={"priority"}
                                 defaultValue={task.priority}
                                 onChange={(value) => {
                                     setPriorityRef(value);
+                                    setDisabledBtn(false)
+
                                 }
                                 }
                                 type="number"
@@ -129,47 +132,38 @@ const TaskModal = ({task, setTask, refreshStatusesFromBackend, usersOnProject}) 
                                     })
                                 }
                             </Select>
-                            <div className="modal_btn"
-                                 onClick={handleEdit}>Save
-                            </div>
                         </div>
                         <div className={"task_data_selector"}>
                             <label>Owner: </label>
                             <Select
-                                style={{width:"90%"}}
+                                style={{width: "90%"}}
                                 className={"owner"}
                                 defaultValue={task.owner ? task.owner.username : "No Owner Yet"}
                                 onChange={(value) => {
                                     usersOnProject.map((user) => {
                                         if (user.username === value) {
                                             setOwnerRef(user);
+
                                         }
                                     });
+                                    setDisabledBtn(false)
                                 }}>
                                 {usersOnProject.map((user) => {
                                     return <Option key={user.id} value={user.username}>{user.username}</Option>
                                 })}
 
                             </Select>
-                            <div className="modal_btn"
-                                 onClick={handleEdit}>Save
-                            </div>
                         </div>
                         <div className={"task_data_selector"}>
                             <label>Deadline: </label>
                             <DatePicker
-                                //locale={locale}
-                                style={{width:"90%"}}
+                                style={{width: "90%"}}
                                 className={"deadline_picker"}
-                                defaultValue={deadlineRef?moment(deadlineRef):''}
+                                defaultValue={deadlineRef ? moment(deadlineRef) : ''}
                                 format={'MM.DD'/* + "hh.mm"*/}
                                 onChange={handleTimeChange}
-                                //showTime={true}
                             />
 
-                            <div className="modal_btn"
-                                 onClick={handleEdit}>Save
-                            </div>
                         </div>
                     </ContentContainer>
                 </div>
