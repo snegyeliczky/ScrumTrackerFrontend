@@ -75,5 +75,9 @@ export default {
     addUserToProject : async (projectId,user)=>{
         let respons = await axios.post("https://projecttrackcc.herokuapp.com/project/adduser/" + projectId, user);
         return respons.data;
+    },
+
+    saveNewProjectName : async (id, value) => {
+        await axios.put("https://projecttrackcc.herokuapp.com/project/rename/"+id+"/"+value)
     }
 }

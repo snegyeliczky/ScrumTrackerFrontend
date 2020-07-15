@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {useHistory} from "react-router-dom";
-import {ApiOutlined, DeleteOutlined} from "@ant-design/icons";
+import {ApiOutlined, DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {ProjectContext} from "../../Contexts/ProjectContext";
 import ProjectCalls from "../../Services/ProjectCalls";
 
@@ -9,6 +9,8 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
     const {showErrorAlert} = useContext(ProjectContext);
     const history = useHistory();
     const {getProjects} = useContext(ProjectContext);
+    const [reName,setReName] = useState(false);
+    const [projectTitle, setProjectTitle] = useState(project.title)
 
     const handleClick = () => {
         history.push("/project/" + project.id)
@@ -47,13 +49,37 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
 
     };
 
+    const renameProject = (e) =>{
+        e.stopPropagation();
+        setReName(!reName)
+    };
+
+    const saveRenameProject = async (e) =>{
+        if (e.keyCode===13){
+            let value = e.target.value;
+            await ProjectCalls.saveNewProjectName(project.id, value);
+            setProjectTitle(value);
+            setReName(false);
+        }
+    };
+
+
     return (
         <div className={"project_card"} onClick={handleClick} style={ProjectBackground}>
             <div className={"project_tool_container"}>
                 <DeleteOutlined onClick={(e) => handleDelete(e)}/>
                 <ApiOutlined onClick={(e)=>archiveProject(e)} style={showArchiveStyle}/>
+                <EditOutlined onClick={(e) => renameProject(e)} />
             </div>
-            <div className={"project_card_title"}>{project.title}</div>
+            {reName?
+                <input className={"renameInput"}
+                       onClick={(e) => e.stopPropagation()}
+                       defaultValue={projectTitle}
+                       onKeyDown={(e)=>saveRenameProject(e)}
+                />:
+                <div className={"project_card_title"}>{projectTitle}</div>
+            }
+
         </div>
     );
 };
