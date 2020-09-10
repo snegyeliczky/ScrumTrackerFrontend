@@ -77,7 +77,7 @@ const ProjectCard = ({project, taskPercentageInProjectStatuses}) => {
                        defaultValue={projectTitle}
                        onKeyDown={(e)=>saveRenameProject(e)}
                 />:
-                <div className={"project_card_title"}>{projectTitle}</div>
+                <div className={"project_card_title"} >{projectTitle}</div>
             }
 
         </div>
